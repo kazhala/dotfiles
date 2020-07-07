@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# init
+tmux new-session -s mealternative -d -n frontend -c "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmux new-window -t mealternative:2 -n backend -c "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
+
+# window frontend
+cd "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmux split-window -t mealternative:1.1 -h
+tmux split-window -t mealternative:1.2 -v
+tmux select-layout -t mealternative:1.1 "$BMUX_3_WEB"
+
+# window backend
+cd "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
+tmux split-window -t mealternative:2.1 -h
+tmux split-window -t mealternative:2.2 -v
+tmux select-layout -t mealternative:2.1 "$BMUX_3_WEB"
+
+# reset window
+tmux select-pane -t mealternative:1.1
+tmux select-pane -t mealternative:2.1
+tmux select-window -t mealternative:1

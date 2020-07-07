@@ -1,0 +1,236 @@
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+  position:
+    x: 0
+    y: 0
+  padding:
+    x: 1
+    y: 0
+  dynamic_padding: true
+  decorations: none
+  startup_mode: Windowed
+  title: Alacritty
+
+scrolling:
+  history: 0
+  multiplier: 0
+
+font:
+  normal:
+    family: DejaVuSansMono Nerd Font Mono
+  size: 14.5
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+  use_thin_strokes: false
+
+draw_bold_text_with_bright_colors: false
+
+colors:
+  primary:
+    foreground: '0xabb2bf'
+    background: '0x282c34'
+  cursor:
+    text: '0x5c6370'
+    cursor: '0x61afef'
+  normal:
+    black: '0x5c6370'
+    red: '0xe06c75'
+    green: '0x98c379'
+    yellow: '0xe5c07b'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0xabb2bf'
+  bright:
+    black: '0x4b5263'
+    red: '0xbe5046'
+    green: '0x98c379'
+    yellow: '0xd19a66'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0x3e4452'
+
+visual_bell:
+  duration: 0
+
+background_opacity: 1.0
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: false
+
+dynamic_title: false
+
+cursor:
+  style: Block
+  vi_mode_style: None
+  unfocused_hollow: true
+
+live_config_reload: true
+
+shell:
+  program: /bin/zsh
+
+working_directory: None
+
+alt_send_esc: false
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+  url:
+    modifiers: Command
+
+key_bindings:
+  - { key: PageUp, action: ScrollPageUp }
+  - { key: PageUp, mode: Alt, chars: "\x1B[5~" }
+  - { key: PageUp, mods: Shift, chars: "\x1B[5~" }
+  - { key: PageDown, action: ScrollPageDown }
+  - { key: PageDown, mode: Alt, chars: "\x1B[6~" }
+  - { key: PageDown, mods: Shift, chars: "\x1B[6~" }
+  - { key: Home, action: ScrollToTop }
+  - { key: Home, mode: Alt, chars: "\x1BOH" }
+  - { key: Home, mods: Shift, chars: "\x1B[H" }
+  - { key: End, action: ScrollToBottom }
+  - { key: End, mode: Alt, chars: "\x1BOF" }
+  - { key: End, mods: Shift, chars: "\x1B[F" }
+  - { key: Tab, mods: Alt, chars: "\x1B\t" }
+  - { key: Tab, mods: Alt|Shift, chars: "\x1B\x1B[Z" }
+  - { key: Back, chars: "\x7F" }
+  - { key: Back, mods: Alt, chars: "\x1B\x7F" }
+  - { key: Back, mods: Alt|Shift, chars: "\x1B\x08" }
+  - { key: Space, mods: Control, chars: "\x00" }
+  - { key: Space, mods: Alt, chars: "\x20" }
+  - { key: Left, mods: Alt, chars: "\x1Bb" }
+  - { key: Left, mods: Alt|Shift, chars: "\x1B\x1B[D" }
+  - { key: Right, mods: Alt, chars: "\x1Bf" }
+  - { key: Right, mods: Alt|Shift, chars: "\x1B\x1B[C" }
+  - { key: Down, mods: Alt, chars: "\x1B\x1B[B" }
+  - { key: Down, mods: Alt|Shift, chars: "\x1B\x1B[B" }
+  - { key: Up, mods: Alt, chars: "\x1B\x1B[A" }
+  - { key: Up, mods: Alt|Shift, chars: "\x1B\x1B[A" }
+  - { key: A, mods: Alt, chars: "\x1Ba" }
+  - { key: A, mods: Alt|Shift, chars: "\x1BA" }
+  - { key: B, mods: Alt, chars: "\x1Bb" }
+  - { key: B, mods: Alt|Shift, chars: "\x1BB" }
+  - { key: C, mods: Alt, chars: "\x1Bc" }
+  - { key: C, mods: Alt|Shift, chars: "\x1BC" }
+  - { key: D, mods: Alt, chars: "\x1Bd" }
+  - { key: D, mods: Alt|Shift, chars: "\x1BD" }
+  - { key: E, mods: Alt, chars: "\x1Be" }
+  - { key: E, mods: Alt|Shift, chars: "\x1BE" }
+  - { key: F, mods: Alt, chars: "\x1Bf" }
+  - { key: F, mods: Alt|Shift, chars: "\x1BF" }
+  - { key: G, mods: Alt, chars: "\x1Bg" }
+  - { key: G, mods: Alt|Shift, chars: "\x1BG" }
+  - { key: H, mods: Alt, chars: "\x1Bh" }
+  - { key: H, mods: Alt|Shift, chars: "\x1BH" }
+  - { key: I, mods: Alt, chars: "\x1Bi" }
+  - { key: I, mods: Alt|Shift, chars: "\x1BI" }
+  - { key: J, mods: Alt, chars: "\x1Bj" }
+  - { key: J, mods: Alt|Shift, chars: "\x1BJ" }
+  - { key: K, mods: Alt, chars: "\x1Bk" }
+  - { key: K, mods: Alt|Shift, chars: "\x1BK" }
+  - { key: L, mods: Alt, chars: "\x1Bl" }
+  - { key: L, mods: Alt|Shift, chars: "\x1BL" }
+  - { key: M, mods: Alt, chars: "\x1Bm" }
+  - { key: M, mods: Alt|Shift, chars: "\x1BM" }
+  - { key: N, mods: Alt, chars: "\x1Bn" }
+  - { key: N, mods: Alt|Shift, chars: "\x1BN" }
+  - { key: O, mods: Alt, chars: "\x1Bo" }
+  - { key: O, mods: Alt|Shift, chars: "\x1BO" }
+  - { key: P, mods: Alt, chars: "\x1Bp" }
+  - { key: P, mods: Alt|Shift, chars: "\x1BP" }
+  - { key: Q, mods: Alt, chars: "\x1Bq" }
+  - { key: Q, mods: Alt|Shift, chars: "\x1BQ" }
+  - { key: R, mods: Alt, chars: "\x1Br" }
+  - { key: R, mods: Alt|Shift, chars: "\x1BR" }
+  - { key: S, mods: Alt, chars: "\x1Bs" }
+  - { key: S, mods: Alt|Shift, chars: "\x1BS" }
+  - { key: T, mods: Alt, chars: "\x1Bt" }
+  - { key: T, mods: Alt|Shift, chars: "\x1BT" }
+  - { key: U, mods: Alt, chars: "\x1Bu" }
+  - { key: U, mods: Alt|Shift, chars: "\x1BU" }
+  - { key: V, mods: Alt, chars: "\x1Bv" }
+  - { key: V, mods: Alt|Shift, chars: "\x1BV" }
+  - { key: W, mods: Alt, chars: "\x1Bw" }
+  - { key: W, mods: Alt|Shift, chars: "\x1BW" }
+  - { key: X, mods: Alt, chars: "\x1Bx" }
+  - { key: X, mods: Alt|Shift, chars: "\x1BX" }
+  - { key: Y, mods: Alt, chars: "\x1By" }
+  - { key: Y, mods: Alt|Shift, chars: "\x1BY" }
+  - { key: Z, mods: Alt, chars: "\x1Bz" }
+  - { key: Z, mods: Alt|Shift, chars: "\x1BZ" }
+  - { key: Key1, mods: Alt, chars: "\x1B1" }
+  - { key: Key1, mods: Alt|Shift, chars: "\x1B!" }
+  - { key: Key2, mods: Alt, chars: "\x1B2" }
+  - { key: Key2, mods: Alt|Shift, chars: "\x1B#" }
+  - { key: Key3, mods: Alt, chars: "\x1B3" }
+  - { key: Key3, mods: Alt|Shift, chars: "\x1B#" }
+  - { key: Key4, mods: Alt, chars: "\x1B4" }
+  - { key: Key4, mods: Alt|Shift, chars: "\x1B$" }
+  - { key: Key5, mods: Alt, chars: "\x1B5" }
+  - { key: Key5, mods: Alt|Shift, chars: "\x1B%" }
+  - { key: Key6, mods: Alt, chars: "\x1B6" }
+  - { key: Key6, mods: Alt|Shift, chars: "\x1B^" }
+  - { key: Key7, mods: Alt, chars: "\x1B7" }
+  - { key: Key7, mods: Alt|Shift, chars: "\x1B&" }
+  - { key: Key8, mods: Alt, chars: "\x1B8" }
+  - { key: Key8, mods: Alt|Shift, chars: "\x1B*" }
+  - { key: Key9, mods: Alt, chars: "\x1B9" }
+  - { key: Key9, mods: Alt|Shift, chars: "\x1B(" }
+  - { key: Key0, mods: Alt, chars: "\x1B0" }
+  - { key: Key0, mods: Alt|Shift, chars: "\x1B)" }
+  - { key: Minus, mods: Alt, chars: "\x1B-" }
+  - { key: Minus, mods: Alt|Shift, chars: "\x1B_" }
+  - { key: Equals, mods: Alt, chars: "\x1B=" }
+  - { key: Equals, mods: Alt|Shift, chars: "\x1B+" }
+  - { key: LBracket, mods: Alt, chars: "\x1B[" }
+  - { key: LBracket, mods: Alt|Shift, chars: "\x1B{" }
+  - { key: RBracket, mods: Alt, chars: "\x1B]" }
+  - { key: RBracket, mods: Alt|Shift, chars: "\x1B}" }
+  - { key: Backslash, mods: Alt, chars: "\x1B\\" }
+  - { key: Backslash, mods: Alt|Shift, chars: "\x1B|" }
+  - { key: Semicolon, mods: Alt, chars: "\x1B;" }
+  - { key: Semicolon, mods: Alt|Shift, chars: "\x1B:" }
+  - { key: Apostrophe, mods: Alt, chars: "\x1B'" }
+  - { key: Apostrophe, mods: Alt|Shift, chars: "\x1B\"" }
+  - { key: Comma, mods: Alt, chars: "\x1B," }
+  - { key: Comma, mods: Alt|Shift, chars: "\x1B<" }
+  - { key: Period, mods: Alt, chars: "\x1B." }
+  - { key: Period, mods: Alt|Shift, chars: "\x1B>" }
+  - { key: Slash, mods: Alt, chars: "\x1B/" }
+  - { key: Slash, mods: Alt|Shift, chars: "\x1B?" }
+  - { key: Grave, mods: Alt, chars: "\x1B`" }
+  - { key: Grave, mods: Alt|Shift, chars: "\x1B~" }
+
+  - { key: S, mods: Command, chars: ":w\n" }
+  - { key: Semicolon, mods: Command, chars: ":CtrlSemicolumn\n" }
+  - { key: Comma, mods: Command, chars: ":CtrlColumn\n" }
+
+  - { key: Key0, mods: Command, action: ResetFontSize }
+  - { key: Equals, mods: Command, action: IncreaseFontSize }
+  - { key: Minus, mods: Command, action: DecreaseFontSize }
+  - { key: K, mods: Command, action: ClearHistory }
+  - { key: V, mods: Command, action: Paste }
+  - { key: C, mods: Command, action: Copy }
+  - { key: H, mods: Command, action: Hide }
+  - { key: M, mods: Command, action: Minimize }
+  - { key: Q, mods: Command, action: Quit }
+  - { key: W, mods: Command, action: Quit }
+  - { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: Return, mods: Command, action: ToggleFullscreen }
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: Warn
+  print_events: false

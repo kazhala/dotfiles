@@ -1,0 +1,6 @@
+[user]
+  email = kevin7441@gmail.com
+  name = Kevin Zhuang
+[core]
+  editor = nvim
+  pager = delta --diff-so-fancy --line-numbers

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# init
+tmux new-session -s sds -d -n frontend -c "$HOME/Programming/uni/assesql/frontend"
+tmux new-window -t sds:2 -n backend -c "$HOME/Programming/uni/assesql/assesqlapiserver"
+
+# window frontend
+cd "$HOME/Programming/uni/assesql/frontend"
+tmux split-window -t sds:1.1 -h
+tmux split-window -t sds:1.2 -v
+tmux select-layout -t sds:1.1 "$BMUX_3_WEB"
+
+# window backend
+cd "$HOME/Programming/uni/assesql/assesqlapiserver"
+tmux split-window -t sds:2.1 -h
+tmux split-window -t sds:2.2 -v
+tmux select-layout -t sds:2.1 "$BMUX_3_WEB"
+
+# reset window
+tmux select-pane -t sds:1.1
+tmux select-pane -t sds:2.1
+tmux select-window -t sds:1

@@ -1,0 +1,103 @@
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+######################################
+############### react ################
+######################################
+
+#-------------- utility -------------#
+
+snippet ruc "TopComment" b
+/*
+  ${1}
+*/
+endsnippet
+
+#
+snippet ruf "ReactFragment" b
+<>
+  ${1}
+</>
+endsnippet
+
+snippet rue "UseEffect" b
+useEffect(() => {
+  ${2}
+},[${1}])
+endsnippet
+
+#-------------- utility -------------#
+
+#---------- class/component ---------#
+
+snippet rcb "BasicClass" b
+import React from 'react';
+
+const ${1:className} = props => {
+  return <div>$1</div>
+}
+
+export default $1;
+endsnippet
+
+snippet rcp "PropTypeClass" b
+/*
+  ${1}
+*/
+
+// react
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ${2:className} = props => {
+  const { ${3:classes} } = props;
+
+  return <div>$2</div>
+}
+
+$2.propTypes = {
+  ${3: classes}: ${4:PropTypes.object.isRequired}
+}
+
+export default $2;
+endsnippet
+
+#---------- class/component ---------#
+
+######################################
+############### react ################
+######################################
+
+######################################
+############# JavaScript #############
+######################################
+
+snippet jtc "TryCatch" b
+try {
+  ${1://}
+} catch(err) {
+  console.log('Error', err);
+}
+endsnippet
+
+snippet jcl "ConsoleLog" b
+console.log('$1', ${1})
+endsnippet
+
+snippet jaf "arrowFunction" b
+const ${1:jaf} = (${2}) => {
+  ${3://}
+}
+endsnippet
+
+######################################
+############# JavaScript #############
+######################################

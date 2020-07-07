@@ -1,0 +1,67 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet pds "Doc String" b
+"""${1}
+
+${2}
+"""
+endsnippet
+
+snippet pfs "Function Doc" b
+"""${1}
+"""
+endsnippet
+
+snippet pcc "initializer" b
+def __init__(self${1}):
+	${2:pass}
+endsnippet
+
+snippet pfp "fstring print" b
+print(f"${1}")
+endsnippet
+
+snippet pcl "log variable" b
+print('${1}: ', $1)
+endsnippet
+
+snippet pcf "class function" b
+def ${1:something}(self${2}):
+	${3:pass}
+endsnippet
+
+snippet ptc "try except" b
+try:
+	${1:pass}
+except${2}:
+	${3:pass}
+endsnippet
+
+snippet pda "Doc String attribute" b
+:param ${1}: ${2}
+:type $1: ${3}
+endsnippet

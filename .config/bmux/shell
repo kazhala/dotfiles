@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# init
+tmux new-session -s shell -d -n dotbare -c "$HOME/Programming/shell/dotbare"
+tmux new-window -t shell:2 -n bmux -c "$HOME/Programming/shell/bmux"
+tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
+
+# window dotbare
+cd "$HOME/Programming/shell/dotbare"
+tmux split-window -t shell:1.1 -h
+# window bmux
+cd "$HOME/Programming/shell/bmux"
+tmux split-window -t shell:2.1 -h
+# window trash
+cd "$HOME/Programming/shell/dump-cli"
+tmux split-window -t shell:3.1 -h
+
+# reset window
+tmux select-pane -t shell:1.1
+tmux select-pane -t shell:2.1
+tmux select-pane -t shell:3.1
+tmux select-window -t shell:1

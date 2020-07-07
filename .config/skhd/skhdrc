@@ -1,0 +1,126 @@
+# -- Movement ------------------------------------------------------------------
+
+# swap managed window
+shift + alt + ctrl - h : yabai -m window --swap west
+shift + alt + ctrl - j : yabai -m window --swap south
+shift + alt + ctrl - k : yabai -m window --swap north
+shift + alt + ctrl - l : yabai -m window --swap east
+
+# re-insert managed window
+ctrl + cmd - h : yabai -m window --warp west
+ctrl + cmd - j : yabai -m window --warp south
+ctrl + cmd - k : yabai -m window --warp north
+ctrl + cmd - l : yabai -m window --warp east
+
+# move space
+shift + alt + ctrl - n : yabai -m space --move next
+shift + alt + ctrl - p : yabai -m space --move prev
+
+# move floating window
+shift + alt + ctrl - left : yabai -m window --move rel:-20:0
+shift + alt + ctrl - right : yabai -m window --move rel:20:0
+shift + alt + ctrl - down : yabai -m window --move rel:0:20
+shift + alt + ctrl - up : yabai -m window --move rel:0:-20
+
+# -- Focus ---------------------------------------------------------------------
+
+# focus window
+shift + alt - h : yabai -m window --focus west
+shift + alt - j : yabai -m window --focus south
+shift + alt - k : yabai -m window --focus north
+shift + alt - l : yabai -m window --focus east
+shift + alt - g : yabai -m window --focus first
+shift + alt - 9 : yabai -m window --focus prev
+shift + alt - 0 : yabai -m window --focus next
+shift + alt - tab : yabai -m window --focus recent
+
+# fast focus desktop
+shift + alt - a : yabai -m space --focus recent
+shift + alt - q : yabai -m space --focus last
+shift + alt - e : yabai -m space --focus next
+shift + alt - w : yabai -m space --focus prev
+ctrl - 1 : yabai -m space --focus 1
+ctrl - 2 : yabai -m space --focus 2
+ctrl - 3 : yabai -m space --focus 3
+ctrl - 4 : yabai -m space --focus 4
+ctrl - 5 : yabai -m space --focus 5
+ctrl - 6 : yabai -m space --focus 6
+ctrl - 7 : yabai -m space --focus 7
+ctrl - 8 : yabai -m space --focus 8
+ctrl - 9 : yabai -m space --focus 9
+
+# send window to desktop and follow focus
+shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
+
+# -- Size ----------------------------------------------------------------------
+
+# make floating window fill screen or center
+shift + alt + ctrl - f : yabai -m window --grid 1:1:0:0:1:1
+shift + alt + ctrl - a : yabai -m window --grid 9:9:2:1:5:7
+
+# resize floating window
+shift + alt + ctrl - d : yabai -m window --resize bottom_right:100:100
+shift + alt + ctrl - e : yabai -m window --resize bottom_right:-100:-100
+shift + alt + ctrl - s : yabai -m window --resize bottom_left:-100:100
+shift + alt + ctrl - w : yabai -m window --resize bottom_left:100:-100
+
+# resize window
+shift + alt - left : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
+shift + alt - down : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
+shift + alt - up : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
+shift + alt - right : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
+
+# -- Commands ------------------------------------------------------------------
+
+# balance size of windows
+shift + alt - z : yabai -m space --balance
+
+# rotate the windows
+shift + alt - r : yabai -m space --rotate 90
+
+# toggle window zoom
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
+
+# float the window and place it in center
+shift + alt - d : yabai -m window --toggle float;
+
+# toggle sub split directory
+shift + alt - t : yabai -m window --toggle split
+
+# close the window
+shift + alt - x : yabai -m window --close
+
+# toggle sticky(+float), topmost, picture-in-picture
+shift + alt - s : yabai -m window --toggle sticky;\
+                  yabai -m window --toggle topmost;\
+                  yabai -m window --toggle pip
+
+# create and destroy space
+shift + alt + ctrl - c : yabai -m space --create
+shift + alt + ctrl - x : yabai -m space --destroy
+
+# refresh yabai
+shift + alt + ctrl - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# -- Application ---------------------------------------------------------------
+
+shift + alt - i : open -a alacritty
+shift + alt + ctrl - i : open -na alacritty
+
+shift + alt - m : open -a Firefox\ Developer\ Edition
+shift + alt + ctrl - m : open -na Firefox\ Developer\ Edition
+
+shift + alt - o : open -a Slack
+shift + alt + ctrl - o : open -a Discord
+shift + alt - u : open -a Trello
+
+shift + alt - b : open ~
+shift + alt + ctrl - b : ~/Programming/Scripts/skhd/finder

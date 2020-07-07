@@ -1,0 +1,64 @@
+# -- Personal ------------------------------------------------------------------
+
+BlueJ.app
+Caches
+*.plist
+dist
+*.toc
+*.pkg
+alfred
+.tldrc
+.cfg
+Alfred
+Pictures
+Music
+UTS*
+Library
+*.eot
+*.ttf
+*.woff
+
+# -- Images --------------------------------------------------------------------
+
+*.jpg
+*.gif
+*.png
+*.svg
+*.ico
+
+# -- Compiled source -----------------------------------------------------------
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# -- Packages ------------------------------------------------------------------
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# -- Logs ----------------------------------------------------------------------
+
+*.log
+*.sql
+*.sqlite
+
+# -- Programming ---------------------------------------------------------------
+
+node_modules
+package-lock.json
+__pycache__
+*.py[codz]
+*$py.class
+.git
+venv/
+.venv

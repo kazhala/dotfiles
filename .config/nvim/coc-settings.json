@@ -1,0 +1,52 @@
+{
+  "coc.preferences.extensionUpdateCheck": "never",
+  "typescript.showUnused": false,
+  "javascript.showUnused": false,
+  "scss.validate": true,
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
+  "yank.highlight.duration": 800,
+  "yank.enableCompletion": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.hintSign": "",
+  "git.addedSign.text": "┃",
+  "git.removedSign.text": "┃",
+  "git.changedSign.text": "┃",
+  "git.changeRemovedSign.text": "┃",
+  "git.topRemovedSign.text": "┃",
+  "git.changedSign.hlGroup": "CocGitChange",
+  "git.removedSign.hlGroup": "CocGitDelete",
+  "git.addedSign.hlGroup": "CocGitAdd",
+  "git.changeRemovedSign.hlGroup": "CocGitChange",
+  "git.topRemovedSign.hlGroup": "CocGitDelete",
+  "eslint.codeAction.disableRuleComment": {
+    "enable": true,
+    "location": "separateLine"
+  },
+  "markdownlint.config": {
+    "default": true,
+    "line-length": false,
+    "no-duplicate-header": false
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "json",
+    "html",
+    "css",
+    "scss",
+    "yaml"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.statusItemText": "",
+  "snippets.extends": { "javascriptreact": ["javascript"] },
+  "snippets.snipmate.enable": false,
+  "snippets.loadFromExtensions": false,
+  "snippets.enableStatusItem": false,
+  "pyright.useLibraryCodeForTypes": true,
+  "python.pythonPath": "/usr/local/bin/python3.7",
+  "python.analysis.diagnosticMode": "openFilesOnly"
+}
