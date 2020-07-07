@@ -176,7 +176,7 @@ export FZF_COMPLETION_TRIGGER=''
 # -- Aliases -------------------------------------------------------------------
 
 alias vim="nvim"
-alias vimf="nvim '+RnvimrToggle'"
+alias vimf="nvim '+Vifm'"
 alias py3="python3.7"
 alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
 alias ag='ag -p ~/.ignore'

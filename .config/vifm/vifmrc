@@ -109,17 +109,23 @@ command! diff vim -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
-command! mkcd :mkdir %a | cd %a
+command! take :mkdir %a | cd %a
 command! reload :write | restart
 
-" fzf ag file
+" fzf file
 command! fzf : let $FZF_RES = term('fzf --preview "head -50 {}" 2>&0')
             \| if $FZF_RES != ''
             \|     goto $FZF_RES
             \| endif
 
-" fzf fd dir
+" fzf dir
 command! fzd : let $FZF_RES = term('fd --type d | fzf --preview "tree -L 1 -C --dirsfirst {}" 2> /dev/tty')
+            \| if $FZF_RES != ''
+            \|     cd $FZF_RES
+            \| endif
+
+" fzf marks
+command! fm : let $FZF_RES = term('exebookmark 2> /dev/tty')
             \| if $FZF_RES != ''
             \|     cd $FZF_RES
             \| endif
@@ -322,15 +328,16 @@ nnoremap yd :!printf %d | pbcopy<cr>
 " Yank current file path into the clipboard
 nnoremap yf :!printf %c:p | pbcopy<cr>
 
+" goto current directory outside vifm
+nnoremap gw :cd $PWD<cr>
+
 " map for fzf commands
 nnoremap <C-p> :fzf<cr>
 nnoremap <C-n> :fzd<cr>
+nnoremap <C-g> :fm<cr>
 
-" Unhide builtin q* keymaps
-nnoremap q: q:
-nnoremap q/ q/
-nnoremap q? q?
-nnoremap q= q=
+" q to quite
+nnoremap q :q<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>

@@ -1,4 +1,4 @@
-" -- Plugins -------------------------------------------------------------------
+" -- PLUGINS -------------------------------------------------------------------
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -10,7 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
-Plug 'kevinhwang91/rnvimr', { 'do': 'make sync', 'on': 'RnvimrToggle' }
+Plug 'vifm/vifm.vim', { 'on': 'Vifm' }
 " text object
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
@@ -30,7 +30,7 @@ Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
-" -- General -------------------------------------------------------------------
+" -- GENERAL -------------------------------------------------------------------
 
 set encoding=UTF-8
 " set 256 color
@@ -104,7 +104,7 @@ augroup FormatFile
   autocmd FileType, BufEnter markdown setlocal conceallevel=0
 augroup end
 
-" -- Color ---------------------------------------------------------------------
+" -- COLOR ---------------------------------------------------------------------
 
 let g:onedark_hide_endofbuffer = 1
 colorscheme onedark
@@ -125,41 +125,38 @@ hi FloatermBorder guibg=NONE guifg=#61afef
 " quickscope highlight
 hi QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
 hi QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-" link rnvimr color to cursorline
-hi link RnvimrNormal CursorLine
 
-" -- Plugin Config -------------------------------------------------------------
+" -- PLUGINS -------------------------------------------------------------
 
-" force polyglot prevent indentline conceal markdown
+" POLYGLOT
 let g:vim_markdown_conceal = 0
-" disable shellscript highlight, very bad lag with no real improvement
 let g:polyglot_disabled = ['sh']
 
-" vim quickscope
+" VIM-QUICKSCOPE
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'floaterm', 'fzf']
 let g:qs_lazy_highlight = 1
 
-" disable netrw
+" NETRW
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
-" CamelCaseMotion config
+" CAMELCASEMOTION
 let g:camelcasemotion_key = '<space>'
 
-" vim-tmux-navigator config
+" VIM-TMUX-NAVIGATOR
 let g:tmux_navigator_disable_when_zoomed = 1
 
-" indent Line config
+" INDENTLINE
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_fileTypeExclude = ['fzf', 'floaterm', 'vimwiki', 'markdown']
 let g:indentLine_bufNameExclude = ["term:.*"]
 
-" vim autoclose tag config
+" VIM-CLOSETAG
 let g:closetag_filenames = '*.html,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
 
-" vimwiki
+" VIMWIKI
 let g:vimwiki_list = [
   \ { 'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md' },
   \ { 'path': '~/Documents/vimwiki/docker', 'syntax': 'markdown', 'ext': '.md'},
@@ -173,34 +170,14 @@ augroup WikiTemplate
   au FileType vimwiki inoremap <buffer> <C-s> ```<CR>```<up>
 augroup end
 
-" vim sandwich
+" VIM-SANDWICH
 let g:sandwich_no_tex_ftplugin = 1
 let g:sandwich_no_vim_ftplugin = 1
 let g:sandwich_no_initex_ftplugin = 1
 let g:sandwich_no_julia_ftplugin = 1
 let g:sandwich_no_plaintex_ftplugin = 1
 
-" rvimr
-let g:rnvimr_pick_enable = 0
-let g:rnvimr_draw_border = 0
-let g:rnvimr_bw_enable = 1
-let g:rnvimr_action = {
-  \ '<C-t>': 'NvimEdit tabedit',
-  \ '<C-x>': 'NvimEdit split',
-  \ '<C-v>': 'NvimEdit vsplit',
-  \ 'gw': 'JumpNvimCwd',
-  \ 'yw': 'EmitRangerCwd'
-  \ }
-let g:rnvimr_layout = {
-  \'relative': 'editor',
-  \ 'width': float2nr(round(0.85 * &columns)),
-  \ 'height': float2nr(round(0.8 * &lines)),
-  \ 'col': float2nr(round(0.074 * &columns)),
-  \ 'row': float2nr(round(0.1 * &lines)),
-  \ 'style': 'minimal'
-  \ }
-
-" -- Fzf -----------------------------------------------------------------------
+" -- FZF -----------------------------------------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.86, 'height': 0.80 } }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -235,13 +212,7 @@ command! Dots call fzf#run(fzf#wrap({
   \ 'options': [ '--multi', '--preview', 'cat {}' ]
   \ }))
 
-augroup HideFzfBar
-  autocmd!
-  autocmd FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2
-augroup end
-
-" -- Floaterm ------------------------------------------------------------------
+" -- FLOATERM ------------------------------------------------------------------
 
 " floaterm key maps and basic setup
 let g:floaterm_keymap_toggle = '<C-f>'
@@ -282,7 +253,7 @@ function! TermList() abort
   endfor
 endfunction
 
-" -- Startify ------------------------------------------------------------------
+" -- STARTIFY ------------------------------------------------------------------
 
 let g:startify_lists = [
   \ { 'type': 'sessions',  'header': ['   Sessions']  },
@@ -290,7 +261,7 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-  \ { 'f': [ 'Ranger', ':RnvimrToggle' ] },
+  \ { 'f': [ 'Vifm', ':Vifm' ] },
   \ { 'i': [ 'Dotfiles', ':Dots' ] },
   \ { 'g': [ 'GFiles', ':GFiles?' ] },
   \ { 'h': [ 'Help', ':Helptags' ] },
@@ -316,7 +287,7 @@ let g:ascii = [
   \ '',
   \ ]
 
-" -- Lightline -----------------------------------------------------------------
+" -- LIGHTLINE -----------------------------------------------------------------
 
 " lightline components
 let g:lightline = {
@@ -473,7 +444,7 @@ let s:palette = g:lightline#colorscheme#onedark#palette
 let s:palette.inactive.middle = [ [ '#282c34', '#282c34', 235, 113, 'NONE' ] ]
 unlet s:palette
 
-" -- Coc -----------------------------------------------------------------------
+" -- COC -----------------------------------------------------------------------
 
 " coc config see coc github
 set nobackup
@@ -515,14 +486,14 @@ endfunc
 " coc prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" -- Custom commands -----------------------------------------------------------
+" -- CUSTOM COMMANDS -----------------------------------------------------------
 
 " ctrl semicolumn like vscode ctrl semicolumn
 " iterm2 map 'cmd ;' to :CtrlSemicolumn
 command! CtrlSemicolumn normal maA;<Esc>`a
 command! CtrlColumn normal maA,<Esc>`a
 
-" -- Key maps ------------------------------------------------------------------
+" -- KEY MAPS ------------------------------------------------------------------
 
 " make Y work as D
 map Y y$
@@ -532,6 +503,8 @@ vmap Y "*y
 nnoremap Q q
 " ctrl^ too hard to press, and I don't use tag
 nnoremap <C-]> <C-^>
+" vifm
+nnoremap <C-b> :Vifm<CR>
 
 nmap s <Nop>
 xmap s <Nop>
@@ -698,7 +671,3 @@ nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
 nnoremap <leader>go :only<CR>
 nnoremap <leader>gp :Gpush<CR>
-
-" rnvimr
-nnoremap <silent> <C-b> :RnvimrToggle<CR>
-tnoremap <silent> <C-b> <C-\><C-n>:RnvimrToggle<CR>
