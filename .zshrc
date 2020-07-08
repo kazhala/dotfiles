@@ -105,6 +105,7 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=nvim
 export TERM="xterm-256color"
+export COLORTERM="truecolor"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -172,6 +173,7 @@ _fzf_compgen_dir() {
 
 # overrite the tab behavior after sourcing the fzf.zsh script
 export FZF_COMPLETION_TRIGGER=''
+export FZF_PREVIEW_COMMAND='cat {}'
 
 # -- Aliases -------------------------------------------------------------------
 

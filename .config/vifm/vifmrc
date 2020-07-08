@@ -66,13 +66,13 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " Default display as miller mode
 set millerview
-set milleroptions=lsize:1,csize:2
+set milleroptions=lsize:1,csize:3
 
 " Case insensitve path completion
 set caseoptions=p
 
 " Use ag (the silver searcher) instead of grep
-set grepprg='ag -p ~/.ignore --hidden --line-numbers %i %a %s'
+set grepprg='rg --column --line-number --no-heading --smart-case %i %a %s'
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
