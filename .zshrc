@@ -141,6 +141,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export DOTBARE_DIR="$HOME/.cfg/"
 export DOTBARE_TREE="$HOME"
 export DOTBARE_BACKUP="${XDG_DATA_HOME:-$HOME/.local/share}/dotbare"
+export DOTBARE_PREVIEW="cat {}"
 
 # -- fzf ----------------------------------------------------------------------
 
