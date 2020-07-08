@@ -10,7 +10,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
-Plug 'vifm/vifm.vim', { 'on': 'Vifm' }
 " text object
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
@@ -261,7 +260,7 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_commands = [
-  \ { 'f': [ 'Vifm', ':Vifm' ] },
+  \ { 'f': [ 'Vifm', ':FloatermNew vifm' ] },
   \ { 'i': [ 'Dotfiles', ':Dots' ] },
   \ { 'g': [ 'GFiles', ':GFiles?' ] },
   \ { 'h': [ 'Help', ':Helptags' ] },
@@ -503,8 +502,6 @@ vmap Y "*y
 nnoremap Q q
 " ctrl^ too hard to press, and I don't use tag
 nnoremap <C-]> <C-^>
-" vifm
-nnoremap <C-b> :Vifm<CR>
 
 nmap s <Nop>
 xmap s <Nop>
@@ -542,6 +539,7 @@ nnoremap <leader>u :setlocal nobuflisted<CR>
 nnoremap <leader>vl :call TermList()<CR>
 nnoremap <leader>vg :FloatermNew lazygit<CR>
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
+nnoremap <C-b> :FloatermNew vifm<CR>
 
 " cgn motion map
 nnoremap <leader>rs *Ncgn

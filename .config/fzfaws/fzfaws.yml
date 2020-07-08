@@ -13,8 +13,8 @@ fzf:
   # set args: false to use system default fzf style
   args: >-
     --color=dark
-    --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
-    --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+    --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:-1,hl+:#c678dd
+    --color=info:#98c379,prompt:#61afef,pointer:#e06c75,marker:#e5c07b,spinner:#61afef,header:#61afef
     --height 100% --layout=reverse --border --cycle
 
   # for list of keybinds you could set, checkout fzf official doc (https://github.com/junegunn/fzf/blob/master/man/man1/fzf.1)
@@ -24,6 +24,12 @@ fzf:
     jump: alt-j
     top: alt-0
     toggle-sort: alt-s
+
+spinner:
+  # This message is only used in fall back situations
+  message: 'loading ...'
+  speed: 0.1
+  pattern: '⠋⠙⠸⠴⠦⠇'
 
 # common settings for all services
 global:
@@ -84,3 +90,4 @@ services:
       create: -w
       update: -w
       delete: -w
+      changeset: -w
