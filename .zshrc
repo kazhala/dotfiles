@@ -28,7 +28,7 @@ zinit wait lucid light-mode for \
   kazhala/bmux \
   kazhala/dump-cli \
   trigger-load'!fm;!mark' \
-    https://github.com/kazhala/dotfiles/blob/master/Programming/Scripts/shell/fbookmark \
+    https://github.com/kazhala/scripts/blob/master/shell/fbookmark \
   atload'bindkey -M vicmd "k" history-substring-search-up;
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
@@ -154,7 +154,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_ALT_C_COMMAND="fd --type d"
-export FZF_ALT_C_OPTS="--preview 'tree -C -I 'node_modules' {} | head -200'"
+export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.

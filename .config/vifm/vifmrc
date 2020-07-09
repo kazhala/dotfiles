@@ -71,7 +71,7 @@ set milleroptions=lsize:1,csize:3
 " Case insensitve path completion
 set caseoptions=p
 
-" Use ag (the silver searcher) instead of grep
+" Use ripgrep instead of grep
 set grepprg='rg --column --line-number --no-heading --smart-case %i %a %s'
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
@@ -105,7 +105,7 @@ mark t ~/Documents/TempScreenShot
 " %m run the command in a menu window
 
 command! df df -h %m 2> /dev/null
-command! diff vim -d %f %F
+command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
@@ -141,7 +141,7 @@ filetype *.pdf
        \ open -a Preview.app,
        \ {Open in Skim}
        \ open -a Skim.app,
-fileviewer *.pdf pdftotext -nopgbrk %c -
+fileviewer *.pdf echo '----- File Type Classification -----' && file --dereference --brief -- %c
 
 " PostScript
 filetype *.ps,*.eps open -a Preview.app
@@ -157,8 +157,7 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ open -a iTunes.app,
        \ {Open in QuickTime Player}
        \ open -a QuickTime\ Player.app,
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
+fileviewer *.mp3,*.flac,*.wav,*.m4a,*.wma,*.ape,*.ac3 echo '----- File Type Classification -----' && file --dereference --brief -- %c
 
 " Video
 filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -173,10 +172,12 @@ filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
           \*.as[fx]
-         \ ffprobe -pretty %c 2>&1
+          \ echo '----- File Type Classification -----' && file --dereference --brief -- %c
 
 " Web
 filetype *.html,*.htm
+       \ {Open in nvim}
+       \ nvim,
        \ {Open in Firefox}
        \ open -a Firefox\ Developer\ edition.app,
        \ {Open in Safari}
@@ -185,7 +186,6 @@ filetype *.html,*.htm
        \ open -a Google\ Chrome.app,
        \ {Open in vim}
        \ vim,
-fileviewer *.html,*.htm w3m -dump -T text/html
 
 " Object
 filetype *.o nm %f | less
@@ -197,8 +197,8 @@ fileviewer *.[1-8] man ./%c | col -b
 " Image
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
        \ open -a Preview.app,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ identify %f
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ico
+         \ echo '----- File Type Classification -----' && file --dereference --brief -- %c
 
 " MD5
 filetype *.md5
@@ -249,18 +249,10 @@ filetype *.pkg open
 
 " Office files
 filetype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt open -a LibreOffice.app
-fileviewer *.doc antiword -
-fileviewer *.docx docx2txt.pl %f -
+fileviewer *.doc,*.docx,*.odt,*.xls,*.xlsx,*.odp,*.pptx,*.ppt echo '----- File Type Classification -----' && file --dereference --brief -- %c
 
 " all unknown files are opened through vicmd
 " *.js,*.json etc...
-
-" Syntax highlighting in preview
-" Or leave it for automatic detection (note: very slow)
-" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
-
-" Displaying pictures in terminal
-" require further configuring
 
 " Normal dirs
 fileview */ tree %c -L 1 -C --dirsfirst
@@ -269,7 +261,7 @@ fileview .*/ tree %c -L 1 -C --dirsfirst
 " .. Parent dir
 fileview ../ tree %c -L 1 -C --dirsfirst
 
-" VIFM icons, required following lines to dislay icons
+" -- Icons ---------------------------------------------------------------------
 
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
@@ -278,7 +270,6 @@ set classify=' :dir:/, :exe:, :reg:, :link:'
 set classify+=' ::../::,
              \  ::.git/,,*.git/,,.cfg/::,
              \ ﮛ ::Programming/::,
-             \  ::.Trash/::,
              \  ::.config/::,
              \  ::Pictures/,,wall-paper/,,TempScreenShot/::,
              \  ::Downloads/::,
