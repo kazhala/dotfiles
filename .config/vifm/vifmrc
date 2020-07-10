@@ -363,3 +363,6 @@ nnoremap \c :write | edit $MYVIFMRC | restart<cr>
 " switch tabs
 nnoremap \1 :tabn 1<cr>
 nnoremap \2 :tabn 2<cr>
+
+" matach vim to perfom toggle of vifm
+nnoremap <C-b> :q<cr>
