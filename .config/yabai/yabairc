@@ -3,7 +3,7 @@
 # -- mouse ---------------------------------------------------------------------
 
 yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          off
+yabai -m config focus_follows_mouse          autoraise
 yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                resize
 yabai -m config mouse_action2                move

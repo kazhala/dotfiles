@@ -206,7 +206,7 @@ command! BD call fzf#run(fzf#wrap({
 
 " dotbare edit
 command! Dots call fzf#run(fzf#wrap({
-  \ 'source': 'dotbare ls-files --full-name --directory "${DOTBARE_TREE}" | awk -v home="$HOME/" "{print home \$0}"',
+  \ 'source': 'dotbare ls-files --full-name --directory "${DOTBARE_TREE}" | awk -v home="${DOTBARE_TREE}/" "{print home \$0}"',
   \ 'sink': 'e',
   \ 'options': [ '--multi', '--preview', 'cat {}' ]
   \ }))
@@ -566,6 +566,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Remap for rename current word(coc)
 nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rr :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " coc git key map
 nmap [h <Plug>(coc-git-prevchunk)
