@@ -24,7 +24,8 @@ zinit ice depth=1;
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
-  kazhala/dotbare \
+  ver"dev"\
+    kazhala/dotbare \
   kazhala/bmux \
   kazhala/dump-cli \
   trigger-load'!fm;!mark' \
@@ -35,7 +36,7 @@ zinit wait lucid light-mode for \
   atload'_zsh_autosuggest_start;
   bindkey -v "^ " autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd dotbare" \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma/fast-syntax-highlighting
 
