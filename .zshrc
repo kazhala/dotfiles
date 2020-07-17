@@ -24,8 +24,7 @@ zinit ice depth=1;
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
-  ver"dev"\
-    kazhala/dotbare \
+  kazhala/dotbare \
   kazhala/bmux \
   kazhala/dump-cli \
   trigger-load'!fm;!mark' \
@@ -143,6 +142,7 @@ export DOTBARE_DIR="$HOME/.cfg/"
 export DOTBARE_TREE="$HOME"
 export DOTBARE_BACKUP="${XDG_DATA_HOME:-$HOME/.local/share}/dotbare"
 export DOTBARE_PREVIEW="cat {}"
+export DOTBARE_FZF_DEFAULT_OPTS="--preview-window=right:65%"
 
 # -- fzf ----------------------------------------------------------------------
 
