@@ -544,6 +544,9 @@ nnoremap <C-b> :FloatermNew vifm<CR>
 " cgn motion map
 nnoremap <leader>rs *Ncgn
 
+" cancel hightlight of the word
+nnoremap <leader>n :noh<CR>
+
 " startify
 nnoremap <leader>a :Startify<CR>
 
@@ -555,7 +558,8 @@ nnoremap <leader>l :GFiles?<CR>
 nnoremap <leader>m :Marks<CR>
 
 " coc multi cursor
-nmap <expr> <silent> <space>n <SID>select_current_word()
+nmap <expr> <silent> <C-s> <SID>select_current_word()
+xmap <silent> <C-s> <Plug>(coc-cursors-range)
 nmap <silent> <space>c <Plug>(coc-cursors-position)
 
 " Remap keys for gotos(coc)
@@ -606,22 +610,14 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " coc snippets
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" cancel hightlight of the word
-nnoremap <leader>n :noh<CR>
-
-" buffers (t as tab in other app or buffer in vim)
-" close buffer without closing affecting other splits and moving to next buffer
-nnoremap <silent> <leader>tc :bp\|bd #<CR>
-" to next buffer
-nnoremap <silent> <leader>tn :bn<CR>
-nnoremap <silent> <leader>tp :bp<CR>
-
 " close buffer custom mapping
 nnoremap <silent> <leader>th :Bdelete hidden<CR>
 nnoremap <silent> <leader>ta :Bdelete all<CR><C-w>h
 nnoremap <silent> <leader>tu :Bdelete! nameless<CR>
 nnoremap <silent> <leader>ts :BD<CR>
 nnoremap <silent> <leader>to :Bdelete other<CR>
+" close buffer without closing affecting other splits and moving to next buffer
+nnoremap <silent> <leader>tc :bp\|bd #<CR>
 
 " coc hover show details
 nnoremap <silent> K :call <SID>show_documentation()<CR>
