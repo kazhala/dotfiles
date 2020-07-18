@@ -161,6 +161,7 @@ let g:vimwiki_list = [
   \ { 'path': '~/Documents/vimwiki/docker', 'syntax': 'markdown', 'ext': '.md'},
   \ { 'path': '~/Documents/vimwiki/uni', 'syntax': 'markdown', 'ext': '.md'},
   \ { 'path': '~/Documents/vimwiki/database', 'syntax': 'markdown', 'ext': '.md'},
+  \ { 'path': '~/Documents/vimwiki/python', 'syntax': 'markdown', 'ext': '.md'},
   \ ]
 let g:vimwiki_table_mappings = 0
 augroup WikiTemplate
@@ -464,7 +465,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>"
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " coc pairs
@@ -488,7 +489,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " -- CUSTOM COMMANDS -----------------------------------------------------------
 
 " ctrl semicolumn like vscode ctrl semicolumn
-" iterm2 map 'cmd ;' to :CtrlSemicolumn
+" alacritty map 'cmd ;' to :CtrlSemicolumn
 command! CtrlSemicolumn normal maA;<Esc>`a
 command! CtrlColumn normal maA,<Esc>`a
 
@@ -500,7 +501,7 @@ map Y y$
 vmap Y "*y
 " disable ex mode
 nnoremap Q q
-" ctrl^ too hard to press, and I don't use tag
+" ctrl^ too hard to press
 nnoremap <C-]> <C-^>
 
 nmap s <Nop>
@@ -537,7 +538,6 @@ nnoremap <leader>k :cp<CR>
 " make a buffer into unlisted buffer (e.g. terminal may want to unlisted)
 nnoremap <leader>u :setlocal nobuflisted<CR>
 nnoremap <leader>vl :call TermList()<CR>
-nnoremap <leader>vg :FloatermNew lazygit<CR>
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
 nnoremap <C-b> :FloatermNew vifm<CR>
 
@@ -561,7 +561,6 @@ nmap <silent> <space>c <Plug>(coc-cursors-position)
 " Remap keys for gotos(coc)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap for rename current word(coc)
@@ -605,8 +604,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " coc snippets
-vmap <C-s> <Plug>(coc-snippets-select)
-imap <C-s> <Plug>(coc-snippets-expand-jump)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " cancel hightlight of the word
 nnoremap <leader>n :noh<CR>
@@ -624,8 +622,6 @@ nnoremap <silent> <leader>ta :Bdelete all<CR><C-w>h
 nnoremap <silent> <leader>tu :Bdelete! nameless<CR>
 nnoremap <silent> <leader>ts :BD<CR>
 nnoremap <silent> <leader>to :Bdelete other<CR>
-" list all bufferes and enter number
-nnoremap <leader>tt :ls<CR>:b<space>
 
 " coc hover show details
 nnoremap <silent> K :call <SID>show_documentation()<CR>
