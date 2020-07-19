@@ -113,6 +113,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # -- Misc ENV ------------------------------------------------------------------
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
+export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 
 # -- bmux ----------------------------------------------------------------------
 
