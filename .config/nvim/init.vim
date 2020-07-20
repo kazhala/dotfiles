@@ -465,7 +465,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>"
+inoremap <silent><expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>"
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " coc pairs

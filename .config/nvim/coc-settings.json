@@ -46,7 +46,7 @@
   "snippets.snipmate.enable": false,
   "snippets.loadFromExtensions": false,
   "snippets.enableStatusItem": false,
-  "pyright.useLibraryCodeForTypes": true,
+  "python.analysis.useLibraryCodeForTypes": true,
   "python.pythonPath": "/usr/local/bin/python3.7",
   "python.analysis.diagnosticMode": "openFilesOnly"
 }
