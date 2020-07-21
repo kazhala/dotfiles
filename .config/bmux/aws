@@ -7,14 +7,17 @@ tmux new-window -t aws:3 -n lambda -c "$HOME/Programming/aws/lambda"
 
 # window fzfaws
 cd "$HOME/Programming/aws/fzf.aws"
-tmux split-window -t aws:1.1 -h
-tmux split-window -t aws:1.2 -v
+tmux split-window -t aws:1.1 -v
+cd "$HOME/.config/fzfaws"
+tmux split-window -t aws:1.2 -h
 tmux send-keys -t aws:1.1 'source venv/bin/activate' ENTER
+tmux send-keys -t aws:1.2 'source venv/bin/activate' ENTER
 tmux send-keys -t aws:1.1 'clear' ENTER
+tmux send-keys -t aws:1.2 'clear' ENTER
+tmux select-layout -t aws:1.1 "$BMUX_3_VS"
 # window cloudformation
-cd "$HOME/Programming/aws/fzf.aws"
-tmux split-window -t aws:2.1 -v
-tmux split-window -t aws:2.2 -h
+cd "$HOME/Programming/aws/cloudformation"
+tmux split-window -t aws:2.1 -h
 # window lambda
 cd "$HOME/Programming/aws/lambda"
 tmux split-window -t aws:3.1 -h

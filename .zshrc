@@ -119,6 +119,7 @@ export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 
 export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
+export BMUX_3_VS='f3ed,210x63,0,0[210x41,0,0,60,210x21,0,42{105x21,0,42,61,104x21,106,42,62}]'
 
 # -- dump-cli ----------------------------------------------------------------------
 

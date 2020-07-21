@@ -10,7 +10,10 @@ cd "$HOME/Programming/shell/dotbare"
 tmux split-window -t shell:1.1 -h
 # window bmux
 cd "$HOME/Programming/shell/bmux"
-tmux split-window -t shell:2.1 -h
+tmux split-window -t shell:2.1 -v
+cd "$HOME/.config/bmux"
+tmux split-window -t shell:2.2 -h
+tmux select-layout -t shell:2.1 "$BMUX_3_VS"
 # window trash
 cd "$HOME/Programming/shell/dump-cli"
 tmux split-window -t shell:3.1 -h
