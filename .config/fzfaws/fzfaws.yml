@@ -1,5 +1,6 @@
 fzf:
   executable: binary
+  args: '--height 80%'
   keybinds:
     toggle-all: alt-a
     jump: alt-j
@@ -7,8 +8,7 @@ fzf:
     clear-query: alt-0
 
 spinner:
-  message: 'loading ...'
-  speed: 0.05
+  speed: 0.1
   pattern: '⠋⠙⠸⠴⠦⠇'
 
 global:
