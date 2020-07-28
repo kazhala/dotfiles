@@ -58,6 +58,8 @@ set showtabline=2
 set noshowmode
 " Fixes common backspace problems
 set backspace=indent,eol,start
+" split right
+set splitright
 
 " line numbers
 set number
@@ -68,11 +70,6 @@ set nostartofline
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
-
-" Mode Settings for different cursor in different modes
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[4 q" "SR = REPLACE mode
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
 " search config
 set ignorecase
@@ -167,7 +164,6 @@ let g:vimwiki_table_mappings = 0
 augroup WikiTemplate
   autocmd!
   au BufNewFile ~/Documents/vimwiki/diary/*.md :silent 0r !diarytemplate '%'
-  au FileType vimwiki inoremap <buffer> <C-s> ```<CR>```<up>
 augroup end
 
 " VIM-SANDWICH
@@ -263,7 +259,6 @@ let g:startify_lists = [
 let g:startify_commands = [
   \ { 'f': [ 'Vifm', ':FloatermNew vifm' ] },
   \ { 'i': [ 'Dotfiles', ':Dots' ] },
-  \ { 'g': [ 'GFiles', ':GFiles?' ] },
   \ { 'h': [ 'Help', ':Helptags' ] },
   \ { 'm': [ 'Maps', ':Maps' ] },
   \ { 't': [ 'FileType', ':enew | Filetypes' ] },
@@ -493,6 +488,13 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! CtrlSemicolumn normal maA;<Esc>`a
 command! CtrlColumn normal maA,<Esc>`a
 
+function! s:VisualStar(cmdtype)
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
 " -- KEY MAPS ------------------------------------------------------------------
 
 " make Y work as D
@@ -541,9 +543,6 @@ nnoremap <leader>vl :call TermList()<CR>
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
 nnoremap <C-b> :FloatermNew vifm<CR>
 
-" cgn motion map
-nnoremap <leader>rs *Ncgn
-
 " cancel hightlight of the word
 nnoremap <leader>n :noh<CR>
 
@@ -554,8 +553,18 @@ nnoremap <leader>a :Startify<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-m> :Buffers<CR>
 nnoremap <C-g> :Rg<CR>
-nnoremap <leader>l :GFiles?<CR>
-nnoremap <leader>m :Marks<CR>
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fg :GFiles?<CR>
+nnoremap <leader>fm :Marks<CR>
+
+" cgn motion
+xnoremap * :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>
+nnoremap <leader>rs *Ncgn
+xnoremap <leader>rs :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>Ncgn
+
+" coc rename
+nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rr :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " coc multi cursor
 nmap <expr> <silent> <C-s> <SID>select_current_word()
@@ -564,12 +573,7 @@ nmap <silent> <space>c <Plug>(coc-cursors-position)
 
 " Remap keys for gotos(coc)
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
-
-" Remap for rename current word(coc)
-nmap <leader>rn <Plug>(coc-rename)
-nnoremap <leader>rr :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " coc git key map
 nmap [h <Plug>(coc-git-prevchunk)
@@ -593,15 +597,21 @@ xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
 
 " coc list map
-nnoremap <leader>c :CocList commands<CR>
-nnoremap <leader>y :CocList -A yank<CR>
+nnoremap <leader>lc :CocList commands<CR>
+nnoremap <leader>ly :CocList -A yank<CR>
+nnoremap <leader>ll :CocList lists<CR>
 
-" coc engine restart
-nnoremap <leader>e :CocRestart<CR>
-
-" coc prettier map
-vmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+" coc command map
+nnoremap <leader>cy :CocCommand yank.clean<CR>
+nnoremap <leader>cs :CocCommand snippets.editSnippets<CR>
+nnoremap <leader>cf :CocCommand prettier.formatFile<CR>
+nnoremap <leader>co :CocCommand editor.action.organizeImport<CR>
+augroup PyrightImportOrganize
+  autocmd!
+  autocmd FileType python nnoremap <buffer><leader>co :CocCommand pyright.organizeimports<CR>
+augroup end
+nnoremap <leader>ce :CocRestart<CR>
+vmap <leader>cf <Plug>(coc-format-selected)
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -660,5 +670,4 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
-nnoremap <leader>go :only<CR>
 nnoremap <leader>gp :Gpush<CR>
