@@ -1,6 +1,8 @@
 fzf:
   executable: binary
-  args: '--height 80%'
+  args: >-
+    --height 80%
+    --info=inline
   keybinds:
     toggle-all: alt-a
     jump: alt-j

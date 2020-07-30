@@ -24,7 +24,8 @@ zinit ice depth=1;
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
-  kazhala/dotbare \
+  ver="dev" \
+    kazhala/dotbare \
   kazhala/bmux \
   kazhala/dump-cli \
   trigger-load'!fm;!mark' \
