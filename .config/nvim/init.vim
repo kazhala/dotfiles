@@ -600,6 +600,7 @@ omap af <Plug>(coc-funcobj-a)
 nnoremap <leader>lc :CocList commands<CR>
 nnoremap <leader>ly :CocList -A yank<CR>
 nnoremap <leader>ll :CocList lists<CR>
+nnoremap <leader>ld :CocList diagnostics<CR>
 
 " coc command map
 nnoremap <leader>cy :CocCommand yank.clean<CR>
