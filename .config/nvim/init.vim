@@ -10,10 +10,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
+
 " text object
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
 Plug 'bkad/CamelCaseMotion'
+
 " enhancement
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
@@ -23,6 +25,7 @@ Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-startify'
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 Plug 'bfredl/nvim-miniyank'
+
 " ui
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -32,54 +35,36 @@ call plug#end()
 
 " -- GENERAL -------------------------------------------------------------------
 
-set encoding=UTF-8
-" set 256 color
-set t_Co=256
-" set terminal gui colors
-set termguicolors
-" Highlight cursor line
-set cursorline
-" syntax highlighting
-syntax on
-" allow hidden window
-set hidden
-" disable wrap and wrap when typing
-set nowrap
-" Display 5 lines above/below the cursor when scrolling with a mouse.
-set scrolloff=5
-" Highlight matching pairs of brackets. Use the '%' character to jump between pairs
-set matchpairs+=<:>
-" Set to auto read when a file is changed from the outside
-set autoread
-" increase the history limit of
-set history=1000
-" show buffer line
-set showtabline=2
-" disable mode display since lightline display
-set noshowmode
-" Fixes common backspace problems
-set backspace=indent,eol,start
-" split right
-set splitright
+set encoding=UTF-8              " encoding
+set t_Co=256                    " 256 color
+set termguicolors               " termgui color
+set cursorline                  " highlight cursor line
+syntax on                       " enable syntax
+set hidden                      " allow hidden buffer
+set nowrap                      " disable wrap
+set scrolloff=5                 " display minimum 5 lines when scrolling
+set matchpairs+=<:>             " append highlight matchpairs
+set autoread                    " auto read when file is changed outside
+set history=1000                " increase history limit
+set showtabline=2               " show buffer line
+set noshowmode                  " disable mode display, lightline already does it
+set backspace=indent,eol,start  " fix common backspace problems
+set splitright                  " split to right
+set number                      " line number in signcolumn
+set relativenumber              " use relative number
+set autoindent                  " enable auto indent
+set nostartofline               " don't do wierd movements in big jumps
+set noerrorbells                " no annoying sound bells
+set novisualbell                " no annoying flash bells
 
-" line numbers
-set number
-set relativenumber
-" indentation
-set autoindent
-set nostartofline
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-
-" search config
+" search settings
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 set inccommand=split
 
-" Whitespace
+" whitespace
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -88,75 +73,148 @@ set noshiftround
 set textwidth=0
 set formatoptions-=t
 
-" auto commands
 augroup FormatFile
   autocmd!
-  " disable vim stupid format issue with comment
-  autocmd BufEnter * set fo-=c fo-=r fo-=o
-  " terminal remove linenumbers
-  autocmd TermOpen * setlocal nonumber norelativenumber
-  " Setting for python
-  autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et
-  autocmd BufWritePre *.py execute ':Black'
-  autocmd FileType, BufEnter markdown setlocal conceallevel=0
+  autocmd BufEnter * set fo-=c fo-=r fo-=o                              " disable vim stupid format issue with comment
+  autocmd TermOpen * setlocal nonumber norelativenumber                 " remove linenumbers in vim terminal
+  autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et   " python specific settings
+  autocmd BufWritePre *.py execute ':Black'                             " run black on python file save
+  autocmd FileType, BufEnter markdown setlocal conceallevel=0           " don't conceal in markdown
 augroup end
+
+map Y y$
+vmap Y "*y
+nnoremap Q q
+nnoremap <C-]> <C-^>
+nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
+nnoremap <leader>u :setlocal nobuflisted<CR>
+nnoremap <leader>n :noh<CR>
+
+" reselect pasted text
+noremap gV `[v`]
+
+" switch buffer
+nnoremap <silent> <S-l> :bn<CR>
+nnoremap <silent> <S-h> :bp<CR>
+
+" move selected text up down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" scroll 3 times faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" quickfix list navigation
+nnoremap <leader>q :cclose<CR>
+nnoremap <leader>j :cn<CR>
+nnoremap <leader>k :cp<CR>
+
+" use arrow to resize vim split
+nnoremap <Up> <C-w>3+
+nnoremap <Down> <C-w>3-
+nnoremap <right> <C-w>3>
+nnoremap <left> <C-w>3<
 
 " -- COLOR ---------------------------------------------------------------------
 
 let g:onedark_hide_endofbuffer = 1
 colorscheme onedark
 
-" coc git highlight
-hi CocGitChange ctermbg=NONE cterm=NONE ctermfg=Blue guifg=#61afef
-hi CocGitAdd ctermbg=NONE cterm=NONE ctermfg=DarkGreen guifg=#98c379
-hi CocGitDelete ctermbg=NONE cterm=NONE ctermfg=DarkRed guifg=#e06c75
-" coc diagnostic highlight
+" overwrite highlight group
+hi CocGitChange gui=NONE guifg=#61afef
+hi CocGitAdd gui=NONE guifg=#98c379
+hi CocGitDelete gui=NONE guifg=#e06c75
 hi CocErrorHighlight gui=bold guifg=#e06c75
 hi CocWarningHighlight gui=NONE guifg=#e5c07b
-" overwrite default vim diff highlight
 hi DiffChange gui=NONE guifg=#2b2c34 guibg=#e5c07b
 hi DiffText gui=NONE guifg=#2b2c34 guibg=#de9712
-" floaterm hl groups
 hi Floaterm guibg=#282c34
 hi FloatermBorder guibg=NONE guifg=#61afef
-" quickscope highlight
-hi QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-hi QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+hi QuickScopePrimary guifg=#afff5f gui=underline
+hi QuickScopeSecondary guifg=#5fffff gui=underline
 
-" -- PLUGINS -------------------------------------------------------------
+" -- CAMELCASEMOTION -----------------------------------------------------------
 
-" MINIYANK
-let g:miniyank_maxitems = 100
+let g:camelcasemotion_key = '<space>'
 
-" POLYGLOT
+" -- VIM-TMUX-NAVIGATOR --------------------------------------------------------
+
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" -- NETRW ---------------------------------------------------------------------
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+" -- VIM-POLYGLOT --------------------------------------------------------------
+
 let g:vim_markdown_conceal = 0
 let g:polyglot_disabled = ['sh']
 
-" VIM-QUICKSCOPE
+" -- VIM-CLOSETAG -------------------------------------------------------------
+
+let g:closetag_filenames = '*.html,*.js'
+let g:closetag_emptyTags_caseSensitive = 1
+
+" -- NVIM-MINIYANK -------------------------------------------------------------
+
+let g:miniyank_maxitems = 100
+
+" clear miniyank list
+function! s:ClearAllYanks() abort
+python3 << EOF
+from pathlib import Path
+yank_file = Path(vim.funcs.stdpath("cache")).resolve().joinpath("miniyank.mpack")
+if yank_file.is_file():
+  with yank_file.open("r+") as file:
+    file.truncate(0)
+  print("Yank cleared")
+else:
+  print("Yank file not found")
+EOF
+endfunction
+
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>yp <Plug>(miniyank-cycle)
+map <leader>yn <Plug>(miniyank-cycleback)
+nnoremap <leader>yc :call <SID>ClearAllYanks()<CR>
+
+" -- VIM-FUGITIVE -------------------------------------------------------------
+
+nnoremap <leader>gs :G<CR>3j
+nnoremap <leader>gq :G<CR>:q<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gh :diffget //2<CR>
+nnoremap <leader>gl :diffget //3<CR>
+nnoremap <leader>gp :Gpush<CR>
+
+" -- CLOSE-BUFFERS -------------------------------------------------------------
+
+nnoremap <silent> <leader>th :Bdelete hidden<CR>
+nnoremap <silent> <leader>ta :Bdelete all<CR><C-w>h
+nnoremap <silent> <leader>tu :Bdelete! nameless<CR>
+nnoremap <silent> <leader>ts :BD<CR>
+nnoremap <silent> <leader>to :Bdelete other<CR>
+nnoremap <silent> <leader>tc :bp\|bd #<CR>
+
+" -- QUICKSCOPE ----------------------------------------------------------------
+
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'floaterm', 'fzf']
 let g:qs_lazy_highlight = 1
 
-" NETRW
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
+" -- INDENTLINE ----------------------------------------------------------------
 
-" CAMELCASEMOTION
-let g:camelcasemotion_key = '<space>'
-
-" VIM-TMUX-NAVIGATOR
-let g:tmux_navigator_disable_when_zoomed = 1
-
-" INDENTLINE
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_fileTypeExclude = ['fzf', 'floaterm', 'vimwiki', 'markdown']
 let g:indentLine_bufNameExclude = ["term:.*"]
 
-" VIM-CLOSETAG
-let g:closetag_filenames = '*.html,*.js'
-let g:closetag_emptyTags_caseSensitive = 1
+" -- VIMWIKI -------------------------------------------------------------------
 
-" VIMWIKI
+let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [
   \ { 'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md' },
   \ { 'path': '~/Documents/vimwiki/docker', 'syntax': 'markdown', 'ext': '.md'},
@@ -164,40 +222,42 @@ let g:vimwiki_list = [
   \ { 'path': '~/Documents/vimwiki/database', 'syntax': 'markdown', 'ext': '.md'},
   \ { 'path': '~/Documents/vimwiki/python', 'syntax': 'markdown', 'ext': '.md'},
   \ ]
-let g:vimwiki_table_mappings = 0
+
 augroup WikiTemplate
   autocmd!
   au BufNewFile ~/Documents/vimwiki/diary/*.md :silent 0r !diarytemplate '%'
 augroup end
 
-" VIM-SANDWICH
+" -- VIM-SANDWICH --------------------------------------------------------------
+
 let g:sandwich_no_tex_ftplugin = 1
 let g:sandwich_no_vim_ftplugin = 1
 let g:sandwich_no_initex_ftplugin = 1
 let g:sandwich_no_julia_ftplugin = 1
 let g:sandwich_no_plaintex_ftplugin = 1
 
+nmap s <Nop>
+xmap s <Nop>
+
 " -- FZF -----------------------------------------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.86, 'height': 0.80 } }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
-
-function! s:list_buffers()
+" list buffers for BD
+function! s:list_buffers() abort
   redir => list
   silent ls
   redir END
   return split(list, "\n")
 endfunction
 
-function! s:delete_buffers(lines)
+" delete selected buffers
+function! s:delete_buffers(lines) abort
   execute 'bwipeout!' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
 
+" list yanks for YanksAfter
 function s:list_miniyanks() abort
   function! KeyValue(key, val)
     let line = join(a:val[0], '\n')
@@ -209,6 +269,7 @@ function s:list_miniyanks() abort
   return map(miniyank#read(), function('KeyValue'))
 endfunction
 
+" past selected yank
 function s:put_miniyanks(opt, line) abort
   let key = substitute(a:line, ' .*', '', '')
   if !empty(a:line)
@@ -217,7 +278,7 @@ function s:put_miniyanks(opt, line) abort
   endif
 endfunction
 
-" interactively delete buffer
+" delete buffer
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
   \ 'sink*': { lines -> s:delete_buffers(lines) },
@@ -238,9 +299,22 @@ command! YanksAfter call fzf#run(fzf#wrap({
 \ 'options': '--no-sort --prompt="Yanks> "',
 \ }))
 
+" rg
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+nnoremap <C-p> :Files<CR>
+nnoremap <C-m> :Buffers<CR>
+nnoremap <C-g> :Rg<CR>
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fg :GFiles?<CR>
+nnoremap <leader>fm :Marks<CR>
+nnoremap <leader>fy :YanksAfter<CR>
+
 " -- FLOATERM ------------------------------------------------------------------
 
-" floaterm key maps and basic setup
 let g:floaterm_keymap_toggle = '<C-f>'
 let g:floaterm_keymap_new = '<leader>vv'
 let g:floaterm_keymap_prev = '<leader>vp'
@@ -250,34 +324,30 @@ let g:floaterm_width = 0.85
 let g:floaterm_height = 0.8
 let g:floaterm_autoclose=2
 
-" display line number, remove terminal from buffer list on term buffer enter
-function s:floatermSettings()
-  setlocal nobuflisted
-endfunction
-
 augroup TerminalHide
   autocmd!
-  autocmd FileType floaterm call s:floatermSettings()
+  autocmd FileType floaterm setlocal nobuflisted
 augroup end
 
 " custom function to display all floating terminal
-function! TermList() abort
-  " get all floating terminal
+function! s:floaterm_list() abort
   let l:bufs = floaterm#buflist#gather()
   if len(bufs) < 1
     echo 'NONE'
   endif
   let l:termlist = []
   for bufnr in bufs
-    " getbufinfo from vim api
     let l:bufinfo = getbufinfo(bufnr)[0]
     let l:name = bufinfo['name']
-    " get terminal title from vim api
     let l:title = getbufvar(bufnr, 'term_title')
     let l:line = string(bufnr) . '  ' . name . '  ' . title
     echo line
   endfor
 endfunction
+
+nnoremap <leader>vl :call <SID>floaterm_list()<CR>
+inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
+nnoremap <C-b> :FloatermNew vifm<CR>
 
 " -- STARTIFY ------------------------------------------------------------------
 
@@ -312,9 +382,36 @@ let g:ascii = [
   \ '',
   \ ]
 
+nnoremap <leader>a :Startify<CR>
+
+" -- LIGHTLINE-BUFFERLINE ------------------------------------------------------
+
+" jump mapping
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+" kill mapping
+nmap <space>1 <Plug>lightline#bufferline#delete(1)
+nmap <space>2 <Plug>lightline#bufferline#delete(2)
+nmap <space>3 <Plug>lightline#bufferline#delete(3)
+nmap <space>4 <Plug>lightline#bufferline#delete(4)
+nmap <space>5 <Plug>lightline#bufferline#delete(5)
+nmap <space>6 <Plug>lightline#bufferline#delete(6)
+nmap <space>7 <Plug>lightline#bufferline#delete(7)
+nmap <space>8 <Plug>lightline#bufferline#delete(8)
+nmap <space>9 <Plug>lightline#bufferline#delete(9)
+nmap <space>0 <Plug>lightline#bufferline#delete(10)
+
 " -- LIGHTLINE -----------------------------------------------------------------
 
-" lightline components
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
@@ -395,7 +492,7 @@ function! LightlineCocDiagnostic() abort
 endfunction
 
 " display lock symbol for readonly file
-function! LightLineReadonly()
+function! LightLineReadonly() abort
   if (winwidth(0) > 40)
     return &readonly ? '' : ''
   endif
@@ -403,7 +500,7 @@ function! LightLineReadonly()
 endfunction
 
 " display branch detail
-function! LightlineGitBranch()
+function! LightlineGitBranch() abort
   if (winwidth(0) > 40)
     let branch = get(g:, 'coc_git_status', '')
     return branch
@@ -412,7 +509,7 @@ function! LightlineGitBranch()
 endfunction
 
 " display file name with edit check
-function! LightlineFilename()
+function! LightlineFilename() abort
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' +' : ''
   return winwidth(0) > 40 ? filename . modified : ''
@@ -471,7 +568,6 @@ unlet s:palette
 
 " -- COC -----------------------------------------------------------------------
 
-" coc config see coc github
 set nobackup
 set nowritebackup
 set cmdheight=1
@@ -501,7 +597,7 @@ augroup CocPairs
 augroup end
 
 " multi cursors
-function! s:select_current_word()
+function! s:select_current_word() abort
   if !get(g:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
@@ -511,103 +607,12 @@ endfunc
 " coc prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" -- CUSTOM COMMANDS -----------------------------------------------------------
-
-" ctrl semicolumn like vscode ctrl semicolumn
-" alacritty map 'cmd ;' to :CtrlSemicolumn
-command! CtrlSemicolumn normal maA;<Esc>`a
-command! CtrlColumn normal maA,<Esc>`a
-
-function! s:VisualStar(cmdtype)
-  let temp = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-  let @s = temp
-endfunction
-
-function! ClearAllYanks()
-python3 << EOF
-from pathlib import Path
-yank_file = Path(vim.funcs.stdpath("cache")).resolve().joinpath("miniyank.mpack")
-if yank_file.is_file():
-  with yank_file.open("r+") as file:
-    file.truncate(0)
-  print("Yank cleared")
-else:
-  print("Yank file not found")
-EOF
-endfunction
-
-" -- KEY MAPS ------------------------------------------------------------------
-
-" make Y work as D
-map Y y$
-" yank to clipboard in visual mode
-vmap Y "*y
-" disable ex mode
-nnoremap Q q
-" ctrl^ too hard to press
-nnoremap <C-]> <C-^>
-
-nmap s <Nop>
-xmap s <Nop>
-
-" use arrow to resize vim split
-nnoremap <Up> <C-w>3+
-nnoremap <Down> <C-w>3-
-nnoremap <right> <C-w>3>
-nnoremap <left> <C-w>3<
-
-" switch buffer
-nnoremap <silent> <S-l> :bn<CR>
-nnoremap <silent> <S-h> :bp<CR>
-
-" reselect the pasted text
-noremap gV `[v`]
-" move selected text up down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" scroll 3 times faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" set spell
-nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
-
-" quickfix list
-nnoremap <leader>q :cclose<CR>
-nnoremap <leader>j :cn<CR>
-nnoremap <leader>k :cp<CR>
-
-" make a buffer into unlisted buffer (e.g. terminal may want to unlisted)
-nnoremap <leader>u :setlocal nobuflisted<CR>
-nnoremap <leader>vl :call TermList()<CR>
-inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
-nnoremap <C-b> :FloatermNew vifm<CR>
-
-" cancel hightlight of the word
-nnoremap <leader>n :noh<CR>
-
-" startify
-nnoremap <leader>a :Startify<CR>
-
-" fzf.vim mappings
-nnoremap <C-p> :Files<CR>
-nnoremap <C-m> :Buffers<CR>
-nnoremap <C-g> :Rg<CR>
-nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fg :GFiles?<CR>
-nnoremap <leader>fm :Marks<CR>
-
-" cgn motion
-xnoremap * :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>
-nnoremap <leader>rs *Ncgn
-xnoremap <leader>rs :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>Ncgn
-
 " coc rename
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap <leader>rr :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
+" coc snippets
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " coc multi cursor
 nmap <expr> <silent> <C-s> <SID>select_current_word()
@@ -657,25 +662,13 @@ augroup end
 nnoremap <leader>ce :CocRestart<CR>
 vmap <leader>cf <Plug>(coc-format-selected)
 
-" Use `[g` and `]g` to navigate diagnostics
+" Use [g and ]g to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" coc snippets
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" close buffer custom mapping
-nnoremap <silent> <leader>th :Bdelete hidden<CR>
-nnoremap <silent> <leader>ta :Bdelete all<CR><C-w>h
-nnoremap <silent> <leader>tu :Bdelete! nameless<CR>
-nnoremap <silent> <leader>ts :BD<CR>
-nnoremap <silent> <leader>to :Bdelete other<CR>
-" close buffer without closing affecting other splits and moving to next buffer
-nnoremap <silent> <leader>tc :bp\|bd #<CR>
-
 " coc hover show details
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
+function! s:show_documentation() abort
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -683,42 +676,20 @@ function! s:show_documentation()
   endif
 endfunction
 
-" lightline-bufferline jump mapping
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+" -- CUSTOM --------------------------------------------------------------------
 
-" lightline-bufferline kill mapping
-nmap <space>1 <Plug>lightline#bufferline#delete(1)
-nmap <space>2 <Plug>lightline#bufferline#delete(2)
-nmap <space>3 <Plug>lightline#bufferline#delete(3)
-nmap <space>4 <Plug>lightline#bufferline#delete(4)
-nmap <space>5 <Plug>lightline#bufferline#delete(5)
-nmap <space>6 <Plug>lightline#bufferline#delete(6)
-nmap <space>7 <Plug>lightline#bufferline#delete(7)
-nmap <space>8 <Plug>lightline#bufferline#delete(8)
-nmap <space>9 <Plug>lightline#bufferline#delete(9)
-nmap <space>0 <Plug>lightline#bufferline#delete(10)
+" ctrl semicolumn like vscode ctrl semicolumn
+command! CtrlSemicolumn normal maA;<Esc>`a
+command! CtrlColumn normal maA,<Esc>`a
 
-" fugitive
-nnoremap <leader>gs :G<CR>3j
-nnoremap <leader>gq :G<CR>:q<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>gh :diffget //2<CR>
-nnoremap <leader>gl :diffget //3<CR>
-nnoremap <leader>gp :Gpush<CR>
+function! s:VisualStar(cmdtype) abort
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
 
-" minyank
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-map <leader>yp <Plug>(miniyank-cycle)
-map <leader>yn <Plug>(miniyank-cycleback)
-map <leader>fy :YanksAfter<CR>
+" cgn motion
+xnoremap * :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>
+nnoremap <leader>rs *Ncgn
+xnoremap <leader>rs :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>Ncgn
