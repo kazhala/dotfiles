@@ -4,8 +4,6 @@
   "javascript.showUnused": false,
   "scss.validate": true,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-  "yank.highlight.duration": 800,
-  "yank.enableCompletion": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✖",
   "diagnostic.hintSign": "",
