@@ -22,6 +22,7 @@ Plug 'Asheq/close-buffers.vim'
 Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-startify'
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
+Plug 'bfredl/nvim-miniyank'
 " ui
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -124,6 +125,9 @@ hi QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 " -- PLUGINS -------------------------------------------------------------
 
+" MINIYANK
+let g:miniyank_maxitems = 100
+
 " POLYGLOT
 let g:vim_markdown_conceal = 0
 let g:polyglot_disabled = ['sh']
@@ -194,19 +198,45 @@ function! s:delete_buffers(lines)
   execute 'bwipeout!' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
 
+function s:list_miniyanks() abort
+  function! KeyValue(key, val)
+    let line = join(a:val[0], '\n')
+    if (a:val[1] ==# 'V')
+      let line = '\n'.line
+    endif
+    return a:key.' '.line
+  endfunction
+  return map(miniyank#read(), function('KeyValue'))
+endfunction
+
+function s:put_miniyanks(opt, line) abort
+  let key = substitute(a:line, ' .*', '', '')
+  if !empty(a:line)
+    let yanks = miniyank#read()[key]
+    call miniyank#drop(yanks, a:opt)
+  endif
+endfunction
+
 " interactively delete buffer
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
   \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': [ '--multi', '--reverse', '--bind', 'ctrl-a:select-all+accept', '--preview', 'echo {} | awk -F "\"" "{gsub(/^[ \t]+line/,\":\", \$3); \$1=\"\"; gsub(/[ ]:[ ]/, \":\", \$0); print \$0}" | xargs -I __ "$XDG_DATA_HOME/nvim/plugged/fzf.vim/bin/preview.sh" __' ]
+  \ 'options': [ '--multi', '--prompt=BD> ', '--reverse', '--bind', 'ctrl-a:select-all+accept', '--preview', 'echo {} | awk -F "\"" "{gsub(/^[ \t]+line/,\":\", \$3); \$1=\"\"; gsub(/[ ]:[ ]/, \":\", \$0); print \$0}" | xargs -I __ "$XDG_DATA_HOME/nvim/plugged/fzf.vim/bin/preview.sh" __' ]
 \ }))
 
 " dotbare edit
 command! Dots call fzf#run(fzf#wrap({
   \ 'source': 'dotbare ls-files --full-name --directory "${DOTBARE_TREE}" | awk -v home="${DOTBARE_TREE}/" "{print home \$0}"',
   \ 'sink': 'e',
-  \ 'options': [ '--multi', '--preview', 'cat {}' ]
+  \ 'options': [ '--multi', '--prompt=Dots> ', '--preview', 'cat {}' ]
   \ }))
+
+" list yanks
+command! YanksAfter call fzf#run(fzf#wrap({
+\ 'source':  s:list_miniyanks(),
+\ 'sink': { lines -> s:put_miniyanks('p', lines) },
+\ 'options': '--no-sort --prompt="Yanks> "',
+\ }))
 
 " -- FLOATERM ------------------------------------------------------------------
 
@@ -222,7 +252,7 @@ let g:floaterm_autoclose=2
 
 " display line number, remove terminal from buffer list on term buffer enter
 function s:floatermSettings()
-    setlocal nobuflisted
+  setlocal nobuflisted
 endfunction
 
 augroup TerminalHide
@@ -495,6 +525,19 @@ function! s:VisualStar(cmdtype)
   let @s = temp
 endfunction
 
+function! ClearAllYanks()
+python3 << EOF
+from pathlib import Path
+yank_file = Path(vim.funcs.stdpath("cache")).resolve().joinpath("miniyank.mpack")
+if yank_file.is_file():
+  with yank_file.open("r+") as file:
+    file.truncate(0)
+  print("Yank cleared")
+else:
+  print("Yank file not found")
+EOF
+endfunction
+
 " -- KEY MAPS ------------------------------------------------------------------
 
 " make Y work as D
@@ -672,3 +715,10 @@ nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
 nnoremap <leader>gp :Gpush<CR>
+
+" minyank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>yp <Plug>(miniyank-cycle)
+map <leader>yn <Plug>(miniyank-cycleback)
+map <leader>fy :YanksAfter<CR>
