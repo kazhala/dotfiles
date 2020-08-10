@@ -75,11 +75,11 @@ set formatoptions-=t
 
 augroup FormatFile
   autocmd!
-  autocmd BufEnter * set fo-=c fo-=r fo-=o                              " disable vim stupid format issue with comment
-  autocmd TermOpen * setlocal nonumber norelativenumber                 " remove linenumbers in vim terminal
-  autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et   " python specific settings
-  autocmd BufWritePre *.py execute ':Black'                             " run black on python file save
-  autocmd FileType, BufEnter markdown setlocal conceallevel=0           " don't conceal in markdown
+  autocmd BufEnter * set fo-=c fo-=r fo-=o
+  autocmd TermOpen * setlocal nonumber norelativenumber
+  autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et
+  autocmd BufWritePre *.py execute ':Black'
+  autocmd FileType, BufEnter markdown setlocal conceallevel=0
 augroup end
 
 map Y y$
@@ -278,6 +278,39 @@ function s:put_miniyanks(opt, line) abort
   endif
 endfunction
 
+" custom function to display all floating terminal
+function! s:floaterm_list() abort
+  let l:bufs = floaterm#buflist#gather()
+  if len(bufs) < 1
+    return []
+  endif
+  let l:termlist = []
+  for bufnr in bufs
+    let l:bufinfo = getbufinfo(bufnr)[0]
+    let l:name = bufinfo['name']
+    let l:title = getbufvar(bufnr, 'term_title')
+    let l:line = string(bufnr) . '  ' . name . '  ' . title
+    call add(termlist, line)
+  endfor
+  return termlist
+endfunction
+
+function! s:open_floaterm(line) abort
+python3 << EOF
+selected_term = vim.eval("a:line")
+term_buffnr = selected_term.split(" ")[0]
+vim.command("let l:term_buffnr = '%s'" % term_buffnr)
+EOF
+  call floaterm#terminal#open_existing(str2nr(l:term_buffnr))
+endfunction
+
+" switch floaterm
+command! FloatermList call fzf#run(fzf#wrap({
+\ 'source':  s:floaterm_list(),
+\ 'sink': { line -> s:open_floaterm(line) },
+\ 'options': '--no-sort --no-multi --prompt="Floaterm> "',
+\ }))
+
 " delete buffer
 command! BD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
@@ -295,7 +328,7 @@ command! Dots call fzf#run(fzf#wrap({
 " list yanks
 command! YanksAfter call fzf#run(fzf#wrap({
 \ 'source':  s:list_miniyanks(),
-\ 'sink': { lines -> s:put_miniyanks('p', lines) },
+\ 'sink': { line -> s:put_miniyanks('p', line) },
 \ 'options': '--no-sort --prompt="Yanks> "',
 \ }))
 
@@ -312,6 +345,7 @@ nnoremap <leader>ff :GFiles<CR>
 nnoremap <leader>fg :GFiles?<CR>
 nnoremap <leader>fm :Marks<CR>
 nnoremap <leader>fy :YanksAfter<CR>
+nnoremap <leader>fl :FloatermList<CR>
 
 " -- FLOATERM ------------------------------------------------------------------
 
@@ -329,23 +363,6 @@ augroup TerminalHide
   autocmd FileType floaterm setlocal nobuflisted
 augroup end
 
-" custom function to display all floating terminal
-function! s:floaterm_list() abort
-  let l:bufs = floaterm#buflist#gather()
-  if len(bufs) < 1
-    echo 'NONE'
-  endif
-  let l:termlist = []
-  for bufnr in bufs
-    let l:bufinfo = getbufinfo(bufnr)[0]
-    let l:name = bufinfo['name']
-    let l:title = getbufvar(bufnr, 'term_title')
-    let l:line = string(bufnr) . '  ' . name . '  ' . title
-    echo line
-  endfor
-endfunction
-
-nnoremap <leader>vl :call <SID>floaterm_list()<CR>
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
 nnoremap <C-b> :FloatermNew vifm<CR>
 
