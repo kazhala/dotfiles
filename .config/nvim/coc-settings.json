@@ -45,6 +45,6 @@
   "snippets.loadFromExtensions": false,
   "snippets.enableStatusItem": false,
   "python.analysis.useLibraryCodeForTypes": true,
-  "python.pythonPath": "/usr/local/bin/python3.7",
+  "python.pythonPath": "/usr/local/bin/python3.8",
   "python.analysis.diagnosticMode": "openFilesOnly"
 }

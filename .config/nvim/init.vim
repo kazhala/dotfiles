@@ -592,6 +592,9 @@ set updatetime=300
 set signcolumn=yes
 set shortmess+=c
 
+" hard code provider to system python3
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
