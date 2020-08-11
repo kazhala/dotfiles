@@ -184,7 +184,7 @@ export FZF_PREVIEW_COMMAND='cat {}'
 
 alias vim="nvim"
 alias vimf="nvim '+Startify | FloatermNew vifm'"
-alias py3="python3.7"
+alias py3="python3"
 alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
 alias ag='ag -p ~/.ignore'
 alias lg='lazygit'
@@ -242,6 +242,7 @@ bindkey '^I' $fzf_default_completion
 
 # create keymaps without messing with zle
 bindkey -s '^g' fm^j
+bindkey -s '^d' "dotbare fedit"^j
 
 # -- Required last -------------------------------------------------------------
 
