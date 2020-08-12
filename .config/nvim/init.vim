@@ -8,25 +8,28 @@ Plug 'sheerun/vim-polyglot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
 
-" text object
-Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
-Plug 'machakann/vim-sandwich'
+" navigation
 Plug 'bkad/CamelCaseMotion'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'unblevable/quick-scope'
 
 " enhancement
+Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'Yggdroot/indentLine'
-Plug 'Asheq/close-buffers.vim'
-Plug 'unblevable/quick-scope'
-Plug 'mhinz/vim-startify'
-Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 Plug 'bfredl/nvim-miniyank'
+Plug 'machakann/vim-highlightedyank'
+
+" tool
+Plug 'mhinz/vim-startify'
+Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
+Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
+Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 
 " ui
+Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'joshdick/onedark.vim'
@@ -142,6 +145,10 @@ let g:camelcasemotion_key = '<space>'
 " -- VIM-TMUX-NAVIGATOR --------------------------------------------------------
 
 let g:tmux_navigator_disable_when_zoomed = 1
+
+" -- VIM-HIGHLIGHTEDYANK -------------------------------------------------------
+
+let g:highlightedyank_highlight_duration = 300
 
 " -- NETRW ---------------------------------------------------------------------
 
