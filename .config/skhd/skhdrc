@@ -37,8 +37,8 @@ shift + alt - tab : yabai -m window --focus recent
 # fast focus desktop
 shift + alt - a : yabai -m space --focus recent
 shift + alt - q : yabai -m space --focus last
-shift + alt - e : yabai -m space --focus next
-shift + alt - w : yabai -m space --focus prev
+shift + alt - e : yabai -m space --focus next || yabai -m space --focus first
+shift + alt - w : yabai -m space --focus prev || yabai -m space --focus last
 ctrl - 1 : yabai -m space --focus 1
 ctrl - 2 : yabai -m space --focus 2
 ctrl - 3 : yabai -m space --focus 3
@@ -98,10 +98,8 @@ shift + alt - t : yabai -m window --toggle split
 # close the window
 shift + alt - x : yabai -m window --close
 
-# toggle sticky(+float), topmost, picture-in-picture
-shift + alt - s : yabai -m window --toggle sticky;\
-                  yabai -m window --toggle topmost;\
-                  yabai -m window --toggle pip
+# toggle space management
+shift + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
 # create and destroy space
 shift + alt + ctrl - c : yabai -m space --create
@@ -121,6 +119,7 @@ shift + alt + ctrl - m : open -na Firefox\ Developer\ Edition
 shift + alt - o : open -a Slack
 shift + alt + ctrl - o : open -a Discord
 shift + alt - u : open -a Trello
+shift + alt + ctrl - u : open -a Microsoft\ Teams
 
 shift + alt - b : open ~
 shift + alt + ctrl - b : ~/Programming/Scripts/skhd/finder

@@ -37,9 +37,10 @@ yabai -m config window_gap                   7
 
 # -- rules ---------------------------------------------------------------------
 
-yabai -m rule --add app=Trello space=2
-yabai -m rule --add app=Slack space=6
-yabai -m rule --add app=Discord space=6
+yabai -m rule --add app="^Trello$" space=2
+yabai -m rule --add app="^Slack$" space=6
+yabai -m rule --add app="^Discord$" space=6
+yabai -m rule --add app="^Microsoft\ Teams$" space=6
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Firefox\ Developer\ Edition$" title="^Opening .*$" manage=off
 yabai -m rule --add app="^Dictionary$" manage=off
