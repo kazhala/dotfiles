@@ -126,7 +126,6 @@ export BMUX_3_VS='f3ed,210x63,0,0[210x41,0,0,60,210x21,0,42{105x21,0,42,61,104x2
 
 export DUMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/dump/trash"
 export DUMP_LOG="${XDG_DATA_HOME:-$HOME/.local/share}/dump/log"
-export DUMP_CONFIRM="y"
 
 # -- less ----------------------------------------------------------------------
 
