@@ -17,6 +17,8 @@ tmux select-layout -t shell:2.1 "$BMUX_3_VS"
 # window trash
 cd "$HOME/Programming/shell/dump-cli"
 tmux split-window -t shell:3.1 -h
+cd "$XDG_DATA_HOME/dump"
+tmux split-window -t shell:3.2 -v
 
 # reset window
 tmux select-pane -t shell:1.1
