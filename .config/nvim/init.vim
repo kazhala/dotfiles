@@ -78,6 +78,7 @@ set formatoptions-=t
 
 augroup FormatFile
   autocmd!
+  autocmd BufEnter vifmrc,*.vifm set filetype=vim
   autocmd BufEnter * set fo-=c fo-=r fo-=o
   autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et
@@ -157,7 +158,6 @@ let g:loaded_netrwPlugin = 1
 
 " -- VIM-POLYGLOT --------------------------------------------------------------
 
-let g:vim_markdown_conceal = 0
 let g:polyglot_disabled = ['sh']
 
 " -- VIM-CLOSETAG -------------------------------------------------------------
