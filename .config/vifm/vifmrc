@@ -112,6 +112,11 @@ command! make !!make %a
 command! take :mkdir %a | cd %a
 command! reload :write | restart
 
+" dump-cli
+command! dumpput :!!dump --put --recursive --confirm %f
+command! dumpundo :!!dump --undo --confirm
+command! dumpselect :!!dump --undo --select --local --confirm
+
 " fzf file
 command! fzf : let $FZF_RES = term('fzf --preview "head -50 {}" 2>&0')
             \| if $FZF_RES != ''
@@ -366,3 +371,8 @@ nnoremap \2 :tabn 2<cr>
 
 " matach vim to perfom toggle of vifm
 nnoremap <C-b> :q<cr>
+
+" dump-cli
+nnoremap dp :dumpput<cr>
+nnoremap du :dumpundo<cr>
+nnoremap ds :dumpselect<cr>
