@@ -46,5 +46,9 @@
   "snippets.enableStatusItem": false,
   "python.analysis.useLibraryCodeForTypes": true,
   "python.pythonPath": "/usr/local/bin/python3.8",
-  "python.analysis.diagnosticMode": "openFilesOnly"
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*"
+  },
+  "yaml.validate": false
 }
