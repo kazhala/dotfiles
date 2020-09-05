@@ -12,9 +12,11 @@ ctrl + cmd - j : yabai -m window --warp south
 ctrl + cmd - k : yabai -m window --warp north
 ctrl + cmd - l : yabai -m window --warp east
 
-# move space
-shift + alt + ctrl - n : yabai -m space --move next
-shift + alt + ctrl - p : yabai -m space --move prev
+# insert managed window into stack
+ctrl + shift + cmd - h : yabai -m window --stack west
+ctrl + shift + cmd - j : yabai -m window --stack south
+ctrl + shift + cmd - k : yabai -m window --stack north
+ctrl + shift + cmd - l : yabai -m window --stack east
 
 # move floating window
 shift + alt + ctrl - left : yabai -m window --move rel:-20:0
@@ -30,13 +32,13 @@ shift + alt - j : yabai -m window --focus south
 shift + alt - k : yabai -m window --focus north
 shift + alt - l : yabai -m window --focus east
 shift + alt - g : yabai -m window --focus first
-shift + alt - 9 : yabai -m window --focus prev
-shift + alt - 0 : yabai -m window --focus next
 shift + alt - tab : yabai -m window --focus recent
+shift + alt - p : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
+shift + alt - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
+
 
 # fast focus desktop
 shift + alt - a : yabai -m space --focus recent
-shift + alt - q : yabai -m space --focus last
 shift + alt - e : yabai -m space --focus next || yabai -m space --focus first
 shift + alt - w : yabai -m space --focus prev || yabai -m space --focus last
 ctrl - 1 : yabai -m space --focus 1
@@ -48,10 +50,11 @@ ctrl - 6 : yabai -m space --focus 6
 ctrl - 7 : yabai -m space --focus 7
 ctrl - 8 : yabai -m space --focus 8
 ctrl - 9 : yabai -m space --focus 9
+ctrl - 0 : yabai -m space --focus last
 
 # send window to desktop and follow focus
-shift + alt - n : yabai -m window --space next; yabai -m space --focus next
-shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt + ctrl - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt + ctrl - p : yabai -m window --space prev; yabai -m space --focus prev
 shift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
 shift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
 shift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
@@ -59,6 +62,9 @@ shift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
 shift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
 shift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
 shift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
+shift + alt - 0 : yabai -m window --space last; yabai -m space --focus last
 
 # -- Size ----------------------------------------------------------------------
 
@@ -86,20 +92,22 @@ shift + alt - z : yabai -m space --balance
 # rotate the windows
 shift + alt - r : yabai -m space --rotate 90
 
-# toggle window zoom
-shift + alt - f : yabai -m window --toggle zoom-fullscreen
-
-# float the window and place it in center
-shift + alt - d : yabai -m window --toggle float;
-
 # toggle sub split directory
 shift + alt - t : yabai -m window --toggle split
 
 # close the window
 shift + alt - x : yabai -m window --close
 
+# toggle window zoom
+shift + alt - q : yabai -m window --toggle zoom-fullscreen
+
+# float the window and place it in center
+shift + alt + ctrl - q : yabai -m window --toggle float;
+
 # toggle space management
-shift + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+shift + alt - s : yabai -m space --layout float
+shift + alt - d : yabai -m space --layout bsp
+shift + alt - f : yabai -m space --layout stack
 
 # create and destroy space
 shift + alt + ctrl - c : yabai -m space --create
