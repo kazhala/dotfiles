@@ -1,3 +1,7 @@
+" -- INIT ----------------------------------------------------------------------
+
+let g:polyglot_disabled = ['sh']
+
 " -- PLUGINS -------------------------------------------------------------------
 
 call plug#begin(stdpath('data') . '/plugged')
@@ -155,10 +159,6 @@ let g:highlightedyank_highlight_duration = 300
 
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
-
-" -- VIM-POLYGLOT --------------------------------------------------------------
-
-let g:polyglot_disabled = ['sh']
 
 " -- VIM-CLOSETAG -------------------------------------------------------------
 
