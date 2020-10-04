@@ -1,0 +1,5 @@
+awscli
+boto3
+fzfaws
+neovim-remote
+psutil
