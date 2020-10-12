@@ -1,12 +1,14 @@
-.config: /Users/kevinzhuang/.config
-dotbare: /Users/kevinzhuang/Programming/shell/dotbare
-bmux: /Users/kevinzhuang/Programming/shell/bmux
-fzf.aws: /Users/kevinzhuang/Programming/aws/fzf.aws
-scripts: /Users/kevinzhuang/Programming/scripts/shell
-ranger: /Users/kevinzhuang/.config/ranger
-data: /Users/kevinzhuang/.local/share
-sessions: /Users/kevinzhuang/.config/bmux
-Downloads: /Users/kevinzhuang/Downloads
-TempScreenShot: /Users/kevinzhuang/Documents/TempScreenShot
-dump-cli: /Users/kevinzhuang/Programming/shell/dump-cli
-learning: /Users/kevinzhuang/Programming/learning
+
+
+
+
+
+
+
+
+
+
+
+
+.config: /home/ubuntu/.config
+scripts: /home/ubuntu/Programming/scripts
