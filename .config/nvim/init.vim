@@ -9,7 +9,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " core
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
@@ -601,7 +601,7 @@ set signcolumn=yes
 set shortmess+=c
 
 " hard code provider to system python3
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
