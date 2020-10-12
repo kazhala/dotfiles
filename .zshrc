@@ -34,7 +34,7 @@ zinit wait lucid light-mode for \
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
   atload'_zsh_autosuggest_start;
-  bindkey -v "^ " autosuggest-accept' \
+  bindkey -v "^b" autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd dotbare" \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
@@ -95,11 +95,6 @@ setopt pushdminus
 setopt nobeep
 setopt ignoreeof
 
-# -- PATH ----------------------------------------------------------------------
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/Programming/scripts/shell:$PATH
-
 # -- System ENV ----------------------------------------------------------------
 
 export LANG=en_US.UTF-8
@@ -111,10 +106,18 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# -- PATH ----------------------------------------------------------------------
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/Programming/scripts/shell:$PATH
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}"/cargo/bin:$PATH
+
 # -- Misc ENV ------------------------------------------------------------------
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/cargo
+export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/rustup
 
 # -- bmux ----------------------------------------------------------------------
 
@@ -155,8 +158,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --height 100% --layout=reverse --border --cycle
 '
 
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_ALT_C_COMMAND="fd --type d"
+export FZF_DEFAULT_COMMAND='fdfind --type f'
+export FZF_ALT_C_COMMAND="fdfind --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -164,12 +167,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  fdfind --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+  fdfind --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # source the fzf keybindings script
