@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# init
+tmux new-session -s personal -d -n fzfaws -c "$HOME/Programming/fzf.aws"
+tmux new-window -t personal:2 -n cloudformation -c "$HOME/Programming/AWSCloudFormationStacks"
+tmux new-window -t personal:3 -n InquirerPy -c "$HOME/Programming/InquirerPy"
+
+# window fzfaws
+cd "$HOME/Programming/fzf.aws"
+tmux split-window -t personal:1.1 -v
+cd "$HOME/.config/fzfaws"
+tmux split-window -t personal:1.2 -h
+tmux send-keys -t personal:1.1 'source venv/bin/activate' ENTER
+tmux send-keys -t personal:1.2 'source venv/bin/activate' ENTER
+tmux send-keys -t personal:1.1 'clear' ENTER
+tmux send-keys -t personal:1.2 'clear' ENTER
+tmux select-layout -t personal:1.1 "$BMUX_3_VS"
+# window cloudformation
+cd "$HOME/Programming/AWSCloudFormationStacks"
+tmux split-window -t personal:2.1 -h
+# window InquirerPy
+cd "$HOME/Programming/InquirerPy"
+tmux split-window -t personal:3.1 -v
+tmux send-keys -t personal:3.1 "source venv/bin/activate" ENTER
+tmux send-keys -t personal:3.2 "source venv/bin/activate" ENTER
+tmux send-keys -t personal:3.1 "clear" ENTER
+tmux send-keys -t personal:3.2 "clear" ENTER
+tmux select-layout -t personal:3.1 "$BMUX_CODE"
+
+# reset window
+tmux select-pane -t personal:1.1
+tmux select-pane -t personal:2.1
+tmux select-pane -t personal:3.1
+tmux select-window -t personal:1

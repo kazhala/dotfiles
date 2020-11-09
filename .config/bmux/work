@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# init
+tmux new-session -s work -d -n asana -c "$HOME/Programming/asana-automation"
+tmux new-window -t work:2 -n cms -c "$HOME/Programming/cms-azure-automation-aws"
+
+# window asana
+cd "$HOME/Programming/asana-automation"
+tmux split-window -t work:1.1 -v
+tmux send-keys -t work:1.1 "source venv/bin/activate" ENTER
+tmux send-keys -t work:1.2 "source venv/bin/activate" ENTER
+tmux send-keys -t work:1.1 "clear" ENTER
+tmux send-keys -t work:1.2 "clear" ENTER
+tmux select-layout -t work:1.1 "$BMUX_CODE"
+#window
+cd "$HOME/Programming/cms-azure-automation-aws"
+tmux split-window -t work:2.1 -v
+tmux split-window -t work:2.2 -h
+tmux select-layout -t work:2.1 "$BMUX_3_VS"
+
+# reset window
+tmux select-pane -t work:1.1
+tmux select-pane -t work.1
+tmux select-window -t work:1
