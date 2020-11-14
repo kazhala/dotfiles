@@ -34,7 +34,7 @@ zinit wait lucid light-mode for \
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
   atload'_zsh_autosuggest_start;
-  bindkey -v "^ " autosuggest-accept' \
+  bindkey -v "^b" autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd dotbare" \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
@@ -120,7 +120,8 @@ export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 
 export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
-export BMUX_3_VS='f3ed,210x63,0,0[210x41,0,0,60,210x21,0,42{105x21,0,42,61,104x21,106,42,62}]'
+export BMUX_3_VS='55b3,210x63,0,0[210x42,0,0,10,210x20,0,43{105x20,0,43,11,104x20,106,43,12}]'
+export BMUX_CODE='21fb,210x63,0,0[210x42,0,0,8,210x20,0,43,9]'
 
 # -- dump-cli ----------------------------------------------------------------------
 

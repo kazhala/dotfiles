@@ -17,10 +17,12 @@ tmux send-keys -t aws:1.2 'clear' ENTER
 tmux select-layout -t aws:1.1 "$BMUX_3_VS"
 # window cloudformation
 cd "$HOME/Programming/aws/cloudformation"
-tmux split-window -t aws:2.1 -h
+tmux split-window -t aws:2.1 -v
+tmux select-layout -t aws:2.1 "$BMUX_CODE"
 # window lambda
 cd "$HOME/Programming/aws/lambda"
-tmux split-window -t aws:3.1 -h
+tmux split-window -t aws:3.1 -v
+tmux select-layout -t aws:3.1 "$BMUX_CODE"
 
 # reset window
 tmux select-pane -t aws:1.1

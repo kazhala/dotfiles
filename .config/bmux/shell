@@ -4,24 +4,33 @@
 tmux new-session -s shell -d -n dotbare -c "$HOME/Programming/shell/dotbare"
 tmux new-window -t shell:2 -n bmux -c "$HOME/Programming/shell/bmux"
 tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
+tmux new-window -t shell:4 -n InquirerPy -c "$HOME/Programming/shell/InquirerPy"
 
 # window dotbare
 cd "$HOME/Programming/shell/dotbare"
 tmux split-window -t shell:1.1 -h
+
 # window bmux
 cd "$HOME/Programming/shell/bmux"
 tmux split-window -t shell:2.1 -v
 cd "$HOME/.config/bmux"
 tmux split-window -t shell:2.2 -h
 tmux select-layout -t shell:2.1 "$BMUX_3_VS"
-# window trash
+
+# window dump-cli
 cd "$HOME/Programming/shell/dump-cli"
 tmux split-window -t shell:3.1 -h
 cd "$XDG_DATA_HOME/dump"
 tmux split-window -t shell:3.2 -v
 
+# window InquirerPy
+cd "$HOME/Programming/shell/InquirerPy"
+tmux split-window -t shell:4.1 -v
+tmux select-layout -t shell:4.1 "$BMUX_CODE"
+
 # reset window
 tmux select-pane -t shell:1.1
 tmux select-pane -t shell:2.1
 tmux select-pane -t shell:3.1
+tmux select-pane -t shell:4.1
 tmux select-window -t shell:1
