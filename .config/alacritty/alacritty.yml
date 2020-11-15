@@ -9,19 +9,17 @@ window:
     x: 1
     y: 0
   dynamic_padding: true
-  decorations: none
+  decorations: full
   startup_mode: Windowed
   title: Alacritty
   dynamic_title: false
-
 scrolling:
   history: 0
   multiplier: 0
-
 font:
   normal:
-    family: DejaVuSansMono Nerd Font Mono
-  size: 14.5
+    family: DejaVuSansMono NF
+  size: 11
   offset:
     x: 0
     y: 0
@@ -29,9 +27,7 @@ font:
     x: 0
     y: 0
   use_thin_strokes: false
-
 draw_bold_text_with_bright_colors: false
-
 colors:
   primary:
     foreground: '0xabb2bf'
@@ -57,37 +53,25 @@ colors:
     magenta: '0xc678dd'
     cyan: '0x56b6c2'
     white: '0x3e4452'
-
 bell:
   duration: 0
-
 background_opacity: 1.0
-
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  semantic_escape_chars: ",`|:\"' ()[]{}<>\t"
   save_to_clipboard: false
-
 cursor:
   style: Block
   vi_mode_style: None
   unfocused_hollow: true
-
 live_config_reload: true
-
-shell:
-  program: /bin/zsh
-
-working_directory: None
-
+working_directory: C:\Users\kzhuang
 alt_send_esc: false
-
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
   hide_when_typing: true
   url:
     modifiers: Command
-
 key_bindings:
   - { key: PageUp, action: ScrollPageUp }
   - { key: PageUp, mode: Alt, chars: "\x1B[5~" }
@@ -103,6 +87,7 @@ key_bindings:
   - { key: End, mods: Shift, chars: "\x1B[F" }
   - { key: Tab, mods: Alt, chars: "\x1B\t" }
   - { key: Tab, mods: Alt|Shift, chars: "\x1B\x1B[Z" }
+  - { key: Tab, mods: Shift, chars: "\x1B\x1B[A" }
   - { key: Back, chars: "\x7F" }
   - { key: Back, mods: Alt, chars: "\x1B\x7F" }
   - { key: Back, mods: Alt|Shift, chars: "\x1B\x08" }
@@ -120,7 +105,6 @@ key_bindings:
   - { key: A, mods: Alt|Shift, chars: "\x1BA" }
   - { key: B, mods: Alt, chars: "\x1Bb" }
   - { key: B, mods: Alt|Shift, chars: "\x1BB" }
-  - { key: C, mods: Alt, chars: "\x1Bc" }
   - { key: C, mods: Alt|Shift, chars: "\x1BC" }
   - { key: D, mods: Alt, chars: "\x1Bd" }
   - { key: D, mods: Alt|Shift, chars: "\x1BD" }
@@ -152,13 +136,11 @@ key_bindings:
   - { key: Q, mods: Alt|Shift, chars: "\x1BQ" }
   - { key: R, mods: Alt, chars: "\x1Br" }
   - { key: R, mods: Alt|Shift, chars: "\x1BR" }
-  - { key: S, mods: Alt, chars: "\x1Bs" }
   - { key: S, mods: Alt|Shift, chars: "\x1BS" }
   - { key: T, mods: Alt, chars: "\x1Bt" }
   - { key: T, mods: Alt|Shift, chars: "\x1BT" }
   - { key: U, mods: Alt, chars: "\x1Bu" }
   - { key: U, mods: Alt|Shift, chars: "\x1BU" }
-  - { key: V, mods: Alt, chars: "\x1Bv" }
   - { key: V, mods: Alt|Shift, chars: "\x1BV" }
   - { key: W, mods: Alt, chars: "\x1Bw" }
   - { key: W, mods: Alt|Shift, chars: "\x1BW" }
@@ -186,11 +168,8 @@ key_bindings:
   - { key: Key8, mods: Alt|Shift, chars: "\x1B*" }
   - { key: Key9, mods: Alt, chars: "\x1B9" }
   - { key: Key9, mods: Alt|Shift, chars: "\x1B(" }
-  - { key: Key0, mods: Alt, chars: "\x1B0" }
   - { key: Key0, mods: Alt|Shift, chars: "\x1B)" }
-  - { key: Minus, mods: Alt, chars: "\x1B-" }
   - { key: Minus, mods: Alt|Shift, chars: "\x1B_" }
-  - { key: Equals, mods: Alt, chars: "\x1B=" }
   - { key: Equals, mods: Alt|Shift, chars: "\x1B+" }
   - { key: LBracket, mods: Alt, chars: "\x1B[" }
   - { key: LBracket, mods: Alt|Shift, chars: "\x1B{" }
@@ -198,11 +177,9 @@ key_bindings:
   - { key: RBracket, mods: Alt|Shift, chars: "\x1B}" }
   - { key: Backslash, mods: Alt, chars: "\x1B\\" }
   - { key: Backslash, mods: Alt|Shift, chars: "\x1B|" }
-  - { key: Semicolon, mods: Alt, chars: "\x1B;" }
   - { key: Semicolon, mods: Alt|Shift, chars: "\x1B:" }
   - { key: Apostrophe, mods: Alt, chars: "\x1B'" }
   - { key: Apostrophe, mods: Alt|Shift, chars: "\x1B\"" }
-  - { key: Comma, mods: Alt, chars: "\x1B," }
   - { key: Comma, mods: Alt|Shift, chars: "\x1B<" }
   - { key: Period, mods: Alt, chars: "\x1B." }
   - { key: Period, mods: Alt|Shift, chars: "\x1B>" }
@@ -210,24 +187,14 @@ key_bindings:
   - { key: Slash, mods: Alt|Shift, chars: "\x1B?" }
   - { key: Grave, mods: Alt, chars: "\x1B`" }
   - { key: Grave, mods: Alt|Shift, chars: "\x1B~" }
-
-  - { key: S, mods: Command, chars: ":w\n" }
-  - { key: Semicolon, mods: Command, chars: ":CtrlSemicolumn\n" }
-  - { key: Comma, mods: Command, chars: ":CtrlColumn\n" }
-
-  - { key: Key0, mods: Command, action: ResetFontSize }
-  - { key: Equals, mods: Command, action: IncreaseFontSize }
-  - { key: Minus, mods: Command, action: DecreaseFontSize }
-  - { key: K, mods: Command, action: ClearHistory }
-  - { key: V, mods: Command, action: Paste }
-  - { key: C, mods: Command, action: Copy }
-  - { key: H, mods: Command, action: Hide }
-  - { key: M, mods: Command, action: Minimize }
-  - { key: Q, mods: Command, action: Quit }
-  - { key: W, mods: Command, action: Quit }
-  - { key: N, mods: Command, action: SpawnNewInstance }
-  - { key: Return, mods: Command, action: ToggleFullscreen }
-
+  - { key: S, mods: Alt, chars: ":w\n" }
+  - { key: Semicolon, mods: Alt, chars: ":CtrlSemicolumn\n" }
+  - { key: Comma, mods: Alt, chars: ":CtrlColumn\n" }
+  - { key: Key0, mods: Alt, action: ResetFontSize }
+  - { key: Equals, mods: Alt, action: IncreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
+  - { key: C, mods: Alt, action: Copy }
+  - { key: V, mods: Alt, action: Paste }
 debug:
   render_timer: false
   persistent_logging: false
