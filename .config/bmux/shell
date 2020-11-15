@@ -26,6 +26,10 @@ tmux split-window -t shell:3.2 -v
 # window InquirerPy
 cd "$HOME/Programming/shell/InquirerPy"
 tmux split-window -t shell:4.1 -v
+tmux send-keys -t shell:4.1 'source venv/bin/activate' ENTER
+tmux send-keys -t shell:4.2 'source venv/bin/activate' ENTER
+tmux send-keys -t shell:4.1 'clear' ENTER
+tmux send-keys -t shell:4.2 'clear' ENTER
 tmux select-layout -t shell:4.1 "$BMUX_CODE"
 
 # reset window
