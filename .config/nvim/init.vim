@@ -98,6 +98,7 @@ nnoremap <C-]> <C-^>
 nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
 nnoremap <leader>u :setlocal nobuflisted<CR>
 nnoremap <leader>n :noh<CR>
+nnoremap <leader>p :set paste!<CR>
 
 " reselect pasted text
 noremap gV `[v`]
