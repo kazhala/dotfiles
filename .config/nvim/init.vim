@@ -85,10 +85,10 @@ augroup FormatFile
   autocmd BufEnter vifmrc,*.vifm set filetype=vim
   autocmd BufEnter * set fo-=c fo-=r fo-=o
   autocmd TermOpen * setlocal nonumber norelativenumber
-  autocmd FileType, BufEnter python,doctest set ai ts=4 sw=4 sts=4 et
+  autocmd BufEnter *.py set ai ts=4 sw=4 sts=4 et
   autocmd BufWritePre *.py execute ':Black'
   autocmd BufWritePre *.py execute ':CocCommand pyright.organizeimports'
-  autocmd FileType, BufEnter markdown setlocal conceallevel=0
+  autocmd BufEnter *.md setlocal conceallevel=0
 augroup end
 
 map Y y$
