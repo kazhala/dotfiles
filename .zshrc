@@ -149,6 +149,15 @@ export DOTBARE_TREE="$HOME"
 export DOTBARE_BACKUP="${XDG_DATA_HOME:-$HOME/.local/share}/dotbare"
 export DOTBARE_PREVIEW="cat {}"
 export DOTBARE_FZF_DEFAULT_OPTS="--preview-window=right:65%"
+export DOTBARE_KEY="
+  --bind=alt-a:toggle-all
+  --bind=alt-w:jump
+  --bind=alt-0:top
+  --bind=alt-s:toggle-sort
+  --bind=alt-t:toggle-preview
+  --bind=alt-j:preview-down
+  --bind=alt-k:preview-up
+"
 
 # -- fzf ----------------------------------------------------------------------
 
