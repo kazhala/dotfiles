@@ -91,9 +91,10 @@ map Y y$
 vmap Y "*y
 nnoremap Q q
 nnoremap <C-]> <C-^>
-nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
-nnoremap <leader>u :setlocal nobuflisted<CR>
 nnoremap <leader>n :noh<CR>
+nnoremap <leader>ps :setlocal spell! spelllang=en_au<CR>
+nnoremap <leader>pp :set paste!<CR>
+nnoremap <leader>pu :setlocal nobuflisted<CR>
 
 " reselect pasted text
 noremap gV `[v`]
@@ -688,7 +689,7 @@ nmap <expr> <silent> <C-s> <SID>select_current_word()
 xmap <silent> <C-s> <Plug>(coc-cursors-range)
 nmap <silent> <space>c <Plug>(coc-cursors-position)
 
-" Remap keys for gotos(coc)
+" coc lsp jumps
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -701,7 +702,7 @@ nmap <leader>hu :CocCommand git.chunkUndo<CR>
 nmap <leader>hs :CocCommand git.chunkStage<CR>
 nmap <leader>hf :CocCommand git.foldUnchanged<CR>
 
-" create text object for git chunks
+" coc git chunk obj
 omap ih <Plug>(coc-git-chunk-inner)
 xmap ih <Plug>(coc-git-chunk-inner)
 omap ah <Plug>(coc-git-chunk-outer)
@@ -712,6 +713,12 @@ xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
+
+" coc class obj
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " coc list map
 nnoremap <leader>lc :CocList commands<CR>
