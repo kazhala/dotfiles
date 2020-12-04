@@ -27,7 +27,7 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'machakann/vim-highlightedyank'
 
 " tool
-Plug 'mhinz/vim-startify'
+Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
@@ -42,36 +42,32 @@ call plug#end()
 
 " -- GENERAL -------------------------------------------------------------------
 
-set encoding=UTF-8              " encoding
-set t_Co=256                    " 256 color
-set termguicolors               " termgui color
-set cursorline                  " highlight cursor line
-syntax on                       " enable syntax
-set hidden                      " allow hidden buffer
-set nowrap                      " disable wrap
-set scrolloff=5                 " display minimum 5 lines when scrolling
-set matchpairs+=<:>             " append highlight matchpairs
-set autoread                    " auto read when file is changed outside
-set history=1000                " increase history limit
-set showtabline=2               " show buffer line
-set noshowmode                  " disable mode display, lightline already does it
-set backspace=indent,eol,start  " fix common backspace problems
-set splitright                  " split to right
-set number                      " line number in signcolumn
-set relativenumber              " use relative number
-set autoindent                  " enable auto indent
-set nostartofline               " don't do wierd movements in big jumps
-set noerrorbells                " no annoying sound bells
-set novisualbell                " no annoying flash bells
-
-" search settings
+set encoding=UTF-8
+set t_Co=256
+set termguicolors
+set cursorline
+syntax on
+set hidden
+set nowrap
+set scrolloff=5
+set matchpairs+=<:>
+set autoread
+set history=1000
+set showtabline=2
+set noshowmode
+set backspace=indent,eol,start
+set splitright
+set number
+set relativenumber
+set autoindent
+set nostartofline
+set noerrorbells
+set novisualbell
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 set inccommand=split
-
-" whitespace
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -374,40 +370,84 @@ augroup end
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
 nnoremap <C-b> :FloatermNew vifm<CR>
 
-" -- STARTIFY ------------------------------------------------------------------
+" -- DASHBOARD -----------------------------------------------------------------
 
-let g:startify_lists = [
-  \ { 'type': 'sessions',  'header': ['   Sessions']  },
-  \ { 'type': 'commands',  'header': ['   Commands']  },
-  \ ]
-
-let g:startify_commands = [
-  \ { 'f': [ 'Vifm', ':FloatermNew vifm' ] },
-  \ { 'i': [ 'Dotfiles', ':Dots' ] },
-  \ { 'h': [ 'Help', ':Helptags' ] },
-  \ { 'm': [ 'Maps', ':Maps' ] },
-  \ { 't': [ 'FileType', ':enew | Filetypes' ] },
-  \ { 'u': [ 'History', ':History' ] },
-  \ { 'w': [ 'Vimwiki', ':VimwikiIndex' ] },
-  \ { 'd': [ 'Diary', 'VimwikiMakeDiaryNote' ] }
+let g:dashboard_custom_header = [
+\"",
+\"",
+\"",
+\"",
+\"",
+\"       ▄▄        ▄▄ ",
+\"     ▄████       ███▄                                            ▄▄ ",
+\"   ▄ ▀█████▄     █████                                           ▀▀ ",
+\"   ▌ ▀▄██████    █████     ▌ ▄▀▀▄▄   ▄▄▀▀ ▄    ▄ ▀▀▄▄ ▓█▄    ▄█▌▐██ ▐██▄███▄▄▓███▄ ",
+\"   ▌    ▀█████▄  █████     ▌     ▐  ▓      █ ▄▀     ▐▌ ██▄  ▄█▌ ▐██ ▐██   ▐██   ▓██ ",
+\"   ▌   ▐  ██████ █████     ▌     ▐▌ █▀▀▀▀▀▀▀ █       █  ██ ▐██  ▐██ ▐██   ▐██   ▐██ ",
+\"   ▌   ▐   ▀█████▄████     ▌     ▐▌ █        ▀▄      █   ████   ▐██ ▐██   ▐██   ▐██ ",
+\"   ▌   ▐    ▀█████▄▀██     ▌     ▐   ▀▀▄▄▄▀▀   ▀▄▄▄▀▀    ▐▀▀    ▐▀▀ ▐▀▀   ▐▀▀   ▐▀▀ ",
+\"   ▀   ▐      ▀█████ █ ",
+\"     ▀▄▐       ▀████ ",
+\"       ▀         ▀ ",
+\"",
+\"                                                             version: ". matchstr(execute('version'), 'NVIM v\zs[^\n]*') ."",
+\"",
+\"",
+\"",
+\"",
+\"",
 \ ]
 
-let g:startify_change_to_dir = 0
-let g:startify_fortune_use_unicode = 1
+function! s:close() abort
+  if len(filter(range(0, bufnr('$')), 'buflisted(v:val)')) - &buflisted
+    if bufloaded(bufnr('#')) && bufnr('#') != bufnr('%')
+      buffer #
+    else
+      bnext
+    endif
+  else
+    quit
+  endif
+endfunction
 
-let g:startify_custom_header =
-      \ 'startify#pad(g:ascii + startify#fortune#boxed())'
+let g:dashboard_custom_section={
+  \ '1': {
+    \ 'description': ['﬘ Empty Buffer                              [e]'],
+    \ 'command': ':enew'
+    \ },
+  \ '2': {
+    \ 'description': [' Dotfiles                                  [i]'],
+    \ 'command': ':Dots'
+    \ },
+  \ '3': {
+    \ 'description': [' FileTypes                                 [t]'],
+    \ 'command': ":enew \| Filetypes"
+    \ },
+  \ '4': {
+    \ 'description': [' Mappings                                  [m]'],
+    \ 'command': ':Maps'
+    \ },
+  \ '5': {
+    \ 'description': [' Help Tags                                 [h]'],
+    \ 'command': ':Helptags'
+    \ },
+  \ '6': {
+    \ 'description': [' Exit                                      [q]'],
+    \ 'command': function('s:close')
+    \ },
+  \ }
 
-let g:ascii = [
-  \'    _   __      _          ',
-  \'   / | / /   __(_)___ ___  ',
-  \'  /  |/ / | / / / __ `__ \ ',
-  \' / /|  /| |/ / / / / / / / ',
-  \'/_/ |_/ |___/_/_/ /_/ /_/  '. matchstr(execute('version'), 'NVIM v\zs[^\n]*'),
-  \ '',
-  \ ]
+augroup DashboardMaps
+  autocmd!
+  au FileType dashboard nnoremap <buffer> e :enew<CR>
+  au FileType dashboard nnoremap <buffer> i :Dots<CR>
+  au FileType dashboard nnoremap <buffer> m :Maps<CR>
+  au FileType dashboard nnoremap <buffer> h :Helptags<CR>
+  au FileType dashboard nnoremap <buffer> t :enew <bar> Filetypes<CR>
+  au FileType dashboard nnoremap <buffer> q :call <SID>close()<CR>
+augroup end
 
-nnoremap <leader>a :Startify<CR>
+nnoremap <leader>a :Dashboard<CR>
 
 " -- LIGHTLINE-BUFFERLINE ------------------------------------------------------
 
@@ -604,9 +644,9 @@ set shortmess+=c
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -616,7 +656,7 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>"
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " coc pairs
 augroup CocPairs
