@@ -687,7 +687,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " coc multi cursor
 nmap <expr> <silent> <C-s> <SID>select_current_word()
 xmap <silent> <C-s> <Plug>(coc-cursors-range)
-nmap <silent> <space>c <Plug>(coc-cursors-position)
+nmap <silent> <leader>m <Plug>(coc-cursors-position)
 
 " coc lsp jumps
 nmap <silent> gd <Plug>(coc-definition)
