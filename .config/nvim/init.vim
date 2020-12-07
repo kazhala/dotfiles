@@ -6,33 +6,25 @@ let g:polyglot_disabled = ['sh']
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" core
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
-
-" navigation
 Plug 'bkad/CamelCaseMotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'unblevable/quick-scope'
-
-" enhancement
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'bfredl/nvim-miniyank'
 Plug 'machakann/vim-highlightedyank'
-
-" tool
+Plug 'ojroques/vim-oscyank'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
-
-" ui
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -161,6 +153,14 @@ let g:loaded_netrwPlugin = 1
 
 let g:closetag_filenames = '*.html,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
+
+" -- VIM-OSCYANK ---------------------------------------------------------------
+
+augroup OSCYank
+  autocmd!
+  autocmd TextYankPost *
+    \ if v:event.operator is 'y' && v:event.regname is '*' | call YankOSC52(getreg('*')) | endif
+augroup END
 
 " -- NVIM-MINIYANK -------------------------------------------------------------
 
