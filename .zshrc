@@ -101,6 +101,27 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/Programming/scripts/shell:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 
+# -- Aliases -------------------------------------------------------------------
+
+alias vim="nvim"
+alias vimf="nvim '+Dashboard | FloatermNew vifm'"
+alias py3="python3"
+alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
+alias ag='ag -p ~/.ignore'
+alias lg='lazygit'
+alias ll='lsd -lAF --group-dirs first'
+alias ls='lsd'
+alias ..='cd ..'
+alias mv='mv -v'
+alias cp='cp -v'
+alias rm='rm -v'
+alias grep='grep --color=auto'
+alias fs='bmux'
+
+if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
+  alias fd="fdfind"
+fi
+
 # -- System ENV ----------------------------------------------------------------
 
 export LANG=en_US.UTF-8
@@ -118,12 +139,6 @@ export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
-
-if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
-  export FD_COMMAND="fdfind"
-else
-  export FD_COMMAND="fd"
-fi
 
 # -- bmux ----------------------------------------------------------------------
 
@@ -197,23 +212,6 @@ _fzf_compgen_dir() {
 # overrite the tab behavior after sourcing the fzf.zsh script
 export FZF_COMPLETION_TRIGGER=''
 export FZF_PREVIEW_COMMAND='cat {}'
-
-# -- Aliases -------------------------------------------------------------------
-
-alias vim="nvim"
-alias vimf="nvim '+Startify | FloatermNew vifm'"
-alias py3="python3"
-alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
-alias ag='ag -p ~/.ignore'
-alias lg='lazygit'
-alias ll='lsd -lAF --group-dirs first'
-alias ls='lsd'
-alias ..='cd ..'
-alias mv='mv -v'
-alias cp='cp -v'
-alias rm='rm -v'
-alias grep='grep --color=auto'
-alias fs='bmux'
 
 # -- Functions -----------------------------------------------------------------
 
