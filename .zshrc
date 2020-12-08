@@ -107,20 +107,17 @@ alias vim="nvim"
 alias vimf="nvim '+Dashboard | FloatermNew vifm'"
 alias py3="python3"
 alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
-alias ag='ag -p ~/.ignore'
-alias lg='lazygit'
-alias ll='lsd -lAF --group-dirs first'
-alias ls='lsd'
-alias ..='cd ..'
-alias mv='mv -v'
-alias cp='cp -v'
-alias rm='rm -v'
-alias grep='grep --color=auto'
-alias fs='bmux'
-
-if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
-  alias fd="fdfind"
-fi
+alias ag="ag -p ~/.ignore"
+alias lg="lazygit"
+alias ll="lsd -lAF --group-dirs first"
+alias ls="lsd"
+alias ..="cd .."
+alias mv="mv -v"
+alias cp="cp -v"
+alias rm="rm -v"
+alias grep="grep --color=auto"
+alias fs="bmux"
+alias fdfind="fd"
 
 # -- System ENV ----------------------------------------------------------------
 
@@ -139,6 +136,12 @@ export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
+
+if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
+  export FD_COMMAND="fdfind"
+else
+  export FD_COMMAND="fd"
+fi
 
 # -- bmux ----------------------------------------------------------------------
 
