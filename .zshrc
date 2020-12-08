@@ -97,8 +97,9 @@ setopt ignoreeof
 
 # -- PATH ----------------------------------------------------------------------
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/Programming/scripts/shell:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/Programming/scripts/shell:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 
 # -- System ENV ----------------------------------------------------------------
 
@@ -115,13 +116,21 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
+
+if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
+  export FD_COMMAND="fdfind"
+else
+  export FD_COMMAND="fd"
+fi
 
 # -- bmux ----------------------------------------------------------------------
 
 export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
-export BMUX_3_VS='55b3,210x63,0,0[210x42,0,0,10,210x20,0,43{105x20,0,43,11,104x20,106,43,12}]'
-export BMUX_CODE='21fb,210x63,0,0[210x42,0,0,8,210x20,0,43,9]'
+export BMUX_3_VS='f3ed,210x63,0,0[210x41,0,0,60,210x21,0,42{105x21,0,42,61,104x21,106,42,62}]'
+export BMUX_CODE='578a,239x62,0,0[239x45,0,0,30,239x16,0,46,31]'
 
 # -- dump-cli ----------------------------------------------------------------------
 
@@ -146,6 +155,15 @@ export DOTBARE_TREE="$HOME"
 export DOTBARE_BACKUP="${XDG_DATA_HOME:-$HOME/.local/share}/dotbare"
 export DOTBARE_PREVIEW="cat {}"
 export DOTBARE_FZF_DEFAULT_OPTS="--preview-window=right:65%"
+export DOTBARE_KEY="
+  --bind=alt-a:toggle-all
+  --bind=alt-w:jump
+  --bind=alt-0:top
+  --bind=alt-s:toggle-sort
+  --bind=alt-t:toggle-preview
+  --bind=alt-j:preview-down
+  --bind=alt-k:preview-up
+"
 
 # -- fzf ----------------------------------------------------------------------
 
@@ -156,8 +174,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --height 100% --layout=reverse --border --cycle
 '
 
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_ALT_C_COMMAND="fd --type d"
+export FZF_DEFAULT_COMMAND="${FD_COMMAND} --type f"
+export FZF_ALT_C_COMMAND="${FD_COMMAND} --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -165,12 +183,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  "${FD_COMMAND}" --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+  "${FD_COMMAND}" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # source the fzf keybindings script
