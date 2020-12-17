@@ -95,6 +95,30 @@ setopt pushdminus
 setopt nobeep
 setopt ignoreeof
 
+# -- PATH ----------------------------------------------------------------------
+
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/Programming/scripts/shell:$PATH"
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
+
+# -- Aliases -------------------------------------------------------------------
+
+alias vim="nvim"
+alias vimf="nvim '+Dashboard | FloatermNew vifm'"
+alias py3="python3"
+alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
+alias ag="ag -p ~/.ignore"
+alias lg="lazygit"
+alias ll="lsd -lAF --group-dirs first"
+alias ls="lsd"
+alias ..="cd .."
+alias mv="mv -v"
+alias cp="cp -v"
+alias rm="rm -v"
+alias grep="grep --color=auto"
+alias fs="bmux"
+alias fdfind="fd"
+
 # -- System ENV ----------------------------------------------------------------
 
 export LANG=en_US.UTF-8
@@ -106,18 +130,18 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# -- PATH ----------------------------------------------------------------------
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/Programming/scripts/shell:$PATH
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}"/cargo/bin:$PATH
-
 # -- Misc ENV ------------------------------------------------------------------
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
-export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/cargo
-export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"/rustup
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
+
+if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
+  export FD_COMMAND="fdfind"
+else
+  export FD_COMMAND="fd"
+fi
 
 # -- bmux ----------------------------------------------------------------------
 
@@ -168,8 +192,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --height 100% --layout=reverse --border --cycle
 '
 
-export FZF_DEFAULT_COMMAND='fdfind --type f'
-export FZF_ALT_C_COMMAND="fdfind --type d"
+export FZF_DEFAULT_COMMAND="${FD_COMMAND} --type f"
+export FZF_ALT_C_COMMAND="${FD_COMMAND} --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -177,12 +201,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fdfind --hidden --follow --exclude ".git" . "$1"
+  "${FD_COMMAND}" --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fdfind --type d --hidden --follow --exclude ".git" . "$1"
+  "${FD_COMMAND}" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # source the fzf keybindings script
@@ -191,23 +215,6 @@ _fzf_compgen_dir() {
 # overrite the tab behavior after sourcing the fzf.zsh script
 export FZF_COMPLETION_TRIGGER=''
 export FZF_PREVIEW_COMMAND='cat {}'
-
-# -- Aliases -------------------------------------------------------------------
-
-alias vim="nvim"
-alias vimf="nvim '+Startify | FloatermNew vifm'"
-alias py3="python3"
-alias tree="tree -I '.git|node_modules|bower_components|.DS_Store|build'"
-alias ag='ag -p ~/.ignore'
-alias lg='lazygit'
-alias ll='lsd -lAF --group-dirs first'
-alias ls='lsd'
-alias ..='cd ..'
-alias mv='mv -v'
-alias cp='cp -v'
-alias rm='rm -v'
-alias grep='grep --color=auto'
-alias fs='bmux'
 
 # -- Functions -----------------------------------------------------------------
 
