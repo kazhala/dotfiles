@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # init
-tmux new-session -s scripts -d -n shell -c "$HOME/Programming/scripts/shell"
+tmux new-session -s scripts -d -n shell -c "$HOME"
 tmux new-window -t scripts:2 -n skhd -c "$HOME/Programming/scripts/skhd"
 tmux new-window -t scripts:3 -n tmux -c "$HOME/Programming/scripts/tmux"
 tmux new-window -t scripts:4 -n bitbar -c "$HOME/Programming/scripts/BitBarPlugins"
+tmux send-keys -t scripts:1.1 "cd $HOME/Programming/scripts/shell; clear" ENTER
 
 # window shell
 cd "$HOME/Programming/scripts/shell"

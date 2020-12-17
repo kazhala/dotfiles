@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # init
-tmux new-session -s personal -d -n fzfaws -c "$HOME/Programming/fzf.aws"
+tmux new-session -s personal -d -n fzfaws -c "$HOME"
 tmux new-window -t personal:2 -n cloudformation -c "$HOME/Programming/AWSCloudFormationStacks"
 tmux new-window -t personal:3 -n InquirerPy -c "$HOME/Programming/InquirerPy"
+tmux send-keys -t personal:1.1 "cd $HOME/Programming/fzf.aws; clear" ENTER
 
 # window fzfaws
 cd "$HOME/Programming/fzf.aws"

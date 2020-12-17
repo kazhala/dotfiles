@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # init
-tmux new-session -s work -d -n asana -c "$HOME/Programming/asana-automation"
+tmux new-session -s work -d -n asana -c "$HOME"
 tmux new-window -t work:2 -n cms -c "$HOME/Programming/cms-azure-automation-aws"
+tmux send-keys -t work:1.1 "cd $HOME/Programming/asana-automation; clear" ENTER
 
 # window asana
 cd "$HOME/Programming/asana-automation"
