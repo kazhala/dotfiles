@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # init
-tmux new-session -s shell -d -n dotbare -c "$HOME/Programming/shell/dotbare"
+tmux new-session -s shell -d -n dotbare -c "$HOME"
+tmux send-keys -t shell:1.1 "cd $HOME/Programming/shell/dotbare; clear" ENTER
 tmux new-window -t shell:2 -n bmux -c "$HOME/Programming/shell/bmux"
 tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
 tmux new-window -t shell:4 -n InquirerPy -c "$HOME/Programming/shell/InquirerPy"

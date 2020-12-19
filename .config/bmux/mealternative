@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # init
-tmux new-session -s mealternative -d -n frontend -c "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmux new-session -s mealternative -d -n frontend -c "$HOME"
+tmux send-keys -t mealternative:1.1 "cd $HOME/Programming/web/mealternative-full-stack/mealternative; clear" ENTER
 tmux new-window -t mealternative:2 -n backend -c "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
 
 # window frontend

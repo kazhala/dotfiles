@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # init
-tmux new-session -s aws -d -n fzfaws -c "$HOME/Programming/aws/fzf.aws"
+tmux new-session -s aws -d -n fzfaws -c "$HOME"
+tmux send-keys -t aws:1.1 "cd $HOME/Programming/aws/fzf.aws; clear" ENTER
 tmux new-window -t aws:2 -n cloudformation -c "$HOME/Programming/aws/cloudformation"
 tmux new-window -t aws:3 -n lambda -c "$HOME/Programming/aws/lambda"
 
