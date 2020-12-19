@@ -189,7 +189,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:-1,hl+:#c678dd
 --color=info:#98c379,prompt:#61afef,pointer:#e06c75,marker:#e5c07b,spinner:#61afef,header:#61afef
---height 100% --layout=reverse --border --cycle
+--height 100% --layout=reverse --border --cycle --info=inline
 '
 
 export FZF_DEFAULT_COMMAND="${FD_COMMAND} --type f"

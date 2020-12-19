@@ -429,11 +429,11 @@ let g:dashboard_custom_section={
     \ 'command': ':Maps'
     \ },
   \ '5': {
-    \ 'description': [' Help Tags                                 [h]'],
+    \ 'description': ['ﬤ Help Tags                                 [h]'],
     \ 'command': ':Helptags'
     \ },
   \ '6': {
-    \ 'description': [' Exit                                      [q]'],
+    \ 'description': [' Exit                                      [q]'],
     \ 'command': function('s:close')
     \ },
   \ }
