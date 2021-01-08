@@ -24,7 +24,8 @@
   "markdownlint.config": {
     "default": true,
     "line-length": false,
-    "no-duplicate-header": false
+    "no-duplicate-header": false,
+    "MD033": false
   },
   "coc.preferences.formatOnSaveFiletypes": [
     "markdown",

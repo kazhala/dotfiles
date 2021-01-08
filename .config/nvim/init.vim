@@ -6,33 +6,25 @@ let g:polyglot_disabled = ['sh']
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" core
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
-
-" navigation
 Plug 'bkad/CamelCaseMotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'unblevable/quick-scope'
-
-" enhancement
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'bfredl/nvim-miniyank'
 Plug 'machakann/vim-highlightedyank'
-
-" tool
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
+Plug 'brentyi/isort.vim', { 'on': 'Isort' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
-
-" ui
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -83,7 +75,6 @@ augroup FormatFile
   autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd BufEnter *.py set ai ts=4 sw=4 sts=4 et
   autocmd BufWritePre *.py execute ':Black'
-  autocmd BufWritePre *.py execute ':CocCommand pyright.organizeimports'
   autocmd BufEnter *.md setlocal conceallevel=0
 augroup end
 
@@ -727,13 +718,12 @@ nnoremap <leader>ll :CocList lists<CR>
 nnoremap <leader>ld :CocList diagnostics<CR>
 
 " coc command map
-nnoremap <leader>cy :CocCommand yank.clean<CR>
 nnoremap <leader>cs :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>cf :CocCommand prettier.formatFile<CR>
 nnoremap <leader>co :CocCommand editor.action.organizeImport<CR>
 augroup PyrightImportOrganize
   autocmd!
-  autocmd FileType python nnoremap <buffer><leader>co :CocCommand pyright.organizeimports<CR>
+  autocmd FileType python nnoremap <buffer><leader>co :Isort<CR>
 augroup end
 nnoremap <leader>ce :CocRestart<CR>
 vmap <leader>cf <Plug>(coc-format-selected)
