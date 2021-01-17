@@ -1,39 +1,29 @@
 #!/bin/sh
 
-# init
 tmux new-session -s shell -d -n dotbare -c "$HOME"
 tmux send-keys -t shell:1.1 "cd $HOME/Programming/shell/dotbare; clear" ENTER
 tmux new-window -t shell:2 -n bmux -c "$HOME/Programming/shell/bmux"
 tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
-tmux new-window -t shell:4 -n InquirerPy -c "$HOME/Programming/shell/InquirerPy"
+tmux new-window -t shell:4 -n scripts -c "$HOME/Programming/scripts"
 
-# window dotbare
 cd "$HOME/Programming/shell/dotbare"
 tmux split-window -t shell:1.1 -h
 
-# window bmux
 cd "$HOME/Programming/shell/bmux"
 tmux split-window -t shell:2.1 -v
 cd "$HOME/.config/bmux"
 tmux split-window -t shell:2.2 -h
 tmux select-layout -t shell:2.1 "$BMUX_3_VS"
 
-# window dump-cli
 cd "$HOME/Programming/shell/dump-cli"
 tmux split-window -t shell:3.1 -h
 cd "$XDG_DATA_HOME/dump"
 tmux split-window -t shell:3.2 -v
 
-# window InquirerPy
-cd "$HOME/Programming/shell/InquirerPy"
+cd "$HOME/Programming/scripts"
 tmux split-window -t shell:4.1 -v
-tmux send-keys -t shell:4.1 'source venv/bin/activate' ENTER
-tmux send-keys -t shell:4.2 'source venv/bin/activate' ENTER
-tmux send-keys -t shell:4.1 'clear' ENTER
-tmux send-keys -t shell:4.2 'clear' ENTER
 tmux select-layout -t shell:4.1 "$BMUX_CODE"
 
-# reset window
 tmux select-pane -t shell:1.1
 tmux select-pane -t shell:2.1
 tmux select-pane -t shell:3.1
