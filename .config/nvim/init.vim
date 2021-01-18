@@ -254,7 +254,7 @@ function! s:delete_buffers(lines) abort
 endfunction
 
 " list yanks for YanksAfter
-function s:list_miniyanks() abort
+function! s:list_miniyanks() abort
   function! KeyValue(key, val)
     let line = join(a:val[0], '\n')
     if (a:val[1] ==# 'V')
@@ -266,7 +266,7 @@ function s:list_miniyanks() abort
 endfunction
 
 " past selected yank
-function s:put_miniyanks(opt, line) abort
+function! s:put_miniyanks(opt, line) abort
   let key = substitute(a:line, ' .*', '', '')
   if !empty(a:line)
     let yanks = miniyank#read()[key]
@@ -659,7 +659,7 @@ augroup end
 
 " multi cursors
 function! s:select_current_word() abort
-  if !get(g:, 'coc_cursors_activated', 0)
+  if !get(b:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
