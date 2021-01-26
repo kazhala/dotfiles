@@ -632,6 +632,21 @@ set updatetime=300
 set signcolumn=yes
 set shortmess+=c
 
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-markdownlint',
+  \ 'coc-pairs',
+  \ 'coc-prettier',
+  \ 'coc-pyright',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-yaml',
+  \ 'coc-git',
+  \ ]
+
 " hard code provider to system python3
 let g:python3_host_prog = '/usr/local/bin/python3'
 
@@ -713,7 +728,6 @@ omap ac <Plug>(coc-classobj-a)
 
 " coc list map
 nnoremap <leader>lc :CocList commands<CR>
-nnoremap <leader>ly :CocList -A yank<CR>
 nnoremap <leader>ll :CocList lists<CR>
 nnoremap <leader>ld :CocList diagnostics<CR>
 
