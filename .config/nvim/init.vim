@@ -24,6 +24,7 @@ Plug 'ojroques/vim-oscyank'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
+Plug 'brentyi/isort.vim', { 'on': 'Isort' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
@@ -75,7 +76,6 @@ augroup FormatFile
   autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd BufEnter *.py set ai ts=4 sw=4 sts=4 et
   autocmd BufWritePre *.py execute ':Black'
-  autocmd BufWritePre *.py execute ':CocCommand pyright.organizeimports'
   autocmd BufEnter *.md setlocal conceallevel=0
 augroup end
 
@@ -83,10 +83,10 @@ map Y y$
 vmap Y "*y
 nnoremap Q q
 nnoremap <C-]> <C-^>
-nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
-nnoremap <leader>u :setlocal nobuflisted<CR>
 nnoremap <leader>n :noh<CR>
-nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>ps :setlocal spell! spelllang=en_au<CR>
+nnoremap <leader>pu :setlocal nobuflisted<CR>
+nnoremap <leader>pp :set paste!<CR>
 
 " reselect pasted text
 noremap gV `[v`]
@@ -263,7 +263,7 @@ function! s:delete_buffers(lines) abort
 endfunction
 
 " list yanks for YanksAfter
-function s:list_miniyanks() abort
+function! s:list_miniyanks() abort
   function! KeyValue(key, val)
     let line = join(a:val[0], '\n')
     if (a:val[1] ==# 'V')
@@ -275,7 +275,7 @@ function s:list_miniyanks() abort
 endfunction
 
 " past selected yank
-function s:put_miniyanks(opt, line) abort
+function! s:put_miniyanks(opt, line) abort
   let key = substitute(a:line, ' .*', '', '')
   if !empty(a:line)
     let yanks = miniyank#read()[key]
@@ -429,11 +429,11 @@ let g:dashboard_custom_section={
     \ 'command': ':Maps'
     \ },
   \ '5': {
-    \ 'description': [' Help Tags                                 [h]'],
+    \ 'description': ['ﬤ Help Tags                                 [h]'],
     \ 'command': ':Helptags'
     \ },
   \ '6': {
-    \ 'description': [' Exit                                      [q]'],
+    \ 'description': [' Exit                                      [q]'],
     \ 'command': function('s:close')
     \ },
   \ }
@@ -641,6 +641,21 @@ set updatetime=300
 set signcolumn=yes
 set shortmess+=c
 
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-markdownlint',
+  \ 'coc-pairs',
+  \ 'coc-prettier',
+  \ 'coc-pyright',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-yaml',
+  \ 'coc-git',
+  \ ]
+
 " hard code provider to system python3
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -668,7 +683,7 @@ augroup end
 
 " multi cursors
 function! s:select_current_word() abort
-  if !get(g:, 'coc_cursors_activated', 0)
+  if !get(b:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
@@ -687,9 +702,9 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " coc multi cursor
 nmap <expr> <silent> <C-s> <SID>select_current_word()
 xmap <silent> <C-s> <Plug>(coc-cursors-range)
-nmap <silent> <space>c <Plug>(coc-cursors-position)
+nmap <silent> <leader>m <Plug>(coc-cursors-position)
 
-" Remap keys for gotos(coc)
+" coc lsp jumps
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -702,7 +717,7 @@ nmap <leader>hu :CocCommand git.chunkUndo<CR>
 nmap <leader>hs :CocCommand git.chunkStage<CR>
 nmap <leader>hf :CocCommand git.foldUnchanged<CR>
 
-" create text object for git chunks
+" coc git chunk obj
 omap ih <Plug>(coc-git-chunk-inner)
 xmap ih <Plug>(coc-git-chunk-inner)
 omap ah <Plug>(coc-git-chunk-outer)
@@ -714,20 +729,24 @@ omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
 
+" coc class obj
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
 " coc list map
 nnoremap <leader>lc :CocList commands<CR>
-nnoremap <leader>ly :CocList -A yank<CR>
 nnoremap <leader>ll :CocList lists<CR>
 nnoremap <leader>ld :CocList diagnostics<CR>
 
 " coc command map
-nnoremap <leader>cy :CocCommand yank.clean<CR>
 nnoremap <leader>cs :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>cf :CocCommand prettier.formatFile<CR>
 nnoremap <leader>co :CocCommand editor.action.organizeImport<CR>
 augroup PyrightImportOrganize
   autocmd!
-  autocmd FileType python nnoremap <buffer><leader>co :CocCommand pyright.organizeimports<CR>
+  autocmd FileType python nnoremap <buffer><leader>co :Isort<CR>
 augroup end
 nnoremap <leader>ce :CocRestart<CR>
 vmap <leader>cf <Plug>(coc-format-selected)
@@ -763,3 +782,6 @@ endfunction
 xnoremap * :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>
 nnoremap <leader>rs *Ncgn
 xnoremap <leader>rs :<C-u>call <SID>VisualStar('/')<CR>/<C-R>=@/<CR><CR>Ncgn
+
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
