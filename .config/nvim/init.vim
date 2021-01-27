@@ -6,9 +6,15 @@ let g:polyglot_disabled = ['sh']
 
 call plug#begin(stdpath('data') . '/plugged')
 
+if $OS_DISTRO == 'MACOS'
+  Plug '/usr/local/opt/fzf'
+elseif $OS_DISTRO == 'UBUNTU'
+  Plug '/usr/share/doc/fzf/examples'
+  Plug 'ojroques/vim-oscyank'
+endif
+
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
-Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
@@ -84,8 +90,8 @@ nnoremap Q q
 nnoremap <C-]> <C-^>
 nnoremap <leader>n :noh<CR>
 nnoremap <leader>ps :setlocal spell! spelllang=en_au<CR>
-nnoremap <leader>pp :set paste!<CR>
 nnoremap <leader>pu :setlocal nobuflisted<CR>
+nnoremap <leader>pp :set paste!<CR>
 
 " reselect pasted text
 noremap gV `[v`]
@@ -152,6 +158,16 @@ let g:loaded_netrwPlugin = 1
 
 let g:closetag_filenames = '*.html,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
+
+" -- VIM-OSCYANK ---------------------------------------------------------------
+
+let g:oscyank_max_length = 1000000
+
+augroup OSCYANK
+  autocmd!
+  autocmd TextYankPost * 
+    \ if exists('g:loaded_oscyank') && v:event.operator is "y" && v:event.regname is "*" | OSCYankReg * | endif
+augroup end
 
 " -- NVIM-MINIYANK -------------------------------------------------------------
 
@@ -647,8 +663,13 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ ]
 
-" hard code provider to system python3
-let g:python3_host_prog = '/usr/local/bin/python3'
+if $OS_DISTRO == 'MACOS'
+  call coc#config('python.pythonPath', '/usr/local/bin/python3')
+  let g:python3_host_prog = '/usr/local/bin/python3'
+elseif $OS_DISTRO == 'UBUNTU'
+  call coc#config('python.pythonPath', '/usr/bin/python3')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
