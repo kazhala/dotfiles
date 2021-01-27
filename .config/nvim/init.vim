@@ -161,13 +161,14 @@ let g:closetag_emptyTags_caseSensitive = 1
 
 " -- VIM-OSCYANK ---------------------------------------------------------------
 
-let g:oscyank_max_length = 1000000
-
-augroup OSCYANK
-  autocmd!
-  autocmd TextYankPost * 
-    \ if exists('g:loaded_oscyank') && v:event.operator is "y" && v:event.regname is "*" | OSCYankReg * | endif
-augroup end
+if $OS_DISTRO == 'UBUNTU'
+  let g:oscyank_max_length = 1000000
+  augroup OSCYANK
+    autocmd!
+    autocmd TextYankPost *
+      \ if v:event.operator is 'y' && v:event.regname is '*' | OSCYankReg '*' | endif
+  augroup end
+endif
 
 " -- NVIM-MINIYANK -------------------------------------------------------------
 
