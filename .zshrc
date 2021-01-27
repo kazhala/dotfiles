@@ -139,8 +139,10 @@ export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
 
 if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
   export FD_COMMAND="fdfind"
-else
+  export OS_DISTRO="UBUNTU"
+elif [[ ${OSTYPE} =~ "darwin" ]]; then
   export FD_COMMAND="fd"
+  export OS_DISTRO="MACOS"
 fi
 
 # -- bmux ----------------------------------------------------------------------
