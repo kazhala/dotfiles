@@ -36,7 +36,7 @@ zinit wait lucid light-mode for \
   atload'_zsh_autosuggest_start;
   bindkey -v "^b" autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd dotbare" \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd" \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma/fast-syntax-highlighting
 
