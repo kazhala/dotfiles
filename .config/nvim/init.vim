@@ -162,7 +162,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 " -- VIM-OSCYANK ---------------------------------------------------------------
 
 if $OS_DISTRO == 'UBUNTU'
-  let g:oscyank_max_length = 1000000
   augroup OSCYANK
     autocmd!
     autocmd TextYankPost *

@@ -1,1 +1,1 @@
-CACHE_DIRECTORY = "/Users/kevinzhuang/.cache/grip"
+CACHE_DIRECTORY = "~/.cache/grip"
