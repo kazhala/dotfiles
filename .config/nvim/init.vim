@@ -9,7 +9,7 @@ call plug#begin(stdpath('data') . '/plugged')
 if $OS_DISTRO == 'MACOS'
   Plug '/usr/local/opt/fzf'
 elseif $OS_DISTRO == 'UBUNTU'
-  Plug '/usr/share/doc/fzf/examples'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'ojroques/vim-oscyank'
 endif
 
@@ -165,7 +165,7 @@ if $OS_DISTRO == 'UBUNTU'
   augroup OSCYANK
     autocmd!
     autocmd TextYankPost *
-      \ if v:event.operator is 'y' && v:event.regname is '*' | OSCYankReg '*' | endif
+      \ if v:event.operator is 'y' && v:event.regname is '*' | call YankOSC52(getreg('*')) | endif
   augroup end
 endif
 
