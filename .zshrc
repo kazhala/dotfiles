@@ -25,7 +25,7 @@ zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
   ver="dev" \
-  atload'bindkey "^o" dotbare-transform;
+  atload'bindkey "^u" dotbare-transform;
   bindkey "^d" dotbare-fedit' \
     kazhala/dotbare \
   kazhala/bmux \
@@ -265,7 +265,6 @@ bindkey '^I' $fzf_default_completion
 
 # create keymaps without messing with zle
 bindkey -s '^g' fm^j
-bindkey -s '^d' "dotbare fedit"^j
 
 # -- Required last -------------------------------------------------------------
 
