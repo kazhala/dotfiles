@@ -25,6 +25,8 @@ zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
   ver="dev" \
+  atload'bindkey "^o" dotbare-transform;
+  bindkey "^d" dotbare-fedit' \
     kazhala/dotbare \
   kazhala/bmux \
   kazhala/dump-cli \
