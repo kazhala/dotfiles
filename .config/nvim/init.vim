@@ -201,7 +201,7 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
-nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gp :Git push<CR>
 
 " -- CLOSE-BUFFERS -------------------------------------------------------------
 
@@ -368,7 +368,8 @@ let g:floaterm_keymap_next = '<leader>vn'
 let g:floaterm_position = 'center'
 let g:floaterm_width = 0.85
 let g:floaterm_height = 0.8
-let g:floaterm_autoclose=2
+let g:floaterm_autoclose = 2
+let g:floaterm_opener = 'edit'
 
 augroup TerminalHide
   autocmd!
