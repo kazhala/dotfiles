@@ -48,7 +48,8 @@
   "python.analysis.useLibraryCodeForTypes": true,
   "python.analysis.diagnosticMode": "openFilesOnly",
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*"
+    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*",
+    "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "/*"
   },
   "yaml.validate": false
 }
