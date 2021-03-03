@@ -1,29 +1,3 @@
-# A valid snippet should starts with:
-#
-#		snippet trigger_word [ "description" [ options ] ]
-#
-# and end with:
-#
-#		endsnippet
-#
-# Snippet options:
-#
-#		b - Beginning of line.
-#		i - In-word expansion.
-#		w - Word boundary.
-#		r - Regular expression
-#		e - Custom context snippet
-#		A - Snippet will be triggered automatically, when condition matches.
-#
-# Basic example:
-#
-#		snippet emitter "emitter properties" b
-#		private readonly ${1} = new Emitter<$2>()
-#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
-#		endsnippet
-#
-# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-
 snippet pds "Doc String" b
 """${1}.
 
@@ -45,12 +19,12 @@ print(f"${1}")
 endsnippet
 
 snippet pcl "log variable" b
-print('${1}: ', $1)
+print("${1}: ", $1)
 endsnippet
 
 snippet pcf "class function" b
-def ${1:something}(self${2}):
-	${3:pass}
+def ${1:something}(self${2}) -> ${3:None}:
+	${4:pass}
 endsnippet
 
 snippet ptc "try except" b
@@ -60,12 +34,14 @@ except${2}:
 	${3:pass}
 endsnippet
 
-snippet pda "Doc String attribute" b
+snippet pda "Doc String args" b
 :param ${1}: ${2}
-:type $1: ${3}
 endsnippet
 
 snippet pdr "Doc String return" b
 :return: ${1}
-:rtype: ${2}
+endsnippet
+
+snippet pdr "Doc String raises" b
+:raises ${1}: ${2}
 endsnippet
