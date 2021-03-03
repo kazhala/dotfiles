@@ -30,7 +30,7 @@ zinit wait lucid light-mode for \
     kazhala/dotbare \
   kazhala/bmux \
   kazhala/dump-cli \
-  trigger-load'!fm;!mark' \
+  atload'zle -N fm-invoke fm && bindkey "^g" fm-invoke' \
     https://github.com/kazhala/scripts/blob/master/shell/fbookmark \
   atload'bindkey -M vicmd "k" history-substring-search-up;
   bindkey -M vicmd "j" history-substring-search-down' \
@@ -221,23 +221,16 @@ export FZF_DEFAULT_COMMAND="${FD_COMMAND} --type f"
 export FZF_ALT_C_COMMAND="${FD_COMMAND} --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
+# Use fd to generate auto completion
 _fzf_compgen_path() {
   "${FD_COMMAND}" --hidden --follow --exclude ".git" . "$1"
 }
-
-# Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
   "${FD_COMMAND}" --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-# source the fzf keybindings script
+# activate fzf keybindings
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
-
-# overrite the tab behavior after sourcing the fzf.zsh script
 export FZF_COMPLETION_TRIGGER=''
 export FZF_PREVIEW_COMMAND='cat {}'
 
@@ -283,9 +276,6 @@ bindkey "^?" backward-delete-char
 
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
-
-# create keymaps without messing with zle
-bindkey -s '^g' fm^j
 
 # -- Required last -------------------------------------------------------------
 
