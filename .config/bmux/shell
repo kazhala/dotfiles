@@ -7,7 +7,10 @@ tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
 tmux new-window -t shell:4 -n scripts -c "$HOME/Programming/scripts"
 
 cd "$HOME/Programming/shell/dotbare"
-tmux split-window -t shell:1.1 -h
+tmux split-window -t shell:1.1 -v
+cd "$HOME/Programming/docs/dotbare.wiki"
+tmux split-window -t shell:1.2 -h
+tmux select-layout -t shell:1.1 "$BMUX_3_VS"
 
 cd "$HOME/Programming/shell/bmux"
 tmux split-window -t shell:2.1 -v
