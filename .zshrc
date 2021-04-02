@@ -20,7 +20,7 @@ autoload -Uz _zinit
 
 # -- Plugins -------------------------------------------------------------------
 
-zinit ice depth=1;
+zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
