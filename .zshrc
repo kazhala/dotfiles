@@ -98,7 +98,7 @@ setopt ignoreeof
 
 # -- PATH ----------------------------------------------------------------------
 
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/Programming/scripts/shell:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 

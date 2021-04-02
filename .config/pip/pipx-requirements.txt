@@ -1,0 +1,5 @@
+awscli
+fzfaws
+isort
+cfn-lint
+poetry
