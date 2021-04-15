@@ -117,8 +117,6 @@ alias mv="mv -v"
 alias cp="cp -v"
 alias rm="rm -v"
 alias grep="grep --color=auto"
-alias fs="bmux"
-alias fdfind="fd"
 
 # -- System ENV ----------------------------------------------------------------
 
@@ -131,7 +129,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# -- Misc ENV ------------------------------------------------------------------
+# -- Misc ----------------------------------------------------------------------
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
@@ -142,6 +140,7 @@ export AWS_DEFAULT_REGION="ap-southeast-2"
 if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
   export FD_COMMAND="fdfind"
   export OS_DISTRO="UBUNTU"
+  alias fd="fdfind"
 elif [[ ${OSTYPE} =~ "darwin" ]]; then
   export FD_COMMAND="fd"
   export OS_DISTRO="MACOS"
@@ -245,6 +244,15 @@ _run_fm() {
   zle accept-line
 }
 
+_run_ffd_d() {
+  local result
+  result="$(ffd --hidden --dir)"
+  [[ -d "${result}" ]] && \
+    cd "${result}"
+  BUFFER=
+  zle accept-line
+}
+
 # -- Keybinding ----------------------------------------------------------------
 
 bindkey -v
@@ -284,6 +292,9 @@ bindkey '^I' $fzf_default_completion
 
 zle -N fm-invoke _run_fm
 bindkey "^g" fm-invoke
+
+zle -N ffd-d-invoke _run_ffd_d
+bindkey "\ed" ffd-d-invoke
 
 # -- Required last -------------------------------------------------------------
 
