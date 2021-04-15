@@ -31,6 +31,7 @@ zinit wait lucid light-mode for \
   kazhala/bmux \
   kazhala/dump-cli \
   https://github.com/kazhala/scripts/blob/master/shell/fbookmark \
+  https://raw.githubusercontent.com/aws/aws-cli/develop/bin/aws_zsh_completer.sh \
   atload'bindkey -M vicmd "k" history-substring-search-up;
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
