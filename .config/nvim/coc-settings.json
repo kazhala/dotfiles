@@ -36,7 +36,8 @@
     "html",
     "css",
     "scss",
-    "yaml"
+    "yaml",
+    "terraform"
   ],
   "prettier.singleQuote": true,
   "prettier.jsxSingleQuote": true,
@@ -52,6 +53,9 @@
     "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "/*"
   },
   "yaml.validate": false,
+  "diagnostic-languageserver.formatters": {
+    "terraform": "tffmt"
+  },
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",

@@ -662,6 +662,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-yaml',
   \ 'coc-git',
+  \ 'coc-diagnostic',
   \ ]
 
 if $OS_DISTRO == 'MACOS'
