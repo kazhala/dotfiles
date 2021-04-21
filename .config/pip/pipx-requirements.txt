@@ -4,3 +4,4 @@ isort
 cfn-lint
 poetry
 ptpython
+pre-commit
