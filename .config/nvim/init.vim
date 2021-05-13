@@ -28,7 +28,6 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'machakann/vim-highlightedyank'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
-Plug 'brentyi/isort.vim', { 'on': 'Isort' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
@@ -756,10 +755,6 @@ nnoremap <leader>ld :CocList diagnostics<CR>
 nnoremap <leader>cs :CocCommand snippets.editSnippets<CR>
 nnoremap <leader>cf :CocCommand prettier.formatFile<CR>
 nnoremap <leader>co :CocCommand editor.action.organizeImport<CR>
-augroup PyrightImportOrganize
-  autocmd!
-  autocmd FileType python nnoremap <buffer><leader>co :Isort<CR>
-augroup end
 nnoremap <leader>ce :CocRestart<CR>
 vmap <leader>cf <Plug>(coc-format-selected)
 
