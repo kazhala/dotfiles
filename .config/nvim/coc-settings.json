@@ -35,9 +35,10 @@
     "json",
     "html",
     "css",
-    "scss",
     "yaml",
-    "terraform"
+    "terraform",
+    "sh",
+    "python"
   ],
   "prettier.singleQuote": true,
   "prettier.jsxSingleQuote": true,
@@ -53,8 +54,13 @@
     "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "/*"
   },
   "yaml.validate": false,
-  "diagnostic-languageserver.formatters": {
-    "terraform": "tffmt"
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "terraform": "tffmt",
+    "sh": "shfmt",
+    "python": ["black", "isort"]
   },
   "languageserver": {
     "terraform": {

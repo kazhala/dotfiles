@@ -28,7 +28,6 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'machakann/vim-highlightedyank'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
-Plug 'psf/black', { 'branch': 'stable', 'on': 'Black' }
 Plug 'brentyi/isort.vim', { 'on': 'Isort' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
 Plug 'Yggdroot/indentLine'
@@ -80,7 +79,6 @@ augroup FormatFile
   autocmd BufEnter * set fo-=c fo-=r fo-=o
   autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd BufEnter *.py set ai ts=4 sw=4 sts=4 et
-  autocmd BufWritePre *.py execute ':Black'
   autocmd BufEnter *.md setlocal conceallevel=0
 augroup end
 
