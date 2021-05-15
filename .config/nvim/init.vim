@@ -80,7 +80,7 @@ augroup FormatFile
   autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd FileType python set ai ts=4 sw=4 sts=4 et
   autocmd FileType python
-    \ autocmd BufWritePre <buffer> execute ':Black'
+    \ autocmd! BufWritePre <buffer> execute ':Black'
   autocmd FileType markdown setlocal conceallevel=0
 augroup end
 
