@@ -38,7 +38,11 @@ zinit wait lucid light-mode for \
   atload'_zsh_autosuggest_start;
   bindkey -v "^b" autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay; _dotbare_completion_cmd" \
+  atinit"ZINIT[COMPINIT_OPTS]=-C;
+  zicompinit;
+  zicdreplay;
+  _dotbare_completion_cmd;
+  complete -o nospace -C /usr/local/bin/terraform terraform" \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma/fast-syntax-highlighting
 
