@@ -29,6 +29,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'glepnir/dashboard-nvim'
 Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 Plug 'vimwiki/vimwiki', { 'on': [ 'VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex' ] }
+Plug 'psf/black', { 'on': 'Black' }
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -77,8 +78,10 @@ augroup FormatFile
   autocmd BufEnter vifmrc,*.vifm set filetype=vim
   autocmd BufEnter * set fo-=c fo-=r fo-=o
   autocmd TermOpen * setlocal nonumber norelativenumber
-  autocmd BufEnter *.py set ai ts=4 sw=4 sts=4 et
-  autocmd BufEnter *.md setlocal conceallevel=0
+  autocmd FileType python set ai ts=4 sw=4 sts=4 et
+  autocmd FileType python
+    \ autocmd BufWritePre <buffer> execute ':Black'
+  autocmd FileType markdown setlocal conceallevel=0
 augroup end
 
 map Y y$

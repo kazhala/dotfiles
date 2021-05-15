@@ -60,7 +60,7 @@
   "diagnostic-languageserver.formatFiletypes": {
     "terraform": "tffmt",
     "sh": "shfmt",
-    "python": ["black", "isort"]
+    "python": "isort"
   },
   "languageserver": {
     "terraform": {
