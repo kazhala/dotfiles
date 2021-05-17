@@ -42,7 +42,7 @@ zinit wait lucid light-mode for \
   zicompinit;
   zicdreplay;
   _dotbare_completion_cmd;
-  complete -o nospace -C /usr/local/bin/terraform terraform;
+  complete -o nospace -C "$(which terraform)" terraform;
   eval "$(register-python-argcomplete pipx)"' \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma/fast-syntax-highlighting
