@@ -4,3 +4,5 @@
 [core]
   editor = nvim
   pager = delta --diff-so-fancy --line-numbers
+[credential]
+	helper = store --file $XDG_CONFIG_HOME/git/cred
