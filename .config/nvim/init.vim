@@ -73,15 +73,11 @@ set noshiftround
 set textwidth=0
 set formatoptions-=t
 
-augroup FormatFile
+augroup OnEnter
   autocmd!
   autocmd BufEnter vifmrc,*.vifm set filetype=vim
   autocmd BufEnter * set fo-=c fo-=r fo-=o
-  autocmd TermOpen * setlocal nonumber norelativenumber
-  autocmd FileType python set ai ts=4 sw=4 sts=4 et
-  autocmd FileType python
-    \ autocmd! BufWritePre <buffer> execute ':Black'
-  autocmd FileType markdown setlocal conceallevel=0
+  autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup end
 
 map Y y$
@@ -237,7 +233,7 @@ let g:vimwiki_list = [
 
 augroup WikiTemplate
   autocmd!
-  au BufNewFile ~/Documents/vimwiki/diary/*.md :silent 0r !diarytemplate '%'
+  autocmd BufNewFile ~/Documents/vimwiki/diary/*.md :silent 0r !diarytemplate '%'
 augroup end
 
 " -- VIM-SANDWICH --------------------------------------------------------------
@@ -371,11 +367,6 @@ let g:floaterm_height = 0.8
 let g:floaterm_autoclose = 2
 let g:floaterm_opener = 'edit'
 
-augroup TerminalHide
-  autocmd!
-  autocmd FileType floaterm setlocal nobuflisted
-augroup end
-
 inoremap <silent> <C-f> <C-o>:FloatermToggle<CR>
 nnoremap <C-b> :FloatermNew vifm<CR>
 
@@ -448,12 +439,12 @@ let g:dashboard_custom_section={
 
 augroup DashboardMaps
   autocmd!
-  au FileType dashboard nnoremap <buffer> e :enew<CR>
-  au FileType dashboard nnoremap <buffer> i :Dots<CR>
-  au FileType dashboard nnoremap <buffer> m :Maps<CR>
-  au FileType dashboard nnoremap <buffer> h :Helptags<CR>
-  au FileType dashboard nnoremap <buffer> t :enew <bar> Filetypes<CR>
-  au FileType dashboard nnoremap <buffer> q :call <SID>close()<CR>
+  autocmd FileType dashboard nnoremap <buffer> e :enew<CR>
+  autocmd FileType dashboard nnoremap <buffer> i :Dots<CR>
+  autocmd FileType dashboard nnoremap <buffer> m :Maps<CR>
+  autocmd FileType dashboard nnoremap <buffer> h :Helptags<CR>
+  autocmd FileType dashboard nnoremap <buffer> t :enew <bar> Filetypes<CR>
+  autocmd FileType dashboard nnoremap <buffer> q :call <SID>close()<CR>
 augroup end
 
 nnoremap <leader>a :Dashboard<CR>
@@ -692,7 +683,7 @@ inoremap <silent><expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>"
 augroup CocPairs
   autocmd!
   autocmd FileType markdown let b:coc_pairs_disabled = ['`', "'"]
-  autocmd FileType vim,vifm let b:coc_pairs_disabled = ['"']
+  autocmd FileType vim let b:coc_pairs_disabled = ['"']
 augroup end
 
 " multi cursors
