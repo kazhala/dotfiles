@@ -21,6 +21,7 @@ Plug 'tpope/vim-fugitive', { 'on': [ 'G', 'Gwrite', 'Gread' ] }
 Plug 'bkad/CamelCaseMotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'unblevable/quick-scope'
+Plug 'RRethy/vim-illuminate'
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'javascript' ] }
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
