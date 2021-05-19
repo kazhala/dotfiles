@@ -146,11 +146,9 @@ export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
 export AWS_DEFAULT_REGION="ap-southeast-2"
 
 if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
-  export FD_COMMAND="fdfind"
   export OS_DISTRO="UBUNTU"
-  alias fd="fdfind"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ ${OSTYPE} =~ "darwin" ]]; then
-  export FD_COMMAND="fd"
   export OS_DISTRO="MACOS"
 fi
 
@@ -223,16 +221,16 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 
 _gen_fzf_default_opts
 
-export FZF_DEFAULT_COMMAND="${FD_COMMAND} --type f"
-export FZF_ALT_C_COMMAND="${FD_COMMAND} --type d"
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_ALT_C_COMMAND="fd --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C --dirsfirst {} | head -200'"
 
 # Use fd to generate auto completion
 _fzf_compgen_path() {
-  "${FD_COMMAND}" --hidden --follow --exclude ".git" . "$1"
+  fd --hidden --follow --exclude ".git" . "$1"
 }
 _fzf_compgen_dir() {
-  "${FD_COMMAND}" --type d --hidden --follow --exclude ".git" . "$1"
+  fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # activate fzf keybindings
