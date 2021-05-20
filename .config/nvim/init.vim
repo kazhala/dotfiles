@@ -661,8 +661,8 @@ if $OS_DISTRO == 'MACOS'
   call coc#config('python.pythonPath', '/usr/local/bin/python3')
   let g:python3_host_prog = '/usr/local/bin/python3'
 elseif $OS_DISTRO == 'UBUNTU'
-  call coc#config('python.pythonPath', '/usr/bin/python3')
-  let g:python3_host_prog = '/usr/bin/python3'
+  call coc#config('python.pythonPath', '/home/linuxbrew/.linuxbrew/bin/python3')
+  let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
 endif
 
 inoremap <silent><expr> <TAB>
