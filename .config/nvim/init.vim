@@ -9,7 +9,7 @@ call plug#begin(stdpath('data') . '/plugged')
 if $OS_DISTRO == 'MACOS'
   Plug '/usr/local/opt/fzf'
 elseif $OS_DISTRO == 'UBUNTU'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
   Plug 'ojroques/vim-oscyank'
 endif
 
