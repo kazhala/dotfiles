@@ -1,10 +1,10 @@
-# -- Required first ------------------------------------------------------------
+# -- INIT ----------------------------------------------------------------------
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -- Zinit installer -----------------------------------------------------------
+# -- ZINIT ---------------------------------------------------------------------
 
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -18,7 +18,7 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# -- Plugins -------------------------------------------------------------------
+# -- PLUGINS -------------------------------------------------------------------
 
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
@@ -47,7 +47,7 @@ zinit wait lucid light-mode for \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma/fast-syntax-highlighting
 
-# -- Settings -----------------------------------------------------------------
+# -- SETTINGS -----------------------------------------------------------------
 
 # history
 HISTSIZE=50000
@@ -108,7 +108,7 @@ export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/Programming/scripts/shell:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 
-# -- Aliases -------------------------------------------------------------------
+# -- ALIASES -------------------------------------------------------------------
 
 alias vim="nvim"
 alias vimf="nvim '+Dashboard | FloatermNew vifm'"
@@ -126,7 +126,7 @@ alias grep="grep --color=auto"
 alias fs="bmux"
 alias tf="terraform"
 
-# -- System ENV ----------------------------------------------------------------
+# -- SYSTEM ENV ----------------------------------------------------------------
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -137,7 +137,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# -- Misc ----------------------------------------------------------------------
+# -- MISC ----------------------------------------------------------------------
 
 export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
 export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
@@ -152,19 +152,19 @@ elif [[ ${OSTYPE} =~ "darwin" ]]; then
   export OS_DISTRO="MACOS"
 fi
 
-# -- bmux ----------------------------------------------------------------------
+# -- BMUX ----------------------------------------------------------------------
 
 export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
 export BMUX_3_VS='3807,210x63,0,0[210x45,0,0,1,210x17,0,46{105x17,0,46,3,104x17,106,46,4}]'
 export BMUX_CODE='578a,239x62,0,0[239x45,0,0,30,239x16,0,46,31]'
 
-# -- dump-cli ----------------------------------------------------------------------
+# -- DUMP ----------------------------------------------------------------------
 
 export DUMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/dump/trash"
 export DUMP_LOG="${XDG_DATA_HOME:-$HOME/.local/share}/dump/log"
 
-# -- less ----------------------------------------------------------------------
+# -- LESS ----------------------------------------------------------------------
 
 export LESSHISTFILE=-
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -175,7 +175,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-# -- dotbare -------------------------------------------------------------------
+# -- DOTBARE -------------------------------------------------------------------
 
 export DOTBARE_DIR="$HOME/.cfg/"
 export DOTBARE_TREE="$HOME"
@@ -192,7 +192,7 @@ export DOTBARE_KEY="
   --bind=alt-k:preview-up
 "
 
-# -- fzf ----------------------------------------------------------------------
+# -- FZF ----------------------------------------------------------------------
 
 _gen_fzf_default_opts() {
 local color00='#282c34'
@@ -238,7 +238,7 @@ _fzf_compgen_dir() {
 export FZF_COMPLETION_TRIGGER=''
 export FZF_PREVIEW_COMMAND='cat {}'
 
-# -- Functions -----------------------------------------------------------------
+# -- FUNCTIONS -----------------------------------------------------------------
 
 take () {
   mkdir -p $@ && cd ${@:$#}
@@ -259,7 +259,7 @@ _run_ffd_d() {
   zle accept-line
 }
 
-# -- Keybinding ----------------------------------------------------------------
+# -- KEYBINDING ----------------------------------------------------------------
 
 bindkey -v
 
@@ -302,6 +302,6 @@ bindkey "^g" fm-invoke
 zle -N ffd-d-invoke _run_ffd_d
 bindkey "\ed" ffd-d-invoke
 
-# -- Required last -------------------------------------------------------------
+# -- FINAL ---------------------------------------------------------------------
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
