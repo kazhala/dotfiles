@@ -40,6 +40,7 @@ call plug#end()
 
 " -- GENERAL -------------------------------------------------------------------
 
+set mouse=a
 set encoding=UTF-8
 set t_Co=256
 set termguicolors
@@ -145,6 +146,10 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " -- VIM-HIGHLIGHTEDYANK -------------------------------------------------------
 
 let g:highlightedyank_highlight_duration = 300
+
+" -- VIM-ILLUMINATE ------------------------------------------------------------
+
+let g:Illuminate_ftblacklist = ['floaterm']
 
 " -- NETRW ---------------------------------------------------------------------
 
@@ -506,11 +511,11 @@ let g:lightline = {
   \     ['buffers']
   \   ],
   \ 'right': [
-  \     ['vimcons'],
+  \     ['close']
   \   ],
   \ },
   \ 'component': {
-  \   'vimcons': '',
+  \   'close': '%@LightlineCloseBuffer@  %'
   \ },
   \ 'component_function': {
   \   'cocstatus': 'LightlineCocStatus',
@@ -530,6 +535,17 @@ let g:lightline = {
   \ },
   \ 'mode_map': {'c': 'NORMAL'},
   \ }
+
+" close buffer
+function! LightlineCloseBuffer(...)
+  try
+    bdelete
+  catch
+    echohl ErrorMsg
+    echom v:exception
+    echohl None
+  endtry
+endfunction
 
 " coc status information
 function! LightlineCocStatus() abort
