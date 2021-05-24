@@ -154,7 +154,16 @@ fi
 
 # -- BMUX ----------------------------------------------------------------------
 
-export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
+if [[ "${OS_DISTRO}" == "MACOS" ]]; then
+  export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux/macos"
+elif [[ "${OS_DISTRO}" == "UBUNTU" ]]; then
+  export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux/ubuntu"
+fi
+
+export BMUX_ACTIVE_SYMBOL=""
+export BMUX_INACTIVE_SYMBOL=""
+export BMUX_ACTIVE_COLOR="32"
+
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
 export BMUX_3_VS='3807,210x63,0,0[210x45,0,0,1,210x17,0,46{105x17,0,46,3,104x17,106,46,4}]'
 export BMUX_CODE='578a,239x62,0,0[239x45,0,0,30,239x16,0,46,31]'

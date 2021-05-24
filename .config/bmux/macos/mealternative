@@ -1,0 +1,18 @@
+#!/bin/sh
+
+export BMUX_SESSION_NAME="mealternative"
+
+tmuxb session
+
+tmuxb window 1 "frontend" "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmuxb window 2 "backend" "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
+
+tmuxb pane 1 1 -h "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmuxb pane 1 2 -v "$HOME/Programming/web/mealternative-full-stack/mealternative"
+tmuxb pane 2 1 -h "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
+tmuxb pane 2 2 -v "$HOME/Programming/web/mealternative-full-stack/backend-mealternative"
+
+tmuxb focus
+
+tmux select-layout -t "${BMUX_SESSION_NAME}":1.1 "${BMUX_3_WEB}"
+tmux select-layout -t "${BMUX_SESSION_NAME}":2.1 "${BMUX_3_WEB}"

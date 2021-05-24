@@ -1,0 +1,55 @@
+#!/bin/sh
+
+export BMUX_SESSION_NAME="shell"
+
+tmuxb session
+
+tmuxb window 1 "dotbare" "$HOME/Programming/shell/dotbare"
+tmuxb window 2 "bmux" "$HOME/Programming/shell/bmux"
+tmuxb window 3 "dump" "$HOME/Programming/shell/dump-cli"
+tmuxb window 4 "scripts" "$HOME/Programming/scripts"
+
+tmuxb pane 1 1 -v "$HOME/Programming/shell/dotbare"
+tmuxb pane 2 1 -v "$HOME/Programming/shell/bmux"
+tmuxb pane 3 1 -v "$HOME/Programming/shell/dump-cli"
+tmuxb pane 4 1 -v "$HOME/Programming/scripts"
+
+tmuxb focus
+
+tmux select-layout -t "${BMUX_SESSION_NAME}":1.1 "${BMUX_CODE}"
+tmux select-layout -t "${BMUX_SESSION_NAME}":2.1 "${BMUX_CODE}"
+tmux select-layout -t "${BMUX_SESSION_NAME}":3.1 "${BMUX_CODE}"
+tmux select-layout -t "${BMUX_SESSION_NAME}":4.1 "${BMUX_CODE}"
+
+# tmux new-session -s shell -d -n dotbare -c "$HOME"
+# tmux send-keys -t shell:1.1 "cd $HOME/Programming/shell/dotbare; clear" ENTER
+# tmux new-window -t shell:2 -n bmux -c "$HOME/Programming/shell/bmux"
+# tmux new-window -t shell:3 -n dump-cli -c "$HOME/Programming/shell/dump-cli"
+# tmux new-window -t shell:4 -n scripts -c "$HOME/Programming/scripts"
+
+# cd "$HOME/Programming/shell/dotbare"
+# tmux split-window -t shell:1.1 -v
+# cd "$HOME/Programming/docs/dotbare.wiki"
+# tmux split-window -t shell:1.2 -h
+# tmux select-layout -t shell:1.1 "$BMUX_3_VS"
+
+# cd "$HOME/Programming/shell/bmux"
+# tmux split-window -t shell:2.1 -v
+# cd "$HOME/.config/bmux"
+# tmux split-window -t shell:2.2 -h
+# tmux select-layout -t shell:2.1 "$BMUX_3_VS"
+
+# cd "$HOME/Programming/shell/dump-cli"
+# tmux split-window -t shell:3.1 -h
+# cd "$XDG_DATA_HOME/dump"
+# tmux split-window -t shell:3.2 -v
+
+# cd "$HOME/Programming/scripts"
+# tmux split-window -t shell:4.1 -v
+# tmux select-layout -t shell:4.1 "$BMUX_CODE"
+
+# tmux select-pane -t shell:1.1
+# tmux select-pane -t shell:2.1
+# tmux select-pane -t shell:3.1
+# tmux select-pane -t shell:4.1
+# tmux select-window -t shell:1
