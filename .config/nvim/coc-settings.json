@@ -54,8 +54,26 @@
     "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "/*"
   },
   "yaml.validate": false,
+  "diagnostic-languageserver.mergeConfig": true,
+  "diagnostic-languageserver.linters": {
+    "tflint": {
+      "command": "tflint",
+      "args": ["-f", "compact"],
+      "sourceName": "tflint",
+      "formatPattern": [
+        "^[^:]+:(\\d+):(\\d+):\\s(\\w+)\\s-\\s(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ]
+    }
+  },
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "terraform": "tflint"
   },
   "diagnostic-languageserver.formatFiletypes": {
     "terraform": "tffmt",
