@@ -87,9 +87,9 @@ vmap Y "*y
 nnoremap Q q
 nnoremap <C-]> <C-^>
 nnoremap <leader>n :noh<CR>
-nnoremap <leader>ps :setlocal spell! spelllang=en_au<CR>
-nnoremap <leader>pu :setlocal nobuflisted<CR>
-nnoremap <leader>pp :set paste!<CR>
+nnoremap <leader>s :setlocal spell! spelllang=en_au<CR>
+nnoremap <leader>u :setlocal nobuflisted<CR>
+nnoremap <leader>p :set paste!<CR>
 
 " reselect pasted text
 noremap gV `[v`]
