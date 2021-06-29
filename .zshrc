@@ -139,19 +139,19 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # -- MISC ----------------------------------------------------------------------
 
-export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
-export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
-export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
-export AWS_DEFAULT_REGION="ap-southeast-2"
-export LS_COLORS="$(vivid generate one-dark)"
-
 if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
   export OS_DISTRO="UBUNTU"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ ${OSTYPE} =~ "darwin" ]]; then
   export OS_DISTRO="MACOS"
 fi
+
+export GRIPHOME="${XDG_CONFIG_HOME:-$HOME/.config}/grip"
+export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
+export AWS_DEFAULT_REGION="ap-southeast-2"
+export LS_COLORS="$(vivid generate one-dark)"
 
 # -- BMUX ----------------------------------------------------------------------
 
