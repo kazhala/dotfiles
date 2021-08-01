@@ -151,7 +151,7 @@ export FBOOKMARK_LOCATION="${XDG_CONFIG_HOME:-$HOME/.config}/fbookmark"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
 export AWS_DEFAULT_REGION="ap-southeast-2"
-export LS_COLORS="$(vivid generate one-dark)"
+export LS_COLORS="$(vivid generate nord)"
 
 # -- BMUX ----------------------------------------------------------------------
 
@@ -186,7 +186,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export DOTBARE_DIR="$HOME/.cfg/"
 export DOTBARE_TREE="$HOME"
 export DOTBARE_BACKUP="${XDG_DATA_HOME:-$HOME/.local/share}/dotbare"
-export DOTBARE_PREVIEW="cat {}"
 export DOTBARE_FZF_DEFAULT_OPTS="--preview-window=right:65%"
 export DOTBARE_KEY="
   --bind=alt-a:toggle-all
@@ -194,35 +193,36 @@ export DOTBARE_KEY="
   --bind=alt-0:top
   --bind=alt-s:toggle-sort
   --bind=alt-t:toggle-preview
-  --bind=alt-j:preview-down
-  --bind=alt-k:preview-up
 "
 
 # -- FZF ----------------------------------------------------------------------
 
 _gen_fzf_default_opts() {
-local color00='#282c34'
-local color01='#353b45'
-local color02='#3e4451'
-local color03='#545862'
-local color04='#565c64'
-local color05='#abb2bf'
-local color06='#b6bdca'
-local color07='#c8ccd4'
-local color08='#e06c75'
-local color09='#d19a66'
-local color0A='#e5c07b'
-local color0B='#98c379'
-local color0C='#56b6c2'
-local color0D='#61afef'
-local color0E='#c678dd'
-local color0F='#be5046'
+local color00='#2E3440'
+local color01='#3B4252'
+local color02='#434C5E'
+local color03='#4C566A'
+local color04='#D8DEE9'
+local color05='#E5E9F0'
+local color06='#ECEFF4'
+local color07='#8FBCBB'
+local color08='#BF616A'
+local color09='#D08770'
+local color0A='#EBCB8B'
+local color0B='#A3BE8C'
+local color0C='#88C0D0'
+local color0D='#81A1C1'
+local color0E='#B48EAD'
+local color0F='#5E81AC'
 
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-" --color=bg+:$color00,bg:$color00,spinner:$color0C,hl:$color0D"\
-" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
-" --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"\
-" --height 100% --layout=reverse --border --cycle --info=inline"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+  --color=bg+:$color00,bg:$color00,spinner:$color0C,hl:$color0D
+  --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
+  --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D
+  --height 100% --layout=reverse --border --cycle --info=inline
+  --bind=ctrl-d:preview-page-down
+  --bind=ctrl-u:preview-page-up
+"
 }
 
 _gen_fzf_default_opts
