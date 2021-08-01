@@ -1,12 +1,12 @@
+import os
+import subprocess
+
 from ranger.api.commands import Command
 from ranger.container.file import File
-import subprocess
-import os
 
 
 class dumpput(Command):
-    """dump put
-    """
+    """dump put"""
 
     def execute(self):
         selection = [
@@ -15,7 +15,7 @@ class dumpput(Command):
         if not selection:
             return
         for selected_entry in selection:
-            command = "dump --put '%s'" % selected_entry
+            command = "dump --put --recursive '%s'" % selected_entry
             dump_process = self.fm.execute_command(
                 command, universal_newlines=True, stdout=subprocess.PIPE
             )
@@ -27,11 +27,10 @@ class dumpput(Command):
 
 
 class dumpregret(Command):
-    """dump regret
-    """
+    """dump regret"""
 
     def execute(self):
-        command = "dump --regret"
+        command = "dump --undo"
         dump_process = self.fm.execute_command(
             command, universal_newlines=True, stdout=subprocess.PIPE
         )
@@ -43,8 +42,7 @@ class dumpregret(Command):
 
 
 class dumpclean(Command):
-    """dump clean
-    """
+    """dump clean"""
 
     def execute(self):
         command = "dump --clean"
@@ -59,8 +57,7 @@ class dumpclean(Command):
 
 
 class fbookmark(Command):
-    """fbookmark ranger integration
-    """
+    """fbookmark ranger integration"""
 
     def execute(self):
         bookmark = self.fm.execute_command(
@@ -73,8 +70,7 @@ class fbookmark(Command):
 
 
 class fzflevel1(Command):
-    """Depth1 fzf search
-    """
+    """Depth1 fzf search"""
 
     def execute(self):
         if not self.fm.settings["show_hidden"]:
@@ -91,8 +87,7 @@ class fzflevel1(Command):
 
 
 class fzfind(Command):
-    """fzflevel1 search plus action, like f
-    """
+    """fzflevel1 search plus action, like f"""
 
     def execute(self):
         if not self.fm.settings["show_hidden"]:
@@ -112,8 +107,7 @@ class fzfind(Command):
 
 
 class fzflevelx(Command):
-    """no depth limit fzf, search file
-    """
+    """no depth limit fzf, search file"""
 
     def execute(self):
         search = self.fm.execute_command(
@@ -128,8 +122,7 @@ class fzflevelx(Command):
 
 
 class fzdlevelx(Command):
-    """no depth limit fzf, search dir
-    """
+    """no depth limit fzf, search dir"""
 
     def execute(self):
         search = self.fm.execute_command(

@@ -1,5 +1,4 @@
 awscli
-fzfaws
 isort
 cfn-lint
 poetry
@@ -7,3 +6,4 @@ ptpython
 pre-commit
 black
 checkov
+ranger-fm
