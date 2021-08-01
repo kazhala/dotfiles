@@ -1,0 +1,5 @@
+require('kaz.settings')
+require('kaz.keybindings')
+require('kaz.plugins')
+require('kaz.autocmds')
+require('kaz.commands')
