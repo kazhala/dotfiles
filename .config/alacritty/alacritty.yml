@@ -20,7 +20,7 @@ scrolling:
 
 font:
   normal:
-    family: DejaVuSansMono Nerd Font Mono
+    family: MesloLGS Nerd Font Mono
   size: 14.5
   offset:
     x: 0
@@ -34,29 +34,70 @@ draw_bold_text_with_bright_colors: false
 
 colors:
   primary:
-    foreground: '0xabb2bf'
-    background: '0x282c34'
+    background: '#2e3440'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
   cursor:
-    text: '0x5c6370'
-    cursor: '0x61afef'
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
+  search:
+    matches:
+      foreground: CellBackground
+      background: '#88c0d0'
+    bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
   normal:
-    black: '0x5c6370'
-    red: '0xe06c75'
-    green: '0x98c379'
-    yellow: '0xe5c07b'
-    blue: '0x61afef'
-    magenta: '0xc678dd'
-    cyan: '0x56b6c2'
-    white: '0xabb2bf'
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
   bright:
-    black: '0x4b5263'
-    red: '0xbe5046'
-    green: '0x98c379'
-    yellow: '0xd19a66'
-    blue: '0x61afef'
-    magenta: '0xc678dd'
-    cyan: '0x56b6c2'
-    white: '0x3e4452'
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
+  dim:
+    black: '#373e4d'
+    red: '#94545d'
+    green: '#809575'
+    yellow: '#b29e75'
+    blue: '#68809a'
+    magenta: '#8c738c'
+    cyan: '#6d96a5'
+    white: '#aeb3bb'
+  indexed_colors:
+    - { index: 16, color: '#2e3440' }
+    - { index: 17, color: '#3b4252' }
+    - { index: 59, color: '#434c5e' }
+    - { index: 60, color: '#4c566a' }
+    - { index: 69, color: '#d8dee9' }
+    - { index: 73, color: '#e5e9f0' }
+    - { index: 75, color: '#eceff4' }
+    - { index: 81, color: '#8fbcbb' }
+    - { index: 102, color: '#88c0d0' }
+    - { index: 114, color: '#81a1c1' }
+    - { index: 130, color: '#5e81ac' }
+    - { index: 145, color: '#2e3440' }
+    - { index: 168, color: '#bf616a' }
+    - { index: 173, color: '#d08770' }
+    - { index: 176, color: '#ebcb8b' }
+    - { index: 180, color: '#a3be8c' }
+    - { index: 233, color: '#b48ead' }
 
 bell:
   duration: 0
