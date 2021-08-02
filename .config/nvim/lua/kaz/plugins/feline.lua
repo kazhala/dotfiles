@@ -155,7 +155,7 @@ local comps = {
   git = {
     branch = {
       provider = 'git_branch',
-      icon = '',
+      icon = ' ',
       left_sep = ' ',
       hl = { fg = colors.green, style = 'bold' },
       enabled = startscreen_enable,
