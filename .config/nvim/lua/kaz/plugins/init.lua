@@ -69,7 +69,7 @@ return require('packer').startup({
       'folke/trouble.nvim',
       cmd = { 'TroubleToggle', 'Trouble' },
       module = { 'trouble' },
-      keys = { { 'n', '<leader>d' }, { 'n', 'gr' } },
+      keys = { { 'n', '<leader>d' }, { 'n', 'gr' }, { 'n', 'gd' } },
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = [[require('kaz.plugins.trouble')]],
     })

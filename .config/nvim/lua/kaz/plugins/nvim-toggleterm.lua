@@ -3,7 +3,7 @@ local au = require('kaz.utils.au')
 
 local M = {}
 
-local term_horizontal_ratio = 0.3
+local term_horizontal_ratio = 0.35
 
 function M.resize()
   vim.cmd([[resize ]] .. vim.o.lines * term_horizontal_ratio)

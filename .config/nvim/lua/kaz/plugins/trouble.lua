@@ -11,6 +11,7 @@ require('trouble').setup({
 })
 
 vim.api.nvim_set_keymap('n', 'gr', '<CMD>Trouble lsp_references<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', 'gd', '<CMD>Trouble lsp_definitions<CR>', kb.silent_noremap)
 
 vim.api.nvim_set_keymap('n', '<leader>dd', '<CMD>TroubleToggle<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>ds', '<CMD>TroubleToggle lsp_workspace_diagnostics<CR>', kb.silent_noremap)
