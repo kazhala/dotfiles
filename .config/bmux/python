@@ -10,7 +10,6 @@ tmuxb window 3 "s3fm" "$HOME/Programming/python/s3fm"
 
 tmuxb pane 1 1 -v "$HOME/Programming/python/fzf.aws"
 tmuxb pane 2 1 -v "$HOME/Programming/python/InquirerPy"
-tmuxb pane 2 2 -h "$HOME/Programming/docs/InquirerPy.wiki"
 tmuxb pane 3 1 -v "$HOME/Programming/python/s3fm"
 
 tmuxb cmd 1 1 "source venv/bin/activate"
@@ -23,5 +22,5 @@ tmuxb cmd 3 2 "source venv/bin/activate"
 tmuxb focus
 
 tmux select-layout -t "${BMUX_SESSION_NAME}":1.1 "${BMUX_CODE}"
-tmux select-layout -t "${BMUX_SESSION_NAME}":2.1 "${BMUX_3_VS}"
+tmux select-layout -t "${BMUX_SESSION_NAME}":2.1 "${BMUX_CODE}"
 tmux select-layout -t "${BMUX_SESSION_NAME}":3.1 "${BMUX_CODE}"
