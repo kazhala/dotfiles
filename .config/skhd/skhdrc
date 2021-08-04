@@ -124,10 +124,9 @@ shift + alt + ctrl - i : open -na alacritty
 shift + alt - m : open -a Firefox\ Developer\ Edition
 shift + alt + ctrl - m : open -na Firefox\ Developer\ Edition
 
-shift + alt - o : open -a Slack
-shift + alt + ctrl - o : open -a Discord
+shift + alt - o : open -a Discord
+shift + alt + ctrl - o : open -a Slack
 shift + alt - u : open -a Trello
-shift + alt + ctrl - u : open -a Microsoft\ Teams
 
 shift + alt - b : open ~
 shift + alt + ctrl - b : ~/Programming/Scripts/skhd/finder

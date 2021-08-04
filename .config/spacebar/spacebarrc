@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
-spacebar -m config text_font         "Helvetica Neue:Bold:12.0"
-spacebar -m config icon_font         "DejaVuSansMono Nerd Font Mono:Bold:16.0"
-spacebar -m config background_color  0xff282c34
-spacebar -m config foreground_color  0xffa8a8a8
-spacebar -m config space_icon_strip       
-spacebar -m config power_icon_strip   
-spacebar -m config space_icon        
-spacebar -m config clock_icon        
-spacebar -m config clock_format      "%a %R"
+spacebar -m config text_font "Helvetica Neue:Bold:12.0"
+spacebar -m config icon_font "MesloLGS Nerd Font Mono:Bold:16.0"
+spacebar -m config background_color 0xff2e3440
+spacebar -m config foreground_color 0xffd8dee9
+spacebar -m config space_icon_strip      
+spacebar -m config power_icon_strip  
+spacebar -m config space_icon 
+spacebar -m config clock_icon 
+spacebar -m config clock_format "%a %R"
 
 echo "spacebar configuration loaded.."
