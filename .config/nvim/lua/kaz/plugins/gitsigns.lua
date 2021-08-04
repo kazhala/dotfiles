@@ -27,6 +27,7 @@ require('gitsigns').setup({
     ['n <leader>hR'] = '<CMD>lua require("gitsigns").reset_buffer()<CR>',
     ['n <leader>hp'] = '<CMD>lua require("gitsigns").preview_hunk()<CR>',
     ['n <leader>hb'] = '<CMD>lua require("gitsigns").blame_line(true)<CR>',
+    ['n <leader>hh'] = '<CMD>lua require("gitsigns").refresh()<CR>',
 
     ['o ih'] = ':<C-U>lua require("gitsigns.actions").select_hunk()<CR>',
     ['x ih'] = ':<C-U>lua require("gitsigns.actions").select_hunk()<CR>',
