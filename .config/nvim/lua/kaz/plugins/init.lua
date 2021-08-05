@@ -2,7 +2,6 @@ return require('packer').startup({
   function(use)
     use('wbthomason/packer.nvim')
     use({ 'maaslalani/nordbuddy', config = [[require('kaz.colors')]] })
-    use('ray-x/lsp_signature.nvim')
     use({
       'ojroques/vim-oscyank',
       cond = function()
@@ -17,6 +16,10 @@ return require('packer').startup({
     use({
       'neovim/nvim-lspconfig',
       config = [[require('kaz.plugins.lspconfig')]],
+      requires = {
+        'folke/lua-dev.nvim',
+        'ray-x/lsp_signature.nvim',
+      },
     })
     use({
       'nvim-treesitter/nvim-treesitter',
