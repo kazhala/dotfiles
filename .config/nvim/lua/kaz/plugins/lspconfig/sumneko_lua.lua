@@ -26,22 +26,8 @@ function M.setup(on_attach)
       cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
       settings = {
         Lua = {
-          runtime = {
-            version = 'LuaJIT',
-            path = runtime_path,
-          },
           diagnostics = {
             globals = { 'vim' },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file('', true),
-          },
-          telemetry = {
-            enable = false,
-          },
-          completion = {
-            keywordSnippet = 'Replace',
-            callSnippet = 'Replace',
           },
         },
       },
