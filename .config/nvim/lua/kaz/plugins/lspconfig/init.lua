@@ -58,10 +58,16 @@ au.augroup('ShowDiagnostics', {
   },
 })
 
+local disabled_signature_lsp = {
+  terraformls = true,
+  efm = true,
+  tflint = true,
+}
+
 local on_attach = function(client, bufnr)
   require('illuminate').on_attach(client)
 
-  if client.name ~= 'terraformls' and client.name ~= 'efm' then
+  if disabled_signature_lsp[client.name] == nil then
     require('lsp_signature').on_attach({
       bind = true,
       hint_enable = false,
@@ -116,4 +122,5 @@ require('kaz.plugins.lspconfig.efm').setup(on_attach)
 require('kaz.plugins.lspconfig.sumneko_lua').setup(on_attach)
 require('kaz.plugins.lspconfig.yamlls').setup(on_attach)
 require('kaz.plugins.lspconfig.terraformls').setup(on_attach, capabilities)
+require('kaz.plugins.lspconfig.tflint').setup(on_attach)
 require('kaz.plugins.lspconfig.bashls').setup(on_attach)

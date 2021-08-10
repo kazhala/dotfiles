@@ -5,7 +5,6 @@ vim.opt.hidden = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 5
 vim.opt.matchpairs:append('<:>')
-vim.opt.autoread = true
 vim.opt.history = 10000
 vim.opt.showtabline = 2
 vim.opt.showmode = false

@@ -62,3 +62,33 @@ au.augroup('YankHighlight', {
     end,
   },
 })
+
+au.augroup('CheckOutsideTime', {
+  {
+    event = 'WinEnter,BufWinEnter,BufWinLeave,BufRead,BufEnter,FocusGained',
+    pattern = '*',
+    command = 'silent! checktime',
+  },
+})
+
+local function clear_commandline()
+  local timer
+  return function()
+    if timer then
+      timer:stop()
+    end
+    timer = vim.defer_fn(function()
+      if vim.fn.mode() == 'n' then
+        vim.cmd([[echon '']])
+      end
+    end, 10000)
+  end
+end
+
+au.augroup('ClearCommandMessages', {
+  {
+    event = 'CmdlineLeave,CmdlineChanged',
+    pattern = ':',
+    callback = clear_commandline(),
+  },
+})
