@@ -134,10 +134,9 @@ return require('packer').startup({
       config = [[require('kaz.plugins.nvim-toggleterm')]],
     })
     use({
-      'tpope/vim-fugitive',
+      'TimUntersberger/neogit',
       keys = { { 'n', '<leader>g' } },
-      cmd = { 'G' },
-      config = [[require('kaz.plugins.fugitive')]],
+      config = [[require('kaz.plugins.neogit')]],
     })
   end,
 
