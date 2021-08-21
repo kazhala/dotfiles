@@ -29,13 +29,6 @@ M.file_picker = function(opts)
   end
 end
 
-M.grep_prompt = function(opts)
-  opts = opts or {}
-
-  opts.search = vim.fn.input('Rg› ')
-  require('telescope.builtin').grep_string(opts)
-end
-
 local function smart_enter(prompt_bufnr)
   local picker = action_state.get_current_picker(prompt_bufnr)
   if #picker:get_multi_selection() > 0 then
@@ -69,7 +62,7 @@ require('telescope').setup({
 
 vim.api.nvim_set_keymap('n', '<C-p>', '<CMD>lua require("kaz.plugins.telescope").file_picker()<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-m>', '<CMD>Telescope buffers<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-g>', '<CMD>lua require("kaz.plugins.telescope").grep_prompt()<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-g>', '<CMD>Telescope live_grep<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fd', '<CMD>Telescope file_browser<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>ff', '<CMD>Telescope git_status<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fg', '<CMD>Telescope grep_string<CR>', kb.silent_noremap)
