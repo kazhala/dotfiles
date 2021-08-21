@@ -54,9 +54,9 @@ function M.resize(direction, step)
 
   step = step or 1
   if direction == 'left' then
-    vim.cmd([[vertical-resize +]] .. step)
+    vim.cmd([[vertical resize ]] .. (is_boundary and '+' or '-') .. step)
   elseif direction == 'right' then
-    vim.cmd([[vertical-resize -]] .. step)
+    vim.cmd([[vertical resize ]] .. (is_boundary and '-' or '+') .. step)
   elseif direction == 'down' then
     vim.cmd([[resize]] .. (is_boundary and '-' or '+') .. step)
   elseif direction == 'up' then
