@@ -50,10 +50,10 @@ return require('packer').startup({
       after = 'nordbuddy',
     })
     use({
-      'akinsho/nvim-bufferline.lua',
+      'akinsho/bufferline.nvim',
       event = 'BufWinEnter',
       requires = { 'kyazdani42/nvim-web-devicons' },
-      config = [[require('kaz.plugins.nvim-bufferline')]],
+      config = [[require('kaz.plugins.bufferline')]],
       after = 'nordbuddy',
     })
     use({
