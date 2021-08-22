@@ -109,7 +109,6 @@ return require('packer').startup({
     })
     use({
       'numToStr/Navigator.nvim',
-      keys = { { 'n', '<C-l>' }, { 'n', '<C-h>' }, { 'n', '<C-j>' }, { 'n', '<C-k>' } },
       config = [[require('kaz.plugins.navigator')]],
     })
     use({
@@ -129,9 +128,9 @@ return require('packer').startup({
       config = [[require('kaz.plugins.telescope')]],
     })
     use({
-      'akinsho/nvim-toggleterm.lua',
+      'akinsho/toggleterm.nvim',
       keys = { { 'n', '<C-f>' } },
-      config = [[require('kaz.plugins.nvim-toggleterm')]],
+      config = [[require('kaz.plugins.toggleterm')]],
     })
     use({
       'TimUntersberger/neogit',
