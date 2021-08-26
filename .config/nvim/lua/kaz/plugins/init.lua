@@ -1,7 +1,10 @@
 return require('packer').startup({
   function(use)
-    use('wbthomason/packer.nvim')
-    use({ 'maaslalani/nordbuddy', config = [[require('kaz.colors')]] })
+    use({ 'wbthomason/packer.nvim' })
+    use({
+      'maaslalani/nordbuddy',
+      config = [[require('kaz.colors')]],
+    })
     use({
       'ojroques/vim-oscyank',
       cond = function()
@@ -77,9 +80,26 @@ return require('packer').startup({
       config = [[require('kaz.plugins.trouble')]],
     })
     use({
-      'hrsh7th/nvim-compe',
+      'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
-      config = [[require('kaz.plugins.nvim-compe')]],
+      config = [[require('kaz.plugins.nvim-cmp')]],
+      after = 'LuaSnip',
+    })
+    use({
+      'hrsh7th/cmp-path',
+      after = 'nvim-cmp',
+    })
+    use({
+      'hrsh7th/cmp-buffer',
+      after = 'nvim-cmp',
+    })
+    use({
+      'hrsh7th/cmp-nvim-lsp',
+      after = 'nvim-cmp',
+    })
+    use({
+      'saadparwaiz1/cmp_luasnip',
+      after = { 'nvim-cmp' },
     })
     use({
       'L3MON4D3/LuaSnip',

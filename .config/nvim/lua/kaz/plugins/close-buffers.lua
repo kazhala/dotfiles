@@ -3,7 +3,7 @@ local kb = require('kaz.utils.kb')
 require('close_buffers').setup({
   preserve_window_layout = { 'this', 'other' },
   next_buffer_cmd = function(windows)
-    require('bufferline').cycle(1)
+    require('bufferline').cycle(-1)
     local bufnr = vim.api.nvim_get_current_buf()
 
     for _, window in ipairs(windows) do
