@@ -5,6 +5,7 @@ local completion_menu = {
   nvim_lsp = '[]',
   buffer = '[﬘]',
   path = '[]',
+  spell = '[﬜]',
 }
 
 local completion_kind = {
@@ -70,8 +71,8 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       vim_item.menu = completion_menu[entry.source.name]
-
       vim_item.kind = completion_kind[vim_item.kind]
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
       return vim_item
     end,
   },
@@ -96,5 +97,6 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'buffer' },
+    { name = 'spell' },
   },
 })

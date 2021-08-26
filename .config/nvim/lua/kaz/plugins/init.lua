@@ -99,6 +99,10 @@ return require('packer').startup({
     })
     use({
       'saadparwaiz1/cmp_luasnip',
+      after = { 'nvim-cmp', 'LuaSnip' },
+    })
+    use({
+      'f3fora/cmp-spell',
       after = { 'nvim-cmp' },
     })
     use({
