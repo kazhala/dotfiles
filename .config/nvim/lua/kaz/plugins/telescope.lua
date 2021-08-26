@@ -60,6 +60,21 @@ require('telescope').setup({
   pickers = { buffers = { mappings = { i = { ['<c-w>'] = actions.delete_buffer } } } },
 })
 
+require('neoclip').setup({
+  keys = {
+    i = {
+      select = '<CR>',
+      paste = '<C-j>',
+      paste_behind = '<C-k>',
+    },
+    n = {
+      select = '<CR>',
+      paste = 'p',
+      paste_behind = 'P',
+    },
+  },
+})
+
 vim.api.nvim_set_keymap('n', '<C-p>', '<CMD>lua require("kaz.plugins.telescope").file_picker()<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-m>', '<CMD>Telescope buffers<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-g>', '<CMD>Telescope live_grep<CR>', kb.silent_noremap)
@@ -67,7 +82,7 @@ vim.api.nvim_set_keymap('n', '<leader>fd', '<CMD>Telescope file_browser<CR>', kb
 vim.api.nvim_set_keymap('n', '<leader>ff', '<CMD>Telescope git_status<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fg', '<CMD>Telescope grep_string<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fm', '<CMD>Telescope marks<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fy', '<CMD>Telescope registers<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fy', '<CMD>Telescope neoclip y<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fh', '<CMD>Telescope help_tags<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap(
   'n',

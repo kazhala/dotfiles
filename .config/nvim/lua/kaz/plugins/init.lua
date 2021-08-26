@@ -83,19 +83,19 @@ return require('packer').startup({
       'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
       config = [[require('kaz.plugins.nvim-cmp')]],
-      after = 'LuaSnip',
+      after = { 'LuaSnip' },
     })
     use({
       'hrsh7th/cmp-path',
-      after = 'nvim-cmp',
+      after = { 'nvim-cmp' },
     })
     use({
       'hrsh7th/cmp-buffer',
-      after = 'nvim-cmp',
+      after = { 'nvim-cmp' },
     })
     use({
       'hrsh7th/cmp-nvim-lsp',
-      after = 'nvim-cmp',
+      after = { 'nvim-cmp' },
     })
     use({
       'saadparwaiz1/cmp_luasnip',
@@ -142,6 +142,7 @@ return require('packer').startup({
         { 'nvim-lua/popup.nvim' },
         { 'nvim-lua/plenary.nvim' },
         { 'folke/trouble.nvim' },
+        { 'AckslD/nvim-neoclip.lua' },
       },
       cmd = { 'Telescope' },
       keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' } },
