@@ -34,7 +34,7 @@ au.augroup('FileTypeSettings', {
   },
   {
     event = 'BufEnter',
-    pattern = '*.tf',
+    pattern = '*.tf,*.tfvars',
     callback = function()
       vim.opt_local.filetype = 'terraform'
     end,

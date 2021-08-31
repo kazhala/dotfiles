@@ -52,10 +52,6 @@ local function startscreen_enable()
   return true
 end
 
-local function file_info_enable()
-  return vim.bo.filetype ~= 'toggleterm'
-end
-
 local function readonly_provider()
   return vim.bo.readonly and ' ' or ''
 end
@@ -74,6 +70,14 @@ end
 
 local function toggleterm_provider()
   return ' Terminal ' .. '(' .. vim.b.toggle_number .. ')'
+end
+
+local function file_info_enable()
+  return not toggleterm_enable()
+end
+
+local function lsp_enable()
+  return not toggleterm_enable() and startscreen_enable() and lsp.lsp_client_names({ icon = '' }) ~= ''
 end
 
 local comps = {
@@ -148,7 +152,7 @@ local comps = {
     name = {
       provider = 'lsp_client_names',
       hl = { fg = colors.bright_cyan },
-      enabled = startscreen_enable,
+      enabled = lsp_enable,
       icon = ' ',
     },
   },
