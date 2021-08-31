@@ -142,7 +142,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
   export OS_DISTRO="UBUNTU"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  export PATH="$HOME/.yarn/bin:$PATH"
+  export PATH="$(yarn global bin):$PATH"
 elif [[ ${OSTYPE} =~ "darwin" ]]; then
   export OS_DISTRO="MACOS"
 fi
