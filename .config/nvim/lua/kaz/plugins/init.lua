@@ -5,13 +5,12 @@ return require('packer').startup({
       'maaslalani/nordbuddy',
       config = [[require('kaz.colors')]],
     })
-    use({
-      'ojroques/vim-oscyank',
-      cond = function()
-        return os.getenv('OS_DISTRO') == 'UBUNTU'
-      end,
-      config = [[require('kaz.plugins.vim-oscyank')]],
-    })
+    if os.getenv('OS_DISTRO') == 'UBUNTU' then
+      use({
+        'ojroques/vim-oscyank',
+        config = [[require('kaz.plugins.vim-oscyank')]],
+      })
+    end
     use({
       'RRethy/vim-illuminate',
       config = [[require('kaz.plugins.vim-illuminate')]],
