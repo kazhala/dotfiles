@@ -1,8 +1,6 @@
 local colors = require('nordbuddy.palette')
 local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
-local file = require('feline.providers.file')
-local providers = require('feline.providers')
 
 local vi_mode_colors = {
   NORMAL = colors.green,
@@ -82,14 +80,6 @@ local function lsp_enable()
   return not toggleterm_enable() and startscreen_enable() and lsp.lsp_client_names({ icon = '' }) ~= ''
 end
 
-local function file_info_provider(component)
-  local file_info, file_icon = file.file_info(component)
-  file_icon.hl = { fg = colors.intense_blue, style = 'bold' }
-  return file_info, file_icon
-end
-
-providers.add_provider('file_info_provider', file_info_provider)
-
 local comps = {
   vi_mode = {
     left = { provider = '█', hl = vimode_hl, right_sep = ' ' },
@@ -103,7 +93,7 @@ local comps = {
   },
   file = {
     info = {
-      provider = 'file_info_provider',
+      provider = 'file_info',
       hl = { fg = colors.intense_blue, style = 'bold' },
       file_modified_icon = '',
       type = 'relative',
