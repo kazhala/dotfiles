@@ -36,6 +36,7 @@ zinit wait lucid light-mode for \
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
   atload'_zsh_autosuggest_start;
+  unset ZSH_AUTOSUGGEST_USE_ASYNC;
   bindkey -v "^ " autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
   atinit'ZINIT[COMPINIT_OPTS]=-C;
