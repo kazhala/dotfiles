@@ -36,7 +36,7 @@ zinit wait lucid light-mode for \
   bindkey -M vicmd "j" history-substring-search-down' \
     zsh-users/zsh-history-substring-search \
   atload'_zsh_autosuggest_start;
-  bindkey -v "^b" autosuggest-accept' \
+  bindkey -v "^ " autosuggest-accept' \
     zsh-users/zsh-autosuggestions \
   atinit'ZINIT[COMPINIT_OPTS]=-C;
   zicompinit;
@@ -139,8 +139,12 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # -- MISC ----------------------------------------------------------------------
 
-if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]] 2>/dev/null; then
-  export OS_DISTRO="UBUNTU"
+if [[ ${OSTYPE} =~ "linux-gnu" ]] && [[ $(lsb_release -ds) =~ "Ubuntu" ]]; then
+  if [[ "${WSL_DISTRO_NAME}" =~ Ubuntu-.* ]]; then
+    export OS_DISTRO="WSL_UBUNTU"
+  else
+    export OS_DISTRO="UBUNTU"
+  fi
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   export PATH="$HOME/.yarn/bin:$PATH"
 elif [[ ${OSTYPE} =~ "darwin" ]]; then
