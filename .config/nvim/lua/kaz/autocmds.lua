@@ -59,6 +59,11 @@ au.augroup('YankHighlight', {
     pattern = '*',
     callback = function()
       vim.highlight.on_yank()
+      if os.getenv('OS_DISTRO') == 'WSL_UBUNTU' then
+        if vim.v.event.operator == 'y' and vim.v.event.regname == '*' then
+          vim.fn.system('clip.exe', vim.fn.getreg('*'))
+        end
+      end
     end,
   },
 })
