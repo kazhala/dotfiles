@@ -52,10 +52,6 @@ local function startscreen_enable()
   return true
 end
 
-local function readonly_provider()
-  return vim.bo.readonly and ' ' or ''
-end
-
 local function paste_provider()
   return vim.o.paste and ' ' or ''
 end
@@ -103,11 +99,6 @@ local comps = {
       provider = 'file_type',
       left_sep = ' ',
       hl = { fg = colors.intense_blue, style = 'bold' },
-      enabled = startscreen_enable,
-    },
-    readonly = {
-      provider = readonly_provider,
-      hl = { fg = colors.yellow },
       enabled = startscreen_enable,
     },
   },
@@ -187,7 +178,6 @@ local components = {
       comps.file.info,
       comps.toggleterm,
       comps.vi_mode.paste,
-      comps.file.readonly,
       comps.lsp.name,
       comps.diagnostic.error,
       comps.diagnostic.warning,
