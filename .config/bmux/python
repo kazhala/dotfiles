@@ -1,18 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export BMUX_SESSION_NAME="python"
+export BMUX_WIN_1_PATH="$HOME/Programming/python/fzf.aws"
+export BMUX_WIN_2_PATH="$HOME/Programming/python/InquirerPy"
+export BMUX_WIN_3_PATH="$HOME/Programming/python/s3fm"
+export BMUX_WIN_4_PATH="$HOME/Programming/python/pfzy"
+
+[[ ! -d "$BMUX_WIN_1_PATH" ]] && git clone https://github.com/kazhala/fzf.aws.git "$BMUX_WIN_1_PATH"
+[[ ! -d "$BMUX_WIN_2_PATH" ]] && git clone https://github.com/kazhala/InquirerPy.git "$BMUX_WIN_2_PATH"
+[[ ! -d "$BMUX_WIN_3_PATH" ]] && git clone https://github.com/kazhala/s3fm.git "$BMUX_WIN_3_PATH"
+[[ ! -d "$BMUX_WIN_4_PATH" ]] && git clone https://github.com/kazhala/pfzy.git "$BMUX_WIN_4_PATH"
 
 tmuxb session
 
-tmuxb window 1 "fzfaws" "$HOME/Programming/python/fzf.aws"
-tmuxb window 2 "InquirerPy" "$HOME/Programming/python/InquirerPy"
-tmuxb window 3 "s3fm" "$HOME/Programming/python/s3fm"
-tmuxb window 4 "pfzy" "$HOME/Programming/python/pfzy"
+tmuxb window 1 "fzfaws" "$BMUX_WIN_1_PATH"
+tmuxb window 2 "InquirerPy" "$BMUX_WIN_2_PATH"
+tmuxb window 3 "s3fm" "$BMUX_WIN_3_PATH"
+tmuxb window 4 "pfzy" "$BMUX_WIN_4_PATH"
 
-tmuxb pane 1 1 -v "$HOME/Programming/python/fzf.aws"
-tmuxb pane 2 1 -v "$HOME/Programming/python/InquirerPy"
-tmuxb pane 3 1 -v "$HOME/Programming/python/s3fm"
-tmuxb pane 4 1 -v "$HOME/Programming/python/pfzy"
+tmuxb pane 1 1 -v "$BMUX_WIN_1_PATH"
+tmuxb pane 2 1 -v "$BMUX_WIN_2_PATH"
+tmuxb pane 3 1 -v "$BMUX_WIN_3_PATH"
+tmuxb pane 4 1 -v "$BMUX_WIN_4_PATH"
 
 for i in {1..4}; do
 	tmuxb cmd "${i}" 1 "source venv/bin/activate"

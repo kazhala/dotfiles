@@ -1,22 +1,30 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export BMUX_SESSION_NAME="shell"
+export BMUX_WIN_1_PATH="$HOME/Programming/shell/dotbare"
+export BMUX_WIN_2_PATH="$HOME/Programming/shell/bmux"
+export BMUX_WIN_3_PATH="$HOME/Programming/shell/dump-cli"
+export BMUX_WIN_4_PATH="$HOME/Programming/scripts"
+
+[[ ! -d "$BMUX_WIN_1_PATH" ]] && git clone https://github.com/kazhala/dotbare.git "$BMUX_WIN_1_PATH"
+[[ ! -d "$BMUX_WIN_2_PATH" ]] && git clone https://github.com/kazhala/bmux.git "$BMUX_WIN_2_PATH"
+[[ ! -d "$BMUX_WIN_3_PATH" ]] && git clone https://github.com/kazhala/dump-cli.git "$BMUX_WIN_3_PATH"
+[[ ! -d "$BMUX_WIN_4_PATH" ]] && git clone https://github.com/kazhala/scripts.git "$BMUX_WIN_4_PATH"
 
 tmuxb session
 
-tmuxb window 1 "dotbare" "$HOME/Programming/shell/dotbare"
-tmuxb window 2 "bmux" "$HOME/Programming/shell/bmux"
-tmuxb window 3 "dump" "$HOME/Programming/shell/dump-cli"
-tmuxb window 4 "scripts" "$HOME/Programming/scripts"
+tmuxb window 1 "dotbare" "$BMUX_WIN_1_PATH"
+tmuxb window 2 "bmux" "$BMUX_WIN_2_PATH"
+tmuxb window 3 "dump" "$BMUX_WIN_3_PATH"
+tmuxb window 4 "scripts" "$BMUX_WIN_4_PATH"
 
-tmuxb pane 1 1 -v "$HOME/Programming/shell/dotbare"
-tmuxb pane 2 1 -v "$HOME/Programming/shell/bmux"
-tmuxb pane 3 1 -v "$HOME/Programming/shell/dump-cli"
-tmuxb pane 4 1 -v "$HOME/Programming/scripts"
+tmuxb pane 1 1 -v "$BMUX_WIN_1_PATH"
+tmuxb pane 2 1 -v "$BMUX_WIN_2_PATH"
+tmuxb pane 3 1 -v "$BMUX_WIN_3_PATH"
+tmuxb pane 4 1 -v "$BMUX_WIN_4_PATH"
 
 tmuxb focus
 
-tmux select-layout -t "${BMUX_SESSION_NAME}":1.1 "${BMUX_CODE}"
-tmux select-layout -t "${BMUX_SESSION_NAME}":2.1 "${BMUX_CODE}"
-tmux select-layout -t "${BMUX_SESSION_NAME}":3.1 "${BMUX_CODE}"
-tmux select-layout -t "${BMUX_SESSION_NAME}":4.1 "${BMUX_CODE}"
+for i in {1..4}; do
+	tmux select-layout -t "${BMUX_SESSION_NAME}":"${i}".1 "${BMUX_CODE}"
+done

@@ -1,11 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export BMUX_SESSION_NAME="nvim"
+export BMUX_WIN_2_PATH="$HOME/Programming/lua/close-buffers.nvim"
+export BMUX_WIN_3_PATH="$HOME/Programming/lua/conflict-marker.nvim"
+
+[[ ! -d "$BMUX_WIN_2_PATH" ]] && git clone https://github.com/kazhala/close-buffers.nvim.git "$BMUX_WIN_2_PATH"
+[[ ! -d "$BMUX_WIN_3_PATH" ]] && mkdir -p "$BMUX_WIN_3_PATH"
 
 tmuxb session
 
 tmuxb window 1 "init.lua" "$XDG_CONFIG_HOME/nvim"
-tmuxb window 2 "close-buffers.nvim" "$HOME/Programming/lua/close-buffers.nvim"
-tmuxb window 3 "conflict-marker.nvim" "$HOME/Programming/lua/conflict-marker.nvim"
+tmuxb window 2 "close-buffers.nvim" "$BMUX_WIN_2_PATH"
+tmuxb window 3 "conflict-marker.nvim" "$BMUX_WIN_3_PATH"
 
 tmuxb focus
