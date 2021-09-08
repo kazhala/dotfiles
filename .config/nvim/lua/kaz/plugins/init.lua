@@ -40,7 +40,7 @@ return require('packer').startup({
     })
     use({
       'lukas-reineke/indent-blankline.nvim',
-      event = { 'BufRead', 'InsertEnter' },
+      event = { 'BufRead', 'BufNewFile' },
       after = 'nvim-treesitter',
       config = [[require('kaz.plugins.indent-blankline')]],
     })
@@ -66,7 +66,7 @@ return require('packer').startup({
     })
     use({
       'lewis6991/gitsigns.nvim',
-      event = { 'BufRead', 'InsertEnter' },
+      event = { 'BufRead', 'BufNewFile' },
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('kaz.plugins.gitsigns')]],
     })
@@ -102,12 +102,12 @@ return require('packer').startup({
     })
     use({
       'b3nj5m1n/kommentary',
-      event = { 'BufRead', 'InsertEnter' },
+      event = { 'BufRead', 'BufNewFile' },
       config = [[require('kaz.plugins.kommentary')]],
     })
     use({
       'machakann/vim-sandwich',
-      event = { 'BufRead', 'InsertEnter' },
+      event = { 'BufRead', 'BufNewFile' },
       config = [[require('kaz.plugins.vim-sandwich')]],
     })
     use({

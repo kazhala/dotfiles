@@ -169,11 +169,9 @@ local properties = {
   },
 }
 
-local inactive_hl = { bg = colors.dark_black, style = 'underline', fg = colors.grayish }
-
 local components = {
-  left = {
-    active = {
+  active = {
+    {
       comps.vi_mode.left,
       comps.file.info,
       comps.toggleterm,
@@ -184,11 +182,8 @@ local components = {
       comps.diagnostic.hint,
       comps.diagnostic.info,
     },
-    inactive = { { provider = '', hl = inactive_hl } },
-  },
-  mid = { active = {}, inactive = { { provider = '', hl = inactive_hl } } },
-  right = {
-    active = {
+    {},
+    {
       comps.git.add,
       comps.git.change,
       comps.git.remove,
@@ -197,7 +192,14 @@ local components = {
       comps.file.type,
       comps.vi_mode.right,
     },
-    inactive = { { provider = '', hl = inactive_hl } },
+  },
+  inactive = {
+    {
+      {
+        provider = '',
+        hl = { bg = colors.dark_black, style = 'underline', fg = colors.grayish },
+      },
+    },
   },
 }
 
