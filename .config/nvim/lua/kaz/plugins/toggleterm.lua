@@ -27,12 +27,7 @@ au.augroup('ResizeTerm', {
     event = 'TermEnter',
     patterm = [[term://*toggleterm#*]],
     callback = function()
-      kb.buf_set_keymap(
-        'n',
-        '<C-w>=',
-        [[<CMD>lua require('kaz.plugins.nvim-toggleterm').resize()<CR>]],
-        kb.silent_noremap
-      )
+      kb.buf_set_keymap('n', '<C-w>=', [[<CMD>lua require('kaz.plugins.toggleterm').resize()<CR>]], kb.silent_noremap)
     end,
   },
 })

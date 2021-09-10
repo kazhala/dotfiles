@@ -41,7 +41,7 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.menu = completion_menu[entry.source.name]
       vim_item.kind = completion_kind[vim_item.kind]
-      vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
       return vim_item
     end,
   },
