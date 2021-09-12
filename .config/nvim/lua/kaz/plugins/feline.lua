@@ -161,14 +161,6 @@ local comps = {
   },
 }
 
-local properties = {
-  force_inactive = {
-    filetypes = { 'packer', 'TelescopePrompt' },
-    buftypes = {},
-    bufnames = {},
-  },
-}
-
 local components = {
   active = {
     {
@@ -204,9 +196,15 @@ local components = {
 }
 
 require('feline').setup({
-  default_bg = colors.black,
-  default_fg = colors.white,
+  colors = {
+    fg = colors.white,
+    bg = colors.black,
+  },
   components = components,
-  properties = properties,
   vi_mode_colors = vi_mode_colors,
+  force_inactive = {
+    filetypes = { 'packer', 'TelescopePrompt' },
+    buftypes = {},
+    bufnames = {},
+  },
 })
