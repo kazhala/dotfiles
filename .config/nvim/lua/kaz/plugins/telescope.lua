@@ -23,12 +23,6 @@ M.dotbare_picker = function(opts)
   }):find()
 end
 
-M.file_picker = function(opts)
-  if not pcall(require('telescope.builtin').git_files, opts) then
-    require('telescope.builtin').find_files(opts)
-  end
-end
-
 local function smart_enter(prompt_bufnr)
   local picker = action_state.get_current_picker(prompt_bufnr)
   if #picker:get_multi_selection() > 0 then
@@ -75,12 +69,13 @@ require('neoclip').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<C-p>', '<CMD>lua require("kaz.plugins.telescope").file_picker()<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-p>', '<CMD>Telescope find_files<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-m>', '<CMD>Telescope buffers<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-g>', '<CMD>Telescope live_grep<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fd', '<CMD>Telescope file_browser<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>ff', '<CMD>Telescope git_status<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fg', '<CMD>Telescope grep_string<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fw', '<CMD>Telescope grep_string<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fg', '<CMD>Telescope git_files<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fm', '<CMD>Telescope marks<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fy', '<CMD>Telescope neoclip y<CR>', kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fh', '<CMD>Telescope help_tags<CR>', kb.silent_noremap)
