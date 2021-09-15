@@ -10,7 +10,6 @@ require('indent_blankline').setup({
     '',
   },
   buftype_exclude = { 'terminal', 'nofile' },
-  context_highlight_list = { 'Keyword' },
   context_patterns = {
     'class',
     'function',
