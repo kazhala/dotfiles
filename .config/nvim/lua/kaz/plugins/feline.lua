@@ -91,8 +91,6 @@ local comps = {
     info = {
       provider = 'file_info',
       hl = { fg = colors.intense_blue, style = 'bold' },
-      file_modified_icon = '',
-      type = 'relative',
       enabled = file_info_enable,
     },
     type = {
@@ -188,8 +186,8 @@ local components = {
   inactive = {
     {
       {
-        provider = '',
-        hl = { bg = colors.dark_black, style = 'underline', fg = colors.grayish },
+        provider = ' ',
+        hl = { bg = colors.black, style = 'underline', fg = colors.grayish },
       },
     },
   },
