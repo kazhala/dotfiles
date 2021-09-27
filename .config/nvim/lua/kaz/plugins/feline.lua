@@ -89,7 +89,7 @@ local comps = {
   },
   file = {
     info = {
-      provider = 'file_info',
+      provider = { name = 'file_info', opts = { type = 'relative-short' } },
       hl = { fg = colors.intense_blue, style = 'bold' },
       enabled = file_info_enable,
     },
