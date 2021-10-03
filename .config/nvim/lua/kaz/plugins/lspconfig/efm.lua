@@ -1,6 +1,6 @@
 local M = {}
 
-local sh_fmt = { formatCommand = 'shfmt', formatStdin = true }
+local sh_fmt = { formatCommand = 'shfmt -i 2', formatStdin = true }
 local prettier_fmt = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
 local terraform_fmt = { formatCommand = 'terraform fmt -', formatStdin = true }
 
