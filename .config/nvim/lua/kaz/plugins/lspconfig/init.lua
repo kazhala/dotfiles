@@ -112,6 +112,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', kb.silent_noremap)
   buf_set_keymap('n', '<leader>ce', '<CMD>LspRestart<CR>', kb.silent_noremap)
   buf_set_keymap('n', '<leader>cf', '<CMD>lua vim.lsp.buf.formatting_sync()<CR>', kb.silent_noremap)
+  buf_set_keymap('n', ']g', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>', kb.silent_noremap)
+  buf_set_keymap('n', '[g', '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>', kb.silent_noremap)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

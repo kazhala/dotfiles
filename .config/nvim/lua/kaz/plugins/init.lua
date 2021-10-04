@@ -71,14 +71,6 @@ return require('packer').startup({
       config = [[require('kaz.plugins.gitsigns')]],
     })
     use({
-      'folke/trouble.nvim',
-      cmd = { 'TroubleToggle', 'Trouble' },
-      module = { 'trouble' },
-      keys = { { 'n', '<leader>d' }, { 'n', 'gr' }, { 'n', 'gd' } },
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      config = [[require('kaz.plugins.trouble')]],
-    })
-    use({
       'hrsh7th/nvim-cmp',
       requires = {
         { 'hrsh7th/cmp-path', after = { 'nvim-cmp' } },
@@ -126,18 +118,6 @@ return require('packer').startup({
       config = [[require('kaz.plugins.rnvimr')]],
     })
     use({
-      'nvim-telescope/telescope.nvim',
-      requires = {
-        { 'nvim-lua/popup.nvim' },
-        { 'nvim-lua/plenary.nvim' },
-        { 'folke/trouble.nvim' },
-        { 'AckslD/nvim-neoclip.lua' },
-      },
-      cmd = { 'Telescope' },
-      keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' } },
-      config = [[require('kaz.plugins.telescope')]],
-    })
-    use({
       'akinsho/toggleterm.nvim',
       keys = { { 'n', '<C-f>' } },
       config = [[require('kaz.plugins.toggleterm')]],
@@ -146,6 +126,20 @@ return require('packer').startup({
       'TimUntersberger/neogit',
       keys = { { 'n', '<leader>g' } },
       config = [[require('kaz.plugins.neogit')]],
+    })
+    use({
+      'kevinhwang91/nvim-bqf',
+      event = { 'BufRead', 'BufNewFile', 'BufEnter' },
+    })
+    use({
+      'ibhagwan/fzf-lua',
+      requires = {
+        'vijaymarupudi/nvim-fzf',
+        'kyazdani42/nvim-web-devicons',
+      },
+      config = [[require('kaz.plugins.fzf-lua')]],
+      cmd = { 'FzfLua' },
+      keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
     })
   end,
 

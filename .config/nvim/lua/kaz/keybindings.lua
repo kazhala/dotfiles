@@ -22,6 +22,7 @@ vim.api.nvim_set_keymap('n', '<M-k>', '<CMD>lua require("kaz.utils.window").resi
 vim.api.nvim_set_keymap('n', '<M-j>', '<CMD>lua require("kaz.utils.window").resize("down", 2)<CR>', kb.noremap)
 vim.api.nvim_set_keymap('n', '<M-l>', '<CMD>lua require("kaz.utils.window").resize("right", 2)<CR>', kb.noremap)
 vim.api.nvim_set_keymap('n', '<M-h>', '<CMD>lua require("kaz.utils.window").resize("left", 2)<CR>', kb.noremap)
+vim.api.nvim_set_keymap('n', '<leader>dd', '<CMD>lua require("kaz.utils.qf").toggle_qf()<CR>', kb.noremap)
 
 vim.api.nvim_set_keymap('x', '*', ":<C-u>lua require('kaz.utils.visual_star').star()<CR>/<C-R>=@/<CR><CR>", kb.noremap)
 vim.api.nvim_set_keymap(
