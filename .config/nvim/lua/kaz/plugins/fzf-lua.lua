@@ -52,6 +52,13 @@ require('fzf-lua').setup({
       ['ctrl-q'] = actions.file_sel_to_qf,
     },
   },
+  quickfix = {
+    git_icons = false,
+    actions = {
+      ['default'] = auto_qf,
+      ['ctrl-q'] = actions.file_sel_to_qf,
+    },
+  },
   lsp = {
     severity = 'Warning',
     icons = {
