@@ -1,30 +1,9 @@
 local actions = require('fzf-lua.actions')
 local kb = require('kaz.utils.kb')
 
-local function should_qf(selected)
-  if #selected <= 2 then
-    return false
-  end
-
-  for _, sel in ipairs(selected) do
-    if string.match(sel, '^.+:%d+:%d+:') then
-      return true
-    end
-  end
-
-  return false
-end
-
-local function auto_qf(selected, opts)
-  if should_qf(selected) then
-    actions.file_sel_to_qf(selected)
-  else
-    actions.file_edit(selected, opts)
-  end
-end
-
 require('fzf-lua').setup({
-  preview_layout = 'vertical',
+  preview_layout = 'flex',
+  flip_columns = 150,
   fzf_opts = {
     ['--border'] = 'none',
   },
@@ -35,7 +14,7 @@ require('fzf-lua').setup({
   },
   grep = {
     actions = {
-      ['default'] = auto_qf,
+      ['default'] = actions.file_edit_or_qf,
       ['ctrl-q'] = actions.file_sel_to_qf,
     },
   },
@@ -49,13 +28,14 @@ require('fzf-lua').setup({
   files = {
     git_icons = false,
     actions = {
+      ['default'] = actions.file_edit,
       ['ctrl-q'] = actions.file_sel_to_qf,
     },
   },
   quickfix = {
     git_icons = false,
     actions = {
-      ['default'] = auto_qf,
+      ['default'] = actions.file_edit_or_qf,
       ['ctrl-q'] = actions.file_sel_to_qf,
     },
   },
@@ -68,7 +48,7 @@ require('fzf-lua').setup({
       ['Hint'] = { icon = vim.g.diagnostic_icons.Hint, color = 'blue' },
     },
     actions = {
-      ['default'] = auto_qf,
+      ['default'] = actions.file_edit_or_qf,
       ['ctrl-q'] = actions.file_sel_to_qf,
     },
   },
