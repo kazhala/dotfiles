@@ -73,7 +73,7 @@ local function file_info_enable()
 end
 
 local function lsp_enable()
-  return not toggleterm_enable() and startscreen_enable() and lsp.lsp_client_names({ icon = '' }) ~= ''
+  return not toggleterm_enable() and startscreen_enable() and lsp.is_lsp_attached()
 end
 
 local comps = {
