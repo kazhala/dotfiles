@@ -103,10 +103,9 @@ return require('packer').startup({
       config = [[require('kaz.plugins.vim-sandwich')]],
     })
     use({
-      'phaazon/hop.nvim',
-      keys = { { 'n', 'r' }, { 'n', 'R' } },
-      cmd = { 'HopWord' },
-      config = [[require('kaz.plugins.hop')]],
+      'ggandor/lightspeed.nvim',
+      after = 'vim-sandwich',
+      config = [[require('kaz.plugins.lightspeed')]],
     })
     use({
       'numToStr/Navigator.nvim',
