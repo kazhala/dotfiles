@@ -93,9 +93,9 @@ return require('packer').startup({
       config = [[require('kaz.plugins.nvim-autopairs')]],
     })
     use({
-      'b3nj5m1n/kommentary',
+      'numToStr/Comment.nvim',
       event = { 'BufRead', 'BufNewFile' },
-      config = [[require('kaz.plugins.kommentary')]],
+      config = [[require('kaz.plugins.Comment')]],
     })
     use({
       'machakann/vim-sandwich',
