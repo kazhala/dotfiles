@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+export BMUX_SESSION_NAME="terraform"
+export BMUX_WIN_1_PATH="$HOME/Programming/terraform/modules"
+export BMUX_WIN_2_PATH="$HOME/Programming/terraform/stacks"
+
+[[ ! -d "$BMUX_WIN_1_PATH" ]] && mkdir "$BMUX_WIN_1_PATH"
+[[ ! -d "$BMUX_WIN_2_PATH" ]] && mkdir "$BMUX_WIN_2_PATH"
+
+tmuxb session
+
+tmuxb window 1 "modules" "$BMUX_WIN_1_PATH"
+tmuxb window 2 "stacks" "$BMUX_WIN_2_PATH"
+
+tmuxb focus
