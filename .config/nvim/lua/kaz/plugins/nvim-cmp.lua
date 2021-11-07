@@ -50,6 +50,9 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
+  documentation = {
+    border = vim.g.floating_window_border,
+  },
   mapping = {
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
