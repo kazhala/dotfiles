@@ -35,6 +35,13 @@ vim.fn.sign_define('LspDiagnosticsSignWarning', { text = vim.g.diagnostic_icons.
 vim.fn.sign_define('LspDiagnosticsSignInformation', { text = vim.g.diagnostic_icons.Information })
 vim.fn.sign_define('LspDiagnosticsSignHint', { text = vim.g.diagnostic_icons.Hint })
 
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  { virtual_text = false, update_in_insert = false }
+)
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.floating_window_border })
+vim.lsp.handlers['textDocument/formatting'] = utils.format_async
+
 au.augroup('ShowDiagnostics', {
   {
     event = 'CursorHold',
@@ -76,7 +83,7 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  if client.name ~= 'efm' then
+  if client.name ~= 'null-ls' then
     client.resolved_capabilities.document_formatting = false
   end
 
@@ -91,16 +98,6 @@ local on_attach = function(client, bufnr)
       },
     }, true)
   end
-
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = false, update_in_insert = false }
-  )
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    { border = vim.g.floating_window_border }
-  )
-  vim.lsp.handlers['textDocument/formatting'] = utils.format_async
 
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -120,9 +117,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('kaz.plugins.lspconfig.pyright').setup(on_attach)
-require('kaz.plugins.lspconfig.efm').setup(on_attach)
 require('kaz.plugins.lspconfig.sumneko_lua').setup(on_attach)
 require('kaz.plugins.lspconfig.yamlls').setup(on_attach)
 require('kaz.plugins.lspconfig.terraformls').setup(on_attach, capabilities)
 require('kaz.plugins.lspconfig.tflint').setup(on_attach)
 require('kaz.plugins.lspconfig.bashls').setup(on_attach)
+require('kaz.plugins.lspconfig.null-ls').setup(on_attach)

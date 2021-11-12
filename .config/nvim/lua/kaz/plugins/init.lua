@@ -21,6 +21,7 @@ return require('packer').startup({
       requires = {
         'folke/lua-dev.nvim',
         'ray-x/lsp_signature.nvim',
+        'jose-elias-alvarez/null-ls.nvim'
       },
     })
     use({
