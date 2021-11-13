@@ -14,6 +14,7 @@ highlight! link TelescopeMatching String
 highlight! link TelescopeMultiSelection SpecialComment
 
 highlight NormalFloat guibg=NONE
+highlight CmpItemMenu guibg=NONE
 ]])
 
 vim.cmd([[highlight FloatBorder gui=bold guibg=NONE guifg=]] .. colors.gray)
