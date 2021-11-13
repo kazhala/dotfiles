@@ -25,7 +25,7 @@ function M.setup(on_attach, capabilities)
     lspconfig = {
       on_attach = on_attach,
       cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-      root_dir = util.root_pattern('init.lua', '.git'),
+      root_dir = util.root_pattern('.git', 'init.lua'),
       capabilities = capabilities,
       settings = {
         Lua = {
