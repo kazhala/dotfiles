@@ -40,6 +40,7 @@ require('fzf-lua').setup({
     },
   },
   lsp = {
+    async_or_timeout = false,
     severity = 'Warning',
     icons = {
       ['Error'] = { icon = vim.g.diagnostic_icons.Error, color = 'red' },
@@ -66,6 +67,7 @@ vim.api.nvim_set_keymap('n', '<leader>fm', [[<CMD>lua require('fzf-lua').marks()
 vim.api.nvim_set_keymap('n', '<leader>fy', [[<CMD>lua require('fzf-lua').registers()<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fh', [[<CMD>lua require('fzf-lua').help_tags()<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fq', [[<CMD>lua require('fzf-lua').quickfix()<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fa', [[<CMD>lua require('fzf-lua').lsp_code_actions()<CR>]], kb.silent_noremap)
 
 vim.api.nvim_set_keymap('n', 'gr', [[<CMD>lua require('fzf-lua').lsp_references()<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', 'gd', [[<CMD>lua require('fzf-lua').lsp_definitions()<CR>]], kb.silent_noremap)

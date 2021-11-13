@@ -1,6 +1,7 @@
 local colors = require('nordbuddy.palette')
 local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
+local lsp_status = require('lsp-status')
 
 local vi_mode_colors = {
   NORMAL = colors.green,
@@ -144,6 +145,13 @@ local comps = {
       enabled = lsp_enable,
       icon = ' ',
     },
+    progress = {
+      provider = function()
+        return lsp_status.status_progress()
+      end,
+      hl = { fg = colors.grayish },
+      left_sep = ' ',
+    },
   },
   git = {
     branch = {
@@ -167,6 +175,7 @@ local components = {
       comps.toggleterm,
       comps.vi_mode.paste,
       comps.lsp.name,
+      comps.lsp.progress,
       comps.diagnostic.error,
       comps.diagnostic.warning,
       comps.diagnostic.hint,

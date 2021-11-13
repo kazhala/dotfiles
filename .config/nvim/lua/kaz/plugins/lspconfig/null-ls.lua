@@ -2,7 +2,7 @@ local builtins = require('null-ls').builtins
 
 local M = {}
 
-function M.setup(on_attach)
+function M.setup(on_attach, capabilities)
   require('null-ls').config({
     sources = {
       builtins.formatting.stylua,
@@ -17,12 +17,14 @@ function M.setup(on_attach)
       }),
       builtins.formatting.isort,
       builtins.formatting.black,
-      builtins.diagnostics.shellcheck,
+      builtins.diagnostics.shellcheck.with({ diagnostics_format = '#{m} [#{c}]' }),
+      builtins.code_actions.gitsigns,
     },
   })
 
   require('lspconfig')['null-ls'].setup({
     on_attach = on_attach,
+    capabilities = capabilities,
   })
 end
 
