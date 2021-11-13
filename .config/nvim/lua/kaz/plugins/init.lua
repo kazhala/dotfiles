@@ -21,7 +21,8 @@ return require('packer').startup({
       requires = {
         'folke/lua-dev.nvim',
         'ray-x/lsp_signature.nvim',
-        'jose-elias-alvarez/null-ls.nvim'
+        'jose-elias-alvarez/null-ls.nvim',
+        'nvim-lua/lsp-status.nvim',
       },
     })
     use({
@@ -33,7 +34,7 @@ return require('packer').startup({
     use({
       'nvim-treesitter/nvim-treesitter-textobjects',
       branch = '0.5-compat',
-      requires = { 'nvim-treesitter/nvim-treesitter' },
+      after = 'nvim-treesitter',
     })
     use({
       'kyazdani42/nvim-web-devicons',
@@ -48,15 +49,11 @@ return require('packer').startup({
     use({
       'famiu/feline.nvim',
       event = 'BufWinEnter',
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      after = 'nordbuddy',
       config = [[require('kaz.plugins.feline')]],
     })
     use({
       'akinsho/bufferline.nvim',
       event = 'BufWinEnter',
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      after = 'nordbuddy',
       config = [[require('kaz.plugins.bufferline')]],
     })
     use({
@@ -95,17 +92,17 @@ return require('packer').startup({
     })
     use({
       'numToStr/Comment.nvim',
-      event = { 'BufRead', 'BufNewFile' },
+      keys = { { 'n', 'gc' }, { 'n', 'gb' }, { 'v', 'gc' }, { 'v', 'gb' } },
       config = [[require('kaz.plugins.Comment')]],
     })
     use({
       'machakann/vim-sandwich',
-      event = { 'BufRead', 'BufNewFile' },
+      keys = { { 'n', 's' }, { 'v', 's' } },
       config = [[require('kaz.plugins.vim-sandwich')]],
     })
     use({
       'ggandor/lightspeed.nvim',
-      after = 'vim-sandwich',
+      keys = { { 'n', 'r' }, { 'n', 'R' } },
       config = [[require('kaz.plugins.lightspeed')]],
     })
     use({
@@ -129,14 +126,11 @@ return require('packer').startup({
     })
     use({
       'kevinhwang91/nvim-bqf',
-      event = { 'BufRead', 'BufNewFile', 'BufEnter' },
+      after = 'fzf-lua',
     })
     use({
       'ibhagwan/fzf-lua',
-      requires = {
-        'vijaymarupudi/nvim-fzf',
-        'kyazdani42/nvim-web-devicons',
-      },
+      requires = { 'vijaymarupudi/nvim-fzf' },
       config = [[require('kaz.plugins.fzf-lua')]],
       cmd = { 'FzfLua' },
       keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
