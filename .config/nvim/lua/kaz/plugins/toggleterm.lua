@@ -18,9 +18,24 @@ require('toggleterm').setup({
   direction = 'horizontal',
 })
 
-vim.api.nvim_set_keymap('n', '<C-f>', [[<CMD>exe v:count1 . "ToggleTerm"<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('i', '<C-f>', [[<ESC><CMD>exe v:count1 . "ToggleTerm"<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('t', '<C-f>', [[<CMD>exe v:count1 . "ToggleTerm"<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap(
+  'n',
+  '<C-f>',
+  [[<CMD>lua require('zen-mode').close()<CR><CMD>exe v:count1 . "ToggleTerm"<CR>]],
+  kb.silent_noremap
+)
+vim.api.nvim_set_keymap(
+  'i',
+  '<C-f>',
+  [[<ESC><CMD>lua require('zen-mode').close()<CR><CMD>exe v:count1 . "ToggleTerm"<CR>]],
+  kb.silent_noremap
+)
+vim.api.nvim_set_keymap(
+  't',
+  '<C-f>',
+  [[<CMD>lua require('zen-mode').close()<CR><CMD>exe v:count1 . "ToggleTerm"<CR>]],
+  kb.silent_noremap
+)
 
 au.augroup('ResizeTerm', {
   {

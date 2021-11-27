@@ -135,6 +135,10 @@ return require('packer').startup({
       cmd = { 'FzfLua' },
       keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
     })
+    use({
+      'folke/zen-mode.nvim',
+      config = [[require('kaz.plugins.zen-mode')]],
+    })
   end,
 
   config = {
