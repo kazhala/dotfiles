@@ -2,6 +2,11 @@ local actions = require('fzf-lua.actions')
 local kb = require('kaz.utils.kb')
 
 require('fzf-lua').setup({
+  winopts = {
+    hl = {
+      border = 'FloatBorder',
+    },
+  },
   preview_layout = 'flex',
   flip_columns = 150,
   fzf_opts = {
