@@ -31,6 +31,7 @@ require('fzf-lua').setup({
     },
   },
   files = {
+    fd_opts = [[--color never --type f --hidden --follow --strip-cwd-prefix]],
     git_icons = false,
     actions = {
       ['default'] = actions.file_edit,
