@@ -1,6 +1,6 @@
-local colors = require('nordbuddy.palette')
+local colors = require('nordic.palette')
 
-require('nordbuddy').colorscheme({ italic = false, italic_comments = true })
+require('nordic').colorscheme({ italic = false, italic_comments = true })
 
 vim.cmd([[
 hi EndOfBuffer guifg=bg

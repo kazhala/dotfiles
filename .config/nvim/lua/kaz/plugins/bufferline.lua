@@ -1,5 +1,5 @@
 local kb = require('kaz.utils.kb')
-local colors = require('nordbuddy.palette')
+local colors = require('nordic.palette')
 
 require('bufferline').setup({
   highlights = {

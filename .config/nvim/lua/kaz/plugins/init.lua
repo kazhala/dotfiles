@@ -2,7 +2,7 @@ return require('packer').startup({
   function(use)
     use({ 'wbthomason/packer.nvim' })
     use({
-      'maaslalani/nordbuddy',
+      'andersevenrud/nordic.nvim',
       config = [[require('kaz.colors')]],
     })
     if os.getenv('OS_DISTRO') == 'UBUNTU' then
