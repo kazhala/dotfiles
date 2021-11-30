@@ -28,12 +28,10 @@ return require('packer').startup({
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      branch = '0.5-compat',
       config = [[require('kaz.plugins.nvim-treesitter')]],
     })
     use({
       'nvim-treesitter/nvim-treesitter-textobjects',
-      branch = '0.5-compat',
       after = 'nvim-treesitter',
     })
     use({
