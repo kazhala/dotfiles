@@ -31,10 +31,17 @@ vim.lsp.protocol.CompletionItemKind = {
   ' (type)',
 }
 
-vim.fn.sign_define('LspDiagnosticsSignError', { text = vim.g.diagnostic_icons.Error })
-vim.fn.sign_define('LspDiagnosticsSignWarning', { text = vim.g.diagnostic_icons.Warning })
-vim.fn.sign_define('LspDiagnosticsSignInformation', { text = vim.g.diagnostic_icons.Information })
-vim.fn.sign_define('LspDiagnosticsSignHint', { text = vim.g.diagnostic_icons.Hint })
+local signs = {
+  Error = vim.g.diagnostic_icons.Error,
+  Warn = vim.g.diagnostic_icons.Warning,
+  Hint = vim.g.diagnostic_icons.Hint,
+  Info = vim.g.diagnostic_icons.Information,
+}
+
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
@@ -45,22 +52,13 @@ vim.lsp.handlers['textDocument/formatting'] = utils.format_async
 
 au.augroup('ShowDiagnostics', {
   {
-    event = 'CursorHold',
+    event = 'CursorHold,CursorHoldI',
     pattern = '*',
     callback = function()
-      vim.lsp.diagnostic.show_line_diagnostics({
+      vim.diagnostic.open_float(nil, {
         focusable = false,
         border = vim.g.floating_window_border,
-      })
-    end,
-  },
-  {
-    event = 'CursorHoldI',
-    pattern = '*',
-    callback = function()
-      vim.lsp.diagnostic.show_line_diagnostics({
-        focusable = false,
-        border = vim.g.floating_window_border,
+        source = 'if_many',
       })
     end,
   },
