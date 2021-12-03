@@ -100,7 +100,7 @@ return require('packer').startup({
     })
     use({
       'ggandor/lightspeed.nvim',
-      keys = { { 'n', 'r' }, { 'n', 'R' } },
+      keys = { { 'n', 'r' }, { 'n', 'R' }, { 'n', 'f' }, { 'n', 'F' }, { 'n', 't' }, { 'n', 'T' } },
       config = [[require('kaz.plugins.lightspeed')]],
     })
     use({
