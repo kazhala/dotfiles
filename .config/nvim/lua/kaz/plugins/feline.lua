@@ -69,6 +69,10 @@ local function toggleterm_provider()
   return ' Terminal ' .. '(' .. vim.b.toggle_number .. ')'
 end
 
+local function vi_mode_enable()
+  return not toggleterm_enable()
+end
+
 local function file_info_enable()
   return not toggleterm_enable()
 end
@@ -79,8 +83,8 @@ end
 
 local comps = {
   vi_mode = {
-    left = { provider = '█', hl = vimode_hl, right_sep = ' ' },
-    right = { provider = '█', hl = vimode_hl, left_sep = ' ' },
+    left = { provider = '█', hl = vimode_hl, right_sep = ' ', enabled = vi_mode_enable },
+    right = { provider = '█', hl = vimode_hl, left_sep = ' ', enabled = vi_mode_enable },
     paste = { provider = paste_provider, hl = { fg = colors.orange } },
   },
   toggleterm = {
