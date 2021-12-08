@@ -74,9 +74,9 @@ class fzflevel1(Command):
 
     def execute(self):
         if not self.fm.settings["show_hidden"]:
-            shell_command = "fd -d 1 | fzf"
+            shell_command = "fd -d 1 --strip-cwd-prefix | fzf"
         else:
-            shell_command = "fd -d 1 -H | fzf"
+            shell_command = "fd -d 1 -H --strip-cwd-prefix | fzf"
         search = self.fm.execute_command(
             shell_command, universal_newlines=True, stdout=subprocess.PIPE
         )
@@ -91,9 +91,9 @@ class fzfind(Command):
 
     def execute(self):
         if not self.fm.settings["show_hidden"]:
-            shell_command = "fd -d 1 | fzf"
+            shell_command = "fd -d 1 --strip-cwd-prefix | fzf"
         else:
-            shell_command = "fd -d 1 -H | fzf"
+            shell_command = "fd -d 1 -H --strip-cwd-prefix | fzf"
         search = self.fm.execute_command(
             shell_command, universal_newlines=True, stdout=subprocess.PIPE
         )
@@ -126,7 +126,7 @@ class fzdlevelx(Command):
 
     def execute(self):
         search = self.fm.execute_command(
-            "fd --type d | fzf --preview 'tree -L 1 -C --dirsfirst {}'",
+            "fd --type d --strip-cwd-prefix | fzf --preview 'tree -L 1 -C --dirsfirst {}'",
             universal_newlines=True,
             stdout=subprocess.PIPE,
         )
