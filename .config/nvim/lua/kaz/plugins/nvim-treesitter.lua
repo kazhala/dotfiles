@@ -1,7 +1,7 @@
 local kb = require('kaz.utils.kb')
 
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'lua', 'python', 'yaml', 'hcl', 'bash', 'json', 'toml', 'comment' },
+  ensure_installed = { 'lua', 'python', 'yaml', 'hcl', 'bash', 'json', 'toml', 'comment', 'markdown' },
   highlight = { enable = true },
   incremental_selection = {
     enable = true,
