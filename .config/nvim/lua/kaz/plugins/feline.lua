@@ -20,21 +20,6 @@ local vi_mode_colors = {
   NONE = colors.white,
 }
 
-local function diagnostic_enable(diagnostic_type)
-  return function()
-    local diagnostic_count = lsp.get_diagnostics_count(diagnostic_type)
-    return diagnostic_count and diagnostic_count ~= 0
-  end
-end
-
-local function diagnostic_provider(diagnostic_type)
-  local icon = vim.g.diagnostic_icons[diagnostic_type] .. ' '
-  return function()
-    local diag = lsp.get_diagnostics_count(diagnostic_type)
-    return icon .. diag
-  end
-end
-
 local function vimode_hl()
   return {
     name = vi_mode_utils.get_mode_highlight_name(),
@@ -118,27 +103,19 @@ local comps = {
   },
   diagnostic = {
     error = {
-      provider = diagnostic_provider('Error'),
-      left_sep = ' ',
-      enabled = diagnostic_enable('Error'),
+      provider = 'diagnostic_errors',
       hl = { fg = colors.red },
     },
     warning = {
-      provider = diagnostic_provider('Warning'),
-      left_sep = ' ',
-      enabled = diagnostic_enable('Warning'),
+      provider = 'diagnostic_warnings',
       hl = { fg = colors.yellow },
     },
     information = {
-      provider = diagnostic_provider('Information'),
-      left_sep = ' ',
-      enabled = diagnostic_enable('Information'),
+      provider = 'diagnostic_info',
       hl = { fg = colors.blue },
     },
     hint = {
-      provider = diagnostic_provider('Hint'),
-      left_sep = ' ',
-      enabled = diagnostic_enable('Hint'),
+      provider = 'diagnostic_hints',
       hl = { fg = colors.cyan },
     },
   },
@@ -148,6 +125,7 @@ local comps = {
       hl = { fg = colors.bright_cyan },
       enabled = lsp_enable,
       icon = ' ',
+      left_sep = ' ',
     },
     progress = {
       provider = function()
@@ -207,7 +185,7 @@ local components = {
 }
 
 require('feline').setup({
-  colors = {
+  theme = {
     fg = colors.white,
     bg = colors.black,
   },
