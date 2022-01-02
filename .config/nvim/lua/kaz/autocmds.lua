@@ -1,4 +1,5 @@
 local au = require('kaz.utils.au')
+local kb = require('kaz.utils.kb')
 
 au.augroup('BufInitSettings', {
   {
@@ -18,6 +19,15 @@ au.augroup('BufInitSettings', {
 })
 
 au.augroup('FileTypeSettings', {
+  {
+    event = 'BufEnter',
+    pattern = '*',
+    callback = function()
+      if vim.api.nvim_buf_get_option(0, 'filetype') == '' then
+        vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<CMD>:q<CR>', kb.silent_noremap)
+      end
+    end,
+  },
   {
     event = 'BufEnter',
     pattern = 'vifmrc,*.vifm',

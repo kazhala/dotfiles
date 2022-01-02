@@ -50,7 +50,7 @@ return require('packer').startup({
       config = [[require('kaz.plugins.feline')]],
     })
     use({
-      'akinsho/bufferline.nvim',
+      'kazhala/bufferline.nvim',
       event = 'BufWinEnter',
       config = [[require('kaz.plugins.bufferline')]],
     })
@@ -136,6 +136,12 @@ return require('packer').startup({
     use({
       'folke/zen-mode.nvim',
       config = [[require('kaz.plugins.zen-mode')]],
+    })
+    use({
+      'pianocomposer321/yabs.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = [[require('kaz.plugins.yabs')]],
+      keys = { { 'n', '<leader>y' } },
     })
   end,
 
