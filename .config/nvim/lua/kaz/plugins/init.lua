@@ -50,7 +50,7 @@ return require('packer').startup({
       config = [[require('kaz.plugins.feline')]],
     })
     use({
-      'kazhala/bufferline.nvim',
+      'akinsho/bufferline.nvim',
       event = 'BufWinEnter',
       config = [[require('kaz.plugins.bufferline')]],
     })
