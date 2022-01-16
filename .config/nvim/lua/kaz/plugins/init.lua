@@ -1,6 +1,7 @@
 return require('packer').startup({
   function(use)
     use({ 'wbthomason/packer.nvim' })
+    use('Vimjas/vim-python-pep8-indent')
     use({
       'andersevenrud/nordic.nvim',
       config = [[require('kaz.colors')]],
@@ -136,6 +137,8 @@ return require('packer').startup({
     use({
       'folke/zen-mode.nvim',
       config = [[require('kaz.plugins.zen-mode')]],
+      keys = { { 'n', '<C-t>' } },
+      cmd = { 'ZenMode' },
     })
     use({
       'pianocomposer321/yabs.nvim',
