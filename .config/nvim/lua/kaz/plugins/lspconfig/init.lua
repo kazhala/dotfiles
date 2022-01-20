@@ -68,6 +68,7 @@ local disabled_signature_lsp = {
   terraformls = true,
   efm = true,
   tflint = true,
+  ['null-ls'] = true,
 }
 
 local on_attach = function(client, bufnr)
