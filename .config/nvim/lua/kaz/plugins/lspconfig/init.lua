@@ -102,9 +102,8 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
-  local opts = { noremap = true, silent = true }
 
-  buf_set_keymap('n', 'K', '<CMD>lua require("kaz.utils.lsp").show_documentation()<CR>', opts)
+  buf_set_keymap('n', 'K', '<CMD>lua require("kaz.utils.lsp").show_documentation()<CR>', kb.silent_noremap)
   buf_set_keymap('n', '<leader>rn', '<CMD>lua vim.lsp.buf.rename()<CR>', kb.silent_noremap)
   buf_set_keymap('n', '<leader>ce', '<CMD>LspRestart<CR>', kb.silent_noremap)
   buf_set_keymap('n', '<leader>cf', '<CMD>lua vim.lsp.buf.formatting_sync()<CR>', kb.silent_noremap)
