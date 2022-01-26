@@ -13,6 +13,7 @@ window:
   startup_mode: Windowed
   title: Alacritty
   dynamic_title: false
+  opacity: 1.0
 
 scrolling:
   history: 0
@@ -101,8 +102,6 @@ colors:
 
 bell:
   duration: 0
-
-background_opacity: 1.0
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
