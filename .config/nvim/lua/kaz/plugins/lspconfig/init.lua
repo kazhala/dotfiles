@@ -1,7 +1,6 @@
 local au = require('kaz.utils.au')
 local utils = require('kaz.utils.lsp')
 local kb = require('kaz.utils.kb')
-local lsp_status = require('lsp-status')
 
 vim.lsp.protocol.CompletionItemKind = {
   ' (text)',
@@ -109,17 +108,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>cf', '<CMD>lua vim.lsp.buf.formatting_sync()<CR>', kb.silent_noremap)
   buf_set_keymap('n', ']g', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>', kb.silent_noremap)
   buf_set_keymap('n', '[g', '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>', kb.silent_noremap)
-
-  lsp_status.register_progress()
-  lsp_status.on_attach(client)
 end
 
-local capabilities = lsp_status.capabilities
-
-require('kaz.plugins.lspconfig.pyright').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.sumneko_lua').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.yamlls').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.terraformls').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.tflint').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.bashls').setup(on_attach, capabilities)
-require('kaz.plugins.lspconfig.null-ls').setup(on_attach, capabilities)
+require('kaz.plugins.lspconfig.pyright').setup(on_attach)
+require('kaz.plugins.lspconfig.sumneko_lua').setup(on_attach)
+require('kaz.plugins.lspconfig.yamlls').setup(on_attach)
+require('kaz.plugins.lspconfig.terraformls').setup(on_attach)
+require('kaz.plugins.lspconfig.tflint').setup(on_attach)
+require('kaz.plugins.lspconfig.bashls').setup(on_attach)
+require('kaz.plugins.lspconfig.null-ls').setup(on_attach)

@@ -23,8 +23,12 @@ return require('packer').startup({
         'folke/lua-dev.nvim',
         'ray-x/lsp_signature.nvim',
         'jose-elias-alvarez/null-ls.nvim',
-        'nvim-lua/lsp-status.nvim',
       },
+    })
+    use({
+      'j-hui/fidget.nvim',
+      after = 'nvim-lspconfig',
+      config = [[require('kaz.plugins.fidget')]],
     })
     use({
       'nvim-treesitter/nvim-treesitter',

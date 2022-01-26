@@ -1,9 +1,8 @@
 local M = {}
 
-function M.setup(on_attach, capabilities)
+function M.setup(on_attach)
   require('lspconfig').pyright.setup({
     on_attach = on_attach,
-    capabilities = capabilities,
     flags = { debounce_text_changes = 150 },
     settings = {
       pyright = { disableLanguageServices = false, disableOrganizeImports = true },

@@ -2,7 +2,7 @@ local builtins = require('null-ls').builtins
 
 local M = {}
 
-function M.setup(on_attach, capabilities)
+function M.setup(on_attach)
   require('null-ls').setup({
     sources = {
       builtins.formatting.stylua,
@@ -21,7 +21,6 @@ function M.setup(on_attach, capabilities)
       builtins.code_actions.gitsigns,
     },
     on_attach = on_attach,
-    capabilities = capabilities,
   })
 end
 
