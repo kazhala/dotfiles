@@ -85,12 +85,12 @@ return require('packer').startup({
     })
     use({
       'L3MON4D3/LuaSnip',
-      event = 'InsertEnter',
+      event = { 'BufRead', 'BufNewFile' },
       config = [[require('kaz.plugins.luasnip')]],
     })
     use({
       'windwp/nvim-autopairs',
-      event = 'InsertEnter',
+      event = { 'BufRead', 'BufNewFile' },
       config = [[require('kaz.plugins.nvim-autopairs')]],
     })
     use({
