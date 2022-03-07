@@ -1,6 +1,6 @@
 bat
 cmake
-efm-langserver
+coreutils
 fd
 fzf
 gcc
@@ -10,13 +10,13 @@ go
 grip
 httpie
 jq
+kubernetes-cli
 lsd
 lua
 luarocks
 neovim
 ninja
 node
-packer
 pipx
 python3
 ripgrep
@@ -31,6 +31,7 @@ tflint
 tfsec
 tmux
 tree
+tree-sitter
 vifm
 vivid
 wget
