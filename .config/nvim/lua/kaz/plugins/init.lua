@@ -129,13 +129,16 @@ return require('packer').startup({
     })
     use({
       'kevinhwang91/nvim-bqf',
-      after = 'fzf-lua',
+      after = 'telescope.nvim',
     })
     use({
-      'ibhagwan/fzf-lua',
-      requires = { 'vijaymarupudi/nvim-fzf' },
-      config = [[require('kaz.plugins.fzf-lua')]],
-      cmd = { 'FzfLua' },
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'AcksLd/nvim-neoclip.lua',
+      },
+      config = [[require('kaz.plugins.telescope')]],
+      cmd = { 'Telescope' },
       keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
     })
     use({

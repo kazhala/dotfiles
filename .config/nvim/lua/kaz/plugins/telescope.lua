@@ -4,7 +4,6 @@ local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local conf = require('telescope.config').values
 local make_entry = require('telescope.make_entry')
-local trouble = require('trouble')
 local kb = require('kaz.utils.kb')
 
 local M = {}
@@ -27,7 +26,7 @@ local function smart_enter(prompt_bufnr)
   local picker = action_state.get_current_picker(prompt_bufnr)
   if #picker:get_multi_selection() > 0 then
     actions.send_selected_to_qflist(prompt_bufnr)
-    trouble.toggle({ mode = 'quickfix' })
+    vim.cmd('copen')
   else
     actions.select_default(prompt_bufnr)
     actions.center()
@@ -51,38 +50,53 @@ require('telescope').setup({
       },
     },
   },
-  pickers = { buffers = { mappings = { i = { ['<c-w>'] = actions.delete_buffer } } } },
-})
-
-require('neoclip').setup({
-  keys = {
-    i = {
-      select = '<CR>',
-      paste = '<C-j>',
-      paste_behind = '<C-k>',
-    },
-    n = {
-      select = '<CR>',
-      paste = 'p',
-      paste_behind = 'P',
+  pickers = {
+    buffers = { mappings = { i = { ['<c-w>'] = actions.delete_buffer } } },
+    find_files = {
+      find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
     },
   },
 })
 
-vim.api.nvim_set_keymap('n', '<C-p>', '<CMD>Telescope find_files<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-m>', '<CMD>Telescope buffers<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-g>', '<CMD>Telescope live_grep<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fd', '<CMD>Telescope file_browser<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>ff', '<CMD>Telescope git_status<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fw', '<CMD>Telescope grep_string<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fg', '<CMD>Telescope git_files<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fm', '<CMD>Telescope marks<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fy', '<CMD>Telescope neoclip y<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fh', '<CMD>Telescope help_tags<CR>', kb.silent_noremap)
+require('neoclip').setup({
+  keys = {
+    telescope = {
+      i = {
+        select = '<CR>',
+        paste = '<C-j>',
+        paste_behind = '<C-k>',
+      },
+      n = {
+        select = '<CR>',
+        paste = 'p',
+        paste_behind = 'P',
+      },
+    },
+  },
+})
+
+vim.api.nvim_set_keymap('n', '<C-p>', [[<CMD>Telescope find_files<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-m>', [[<CMD>Telescope buffers<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-g>', [[<CMD>Telescope live_grep<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fs', [[<CMD>Telescope lsp_code_actions<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('v', '<leader>fs', [[<CMD>Telescope lsp_range_code_actions<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fd', [[<CMD>Telescope file_browser<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<CMD>Telescope git_status<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fw', [[<CMD>Telescope grep_string<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fg', [[<CMD>Telescope git_files<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fm', [[<CMD>Telescope marks<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fy', [[<CMD>Telescope neoclip y<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<CMD>Telescope help_tags<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fb', [[<CMD>Telescope diagnostics bufnr=0<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>fn', [[<CMD>Telescope diagnostics<CR>]], kb.silent_noremap)
+
+vim.api.nvim_set_keymap('n', 'gr', [[<CMD>Telescope lsp_references<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', 'gd', [[<CMD>Telescope lsp_definitions<CR>]], kb.silent_noremap)
+
 vim.api.nvim_set_keymap(
   'n',
   '<leader>fa',
-  '<CMD>lua require("kaz.plugins.telescope").dotbare_picker()<CR>',
+  [[<CMD>lua require("kaz.plugins.telescope").dotbare_picker()<CR>]],
   kb.silent_noremap
 )
 
