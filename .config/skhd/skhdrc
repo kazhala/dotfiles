@@ -32,7 +32,7 @@ shift + alt - j : yabai -m window --focus south
 shift + alt - k : yabai -m window --focus north
 shift + alt - l : yabai -m window --focus east
 shift + alt - g : yabai -m window --focus first
-shift + alt - tab : yabai -m window --focus recent
+shift + alt - a : yabai -m window --focus recent
 shift + alt - p : yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus last
 shift + alt - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
 
