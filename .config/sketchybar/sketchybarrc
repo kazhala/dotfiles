@@ -1,0 +1,98 @@
+#!/usr/bin/env sh
+PLUGINS="$HOME/.config/sketchybar/plugins"
+
+############## BAR ##############
+sketchybar -m --bar height=25 \
+	blur_radius=50 \
+	position=top \
+	padding_left=10 \
+	padding_right=10 \
+	color=0x44000000
+
+############## GLOBAL DEFAULTS ##############
+sketchybar -m --default updates=when_shown \
+	drawing=on \
+	cache_scripts=on \
+	icon.font="MesloLGS Nerd Font Mono:Bold:16.0" \
+	icon.color=0xffffffff \
+	label.font="MesloLGS Nerd Font Mono:Bold:14.0" \
+	label.color=0xffffffff \
+	icon.highlight_color=0xff48aa2a
+
+############## SPACE DEFAULTS ##############
+sketchybar -m --default label.padding_left=2 \
+	label.padding_right=2 \
+	icon.padding_left=8 \
+	label.padding_right=8
+
+############## PRIMARY DISPLAY SPACES ##############
+sketchybar -m --add space home left \
+	--set home associated_display=1 \
+	associated_space=1 \
+	icon= \
+	\
+	--add space tex left \
+	--set tex associated_display=1 \
+	associated_space=2 \
+	icon= \
+	\
+	--add space code left \
+	--set code associated_display=1 \
+	associated_space=3 \
+	icon= \
+	\
+	--add space web left \
+	--set web associated_display=1 \
+	associated_space=4 \
+	icon= \
+	\
+	--add space reserve left \
+	--set reserve associated_display=1 \
+	associated_space=5 \
+	icon= \
+	\
+	--add space chat left \
+	--set chat associated_display=1 \
+	associated_space=6 \
+	icon=
+
+############## SECONDARY DISPLAY SPACES ##############
+sketchybar -m --add space misc left \
+	--set misc associated_display=2 \
+	associated_space=7 \
+	icon=
+
+############## ITEM DEFAULTS ###############
+sketchybar -m --default label.padding_left=2 \
+	icon.padding_right=2 \
+	icon.padding_left=6 \
+	label.padding_right=6
+
+############## RIGHT ITEMS ##############
+sketchybar -m --add item date right \
+	--set date \
+	update_freq=60 \
+	background.color=0xffe8e8e9 \
+	background.corner_radius=4 \
+	label.color=0xff000000 \
+	icon.padding_right=0 \
+	label.padding_left=0 \
+	background.height=19 \
+	label.font="MesloLGS Nerd Font Mono:Bold:12" \
+	script="$PLUGINS/date.sh" \
+	click_script=""
+
+sketchybar -m --add item battery right \
+	--set battery \
+	update_freq=10 \
+	label.padding_right=12 \
+	script="$PLUGINS/battery.sh"
+
+sketchybar -m --add item sound right \
+	--set sound \
+	update_freq=3 \
+	script="$PLUGINS/volume.sh"
+
+sketchybar -m --update
+
+echo "sketchybar configuration loaded.."
