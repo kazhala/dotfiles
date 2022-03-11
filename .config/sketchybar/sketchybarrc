@@ -3,36 +3,47 @@ PLUGINS="$HOME/.config/sketchybar/plugins"
 
 ############## BAR ##############
 sketchybar -m --bar height=25 \
-	blur_radius=50 \
+	blur_radius=0 \
 	position=top \
-	padding_left=10 \
-	padding_right=10 \
-	color=0x44000000
+	padding_left=0 \
+	padding_right=0 \
+	margin=0 \
+	corner_radius=0 \
+	color=0x00000000 \
+	border_width=0 \
+	border_color=0xff2E3440 \
+	display=main
 
 ############## GLOBAL DEFAULTS ##############
 sketchybar -m --default updates=when_shown \
 	drawing=on \
 	cache_scripts=on \
 	icon.font="MesloLGS Nerd Font Mono:Bold:16.0" \
-	icon.color=0xffffffff \
-	label.font="MesloLGS Nerd Font Mono:Bold:14.0" \
-	label.color=0xffffffff \
-	icon.highlight_color=0xff48aa2a
+	icon.color=0xffECEFF4 \
+	icon.highlight_color=0xffA3BE8C \
+	label.font="MesloLGS Nerd Font Mono:Bold:12.0" \
+	label.color=0xffECEFF4
 
 ############## SPACE DEFAULTS ##############
-sketchybar -m --default label.padding_left=2 \
-	label.padding_right=2 \
-	icon.padding_left=8 \
-	label.padding_right=8
+sketchybar -m --default label.padding_left=0 \
+	label.padding_right=0 \
+	icon.padding_left=6 \
+	icon.padding_right=6
 
 ############## PRIMARY DISPLAY SPACES ##############
+sketchybar -m --add item logo left \
+	--set logo icon= \
+	background.color=0xffBF616A \
+	background.corner_radius=4
+
 sketchybar -m --add space home left \
 	--set home associated_display=1 \
 	associated_space=1 \
 	icon= \
+	icon.padding_left=9 \
 	\
-	--add space tex left \
-	--set tex associated_display=1 \
+	--add space video left \
+	--set video associated_display=1 \
 	associated_space=2 \
 	icon= \
 	\
@@ -63,24 +74,25 @@ sketchybar -m --add space misc left \
 	icon=
 
 ############## ITEM DEFAULTS ###############
-sketchybar -m --default label.padding_left=2 \
-	icon.padding_right=2 \
+sketchybar -m --default label.padding_left=0 \
+	label.padding_right=0 \
 	icon.padding_left=6 \
-	label.padding_right=6
+	icon.padding_right=6
 
 ############## RIGHT ITEMS ##############
 sketchybar -m --add item date right \
 	--set date \
 	update_freq=60 \
-	background.color=0xffe8e8e9 \
-	background.corner_radius=4 \
-	label.color=0xff000000 \
-	icon.padding_right=0 \
+	label.padding_right=6 \
 	label.padding_left=0 \
-	background.height=19 \
-	label.font="MesloLGS Nerd Font Mono:Bold:12" \
-	script="$PLUGINS/date.sh" \
-	click_script=""
+	icon.padding_left=0 \
+	icon.padding_right=3 \
+	script="$PLUGINS/date.sh"
+
+sketchybar -m --add item date_icon right \
+	--set date_icon icon= \
+	background.color=0xffBF616A \
+	background.corner_radius=4
 
 sketchybar -m --add item battery right \
 	--set battery \
@@ -92,6 +104,34 @@ sketchybar -m --add item sound right \
 	--set sound \
 	update_freq=3 \
 	script="$PLUGINS/volume.sh"
+
+sketchybar -m --add item network right \
+	--set network \
+	update_freq=3 \
+	script="$PLUGINS/network.sh"
+
+sketchybar --add bracket primary_spaces \
+	logo \
+	home \
+	video \
+	code \
+	web \
+	reserve \
+	chat \
+	--set primary_spaces \
+	background.color=0xff0c131f \
+	background.border_color=0xffa062f6 \
+	background.border_width=2 \
+	background.corner_radius=4
+
+sketchybar --add bracket _date \
+	date \
+	date_icon \
+	--set _date \
+	background.color=0xff0c131f \
+	background.border_color=0xffa062f6 \
+	background.border_width=2 \
+	background.corner_radius=4
 
 sketchybar -m --update
 

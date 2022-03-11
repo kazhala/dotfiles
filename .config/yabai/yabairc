@@ -11,7 +11,7 @@ yabai -m config mouse_action2 move
 # -- window -------------------------------------------------------------------
 
 yabai -m config window_border off
-yabai -m config window_border_width 3
+yabai -m config window_border_width 4
 yabai -m config active_window_border_color 0x8081a1c1
 yabai -m config normal_window_border_color 0x00ffffff
 yabai -m config window_placement second_child
@@ -29,11 +29,13 @@ yabai -m config normal_window_opacity 0.90
 
 yabai -m config layout bsp
 yabai -m config --space 1 layout float
-yabai -m config top_padding 26
+yabai -m config --space 2 layout stack
+yabai -m config top_padding 0
 yabai -m config bottom_padding 0
 yabai -m config left_padding 0
 yabai -m config right_padding 0
-yabai -m config window_gap 7
+yabai -m config external_bar main:26:0
+yabai -m config window_gap 8
 
 # -- rules ---------------------------------------------------------------------
 
