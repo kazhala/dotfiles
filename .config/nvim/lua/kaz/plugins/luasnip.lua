@@ -1,6 +1,19 @@
 local ls = require('luasnip')
 
 ls.snippets = {
+  sh = {
+    ls.snippet('dd', {
+      ls.text_node('# -- '),
+      ls.insert_node(1, ''),
+      ls.text_node(' '),
+      ls.function_node(function(args, snips, user_arg_1)
+        return string.rep('-', 74 - string.len(args[1][1]))
+      end, {
+        1,
+      }, {}),
+    }),
+  },
+
   lua = {
     ls.snippet('da', {
       ls.text_node('---@param '),
