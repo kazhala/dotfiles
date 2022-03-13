@@ -30,11 +30,11 @@ yabai -m config normal_window_opacity 0.90
 yabai -m config layout bsp
 yabai -m config --space 1 layout float
 yabai -m config --space 2 layout stack
-yabai -m config top_padding 0
-yabai -m config bottom_padding 0
-yabai -m config left_padding 0
-yabai -m config right_padding 0
-yabai -m config external_bar main:26:0
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config external_bar main:34:0
 yabai -m config window_gap 8
 
 # -- rules ---------------------------------------------------------------------
