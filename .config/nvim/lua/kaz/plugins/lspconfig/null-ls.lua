@@ -17,7 +17,9 @@ function M.setup(on_attach)
       }),
       builtins.formatting.isort,
       builtins.formatting.black,
-      builtins.diagnostics.shellcheck.with({ diagnostics_format = '#{m} [#{c}]' }),
+      builtins.diagnostics.shellcheck.with({
+        diagnostics_format = '#{m} [#{c}]',
+      }),
       builtins.code_actions.gitsigns,
     },
     on_attach = on_attach,

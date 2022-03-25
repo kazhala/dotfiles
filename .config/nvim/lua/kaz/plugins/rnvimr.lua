@@ -1,7 +1,7 @@
 local kb = require('kaz.utils.kb')
 
-vim.api.nvim_set_keymap('n', '<C-s>', '<CMD>RnvimrToggle<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('t', '<C-s>', '<CMD>RnvimrToggle<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-b>', '<CMD>RnvimrToggle<CR>', kb.silent_noremap)
+vim.api.nvim_set_keymap('t', '<C-b>', '<CMD>RnvimrToggle<CR>', kb.silent_noremap)
 
 vim.g.rnvimr_layout = {
   relative = 'editor',

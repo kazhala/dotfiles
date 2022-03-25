@@ -1,5 +1,4 @@
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 
 local completion_menu = {
   nvim_lsp = '[]',
@@ -43,11 +42,6 @@ cmp.setup({
       vim_item.kind = completion_kind[vim_item.kind]
       vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
       return vim_item
-    end,
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
     end,
   },
   documentation = {

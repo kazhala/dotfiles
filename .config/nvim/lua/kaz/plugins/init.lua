@@ -1,7 +1,6 @@
 return require('packer').startup({
   function(use)
     use({ 'wbthomason/packer.nvim' })
-    use('Vimjas/vim-python-pep8-indent')
     use({
       'andersevenrud/nordic.nvim',
       config = [[require('kaz.colors')]],
@@ -15,6 +14,10 @@ return require('packer').startup({
     use({
       'RRethy/vim-illuminate',
       config = [[require('kaz.plugins.vim-illuminate')]],
+    })
+    use({
+      'machakann/vim-sandwich',
+      config = [[require('kaz.plugins.vim-sandwich')]],
     })
     use({
       'neovim/nvim-lspconfig',
@@ -44,6 +47,10 @@ return require('packer').startup({
       config = [[require('kaz.plugins.nvim-web-devicons')]],
     })
     use({
+      'Vimjas/vim-python-pep8-indent',
+      ft = 'python',
+    })
+    use({
       'lukas-reineke/indent-blankline.nvim',
       event = { 'BufRead', 'BufNewFile' },
       after = 'nvim-treesitter',
@@ -67,7 +74,7 @@ return require('packer').startup({
     })
     use({
       'lewis6991/gitsigns.nvim',
-      event = { 'BufRead', 'BufNewFile' },
+      keys = { { 'n', '<leader>h' } },
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('kaz.plugins.gitsigns')]],
     })
@@ -77,11 +84,10 @@ return require('packer').startup({
         { 'hrsh7th/cmp-path', after = { 'nvim-cmp' } },
         { 'hrsh7th/cmp-buffer', after = { 'nvim-cmp' } },
         { 'hrsh7th/cmp-nvim-lsp', after = { 'nvim-cmp' } },
-        { 'saadparwaiz1/cmp_luasnip', after = { 'nvim-cmp' } },
         { 'f3fora/cmp-spell', after = { 'nvim-cmp' } },
       },
-      after = { 'LuaSnip' },
       config = [[require('kaz.plugins.nvim-cmp')]],
+      after = { 'LuaSnip' },
     })
     use({
       'L3MON4D3/LuaSnip',
@@ -99,33 +105,24 @@ return require('packer').startup({
       config = [[require('kaz.plugins.Comment')]],
     })
     use({
-      'machakann/vim-sandwich',
-      keys = { { 'n', 's' }, { 'v', 's' } },
-      config = [[require('kaz.plugins.vim-sandwich')]],
-    })
-    use({
       'ggandor/lightspeed.nvim',
       keys = { { 'n', 'r' }, { 'n', 'R' }, { 'n', 'f' }, { 'n', 'F' }, { 'n', 't' }, { 'n', 'T' } },
       config = [[require('kaz.plugins.lightspeed')]],
     })
     use({
       'numToStr/Navigator.nvim',
+      commit = '6bfcf7d',
       config = [[require('kaz.plugins.navigator')]],
     })
     use({
       'kevinhwang91/rnvimr',
-      keys = { { 'n', '<C-s>' } },
+      keys = { { 'n', '<C-b>' } },
       config = [[require('kaz.plugins.rnvimr')]],
     })
     use({
       'akinsho/toggleterm.nvim',
       keys = { { 'n', '<C-f>' } },
       config = [[require('kaz.plugins.toggleterm')]],
-    })
-    use({
-      'TimUntersberger/neogit',
-      keys = { { 'n', '<leader>g' } },
-      config = [[require('kaz.plugins.neogit')]],
     })
     use({
       'kevinhwang91/nvim-bqf',
@@ -142,16 +139,15 @@ return require('packer').startup({
       keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
     })
     use({
-      'folke/zen-mode.nvim',
-      config = [[require('kaz.plugins.zen-mode')]],
-      keys = { { 'n', '<C-t>' } },
-      cmd = { 'ZenMode' },
-    })
-    use({
       'pianocomposer321/yabs.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('kaz.plugins.yabs')]],
       keys = { { 'n', '<leader>y' } },
+    })
+    use({
+      'nvim-neorg/neorg',
+      config = [[require('kaz.plugins.neorg')]],
+      requires = 'nvim-lua/plenary.nvim',
     })
   end,
 
