@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-case "$(yabai -m query --spaces --display | jq -r 'map(select(."focused" == 1))[-1].type')" in
+case "$(yabai -m query --spaces --display | jq -r 'map(select(."has-focus" == true))[-1].type')" in
 bsp)
 	sketchybar -m --set "$NAME" icon="  "
 	;;
