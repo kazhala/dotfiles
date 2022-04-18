@@ -27,6 +27,7 @@ vim.opt.shortmess:append('s')
 vim.opt.swapfile = false
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.pumheight = 20
+vim.opt.laststatus = 3
 
 vim.g.floating_window_border = {
   '╭',
