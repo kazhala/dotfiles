@@ -44,8 +44,8 @@ cmp.setup({
       return vim_item
     end,
   },
-  documentation = {
-    border = vim.g.floating_window_border,
+  window = {
+    documentation = cmp.config.window.bordered(),
   },
   mapping = {
     ['<Tab>'] = cmp.mapping.select_next_item(),
