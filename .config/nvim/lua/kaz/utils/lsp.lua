@@ -15,7 +15,8 @@ function M.format_async(err, result, ctx)
 
   if not vim.api.nvim_buf_get_option(ctx.bufnr, 'modified') then
     local view = vim.fn.winsaveview()
-    vim.lsp.util.apply_text_edits(result, ctx.bufnr)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    vim.lsp.util.apply_text_edits(result, ctx.bufnr, client.offset_encoding)
     vim.fn.winrestview(view)
 
     if ctx.bufnr == vim.api.nvim_get_current_buf() then
