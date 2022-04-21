@@ -80,7 +80,6 @@ vim.api.nvim_set_keymap('n', '<C-m>', [[<CMD>Telescope buffers<CR>]], kb.silent_
 vim.api.nvim_set_keymap('n', '<C-g>', [[<CMD>Telescope live_grep<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<CMD>Telescope lsp_code_actions<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('v', '<leader>fs', [[<CMD>Telescope lsp_range_code_actions<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fd', [[<CMD>Telescope file_browser<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<CMD>Telescope git_status<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<CMD>Telescope grep_string<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<CMD>Telescope git_files<CR>]], kb.silent_noremap)
