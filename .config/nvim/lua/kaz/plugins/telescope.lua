@@ -76,7 +76,7 @@ require('neoclip').setup({
 })
 
 vim.api.nvim_set_keymap('n', '<C-p>', [[<CMD>Telescope find_files<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-m>', [[<CMD>Telescope buffers<CR>]], kb.silent_noremap)
+vim.api.nvim_set_keymap('n', '<C-s>', [[<CMD>Telescope buffers<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<C-g>', [[<CMD>Telescope live_grep<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<CMD>Telescope lsp_code_actions<CR>]], kb.silent_noremap)
 vim.api.nvim_set_keymap('v', '<leader>fs', [[<CMD>Telescope lsp_range_code_actions<CR>]], kb.silent_noremap)

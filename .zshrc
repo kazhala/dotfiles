@@ -126,6 +126,7 @@ alias rm="rm -v"
 alias grep="grep --color=auto"
 alias fs="bmux"
 alias tf="terraform"
+alias svenv="source venv/bin/activate"
 
 # -- SYSTEM ENV ----------------------------------------------------------------
 
