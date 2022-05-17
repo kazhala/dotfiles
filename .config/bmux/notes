@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+export BMUX_SESSION_NAME="notes"
+export BMUX_WIN_2_PATH="$HOME/Programming/notes"
+export BMUX_WIN_3_PATH="$HOME/Programming/gtd"
+
+tmuxb session
+
+tmuxb window 1 "work" "$BMUX_WIN_2_PATH"
+tmuxb window 2 "gtd" "$BMUX_WIN_3_PATH"
+
+tmuxb focus
