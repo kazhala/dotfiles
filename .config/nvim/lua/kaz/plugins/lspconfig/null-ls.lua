@@ -17,6 +17,9 @@ function M.setup(on_attach)
       }),
       builtins.formatting.isort,
       builtins.formatting.black,
+      builtins.formatting.djhtml.with({
+        extra_args = { '-t', '2' },
+      }),
       builtins.diagnostics.shellcheck.with({
         diagnostics_format = '#{m} [#{c}]',
       }),
