@@ -1,13 +1,14 @@
 local M = {}
 
-function M.buf_set_keymap(...)
+function M.buf_set_keymap(mode, lhs, rhs, opts)
   local bufnr = vim.fn.bufnr()
-  vim.api.nvim_buf_set_keymap(bufnr, ...)
+  opts = vim.tbl_extend('force', opts, { buffer = bufnr })
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 function M.map_missing(mode, lhs, rhs, opts)
   if vim.fn.mapcheck(lhs) == '' then
-    vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
 

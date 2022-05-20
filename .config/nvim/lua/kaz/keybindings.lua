@@ -1,6 +1,7 @@
 local kb = require('kaz.utils.kb')
 local window = require('kaz.utils.window')
 local qf = require('kaz.utils.qf')
+local github = require('kaz.utils.github')
 
 vim.g.mapleader = ' '
 
@@ -39,4 +40,8 @@ vim.keymap.set('n', '<M-h>', function()
 end)
 vim.keymap.set('n', '<leader>dd', function()
   qf.toggle_qf()
+end)
+
+vim.keymap.set('n', '<leader>go', function()
+  github.current_file()
 end)
