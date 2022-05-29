@@ -3,6 +3,7 @@ local cli = require('kaz.utils.cli')
 local M = {}
 
 local REMOTE = 'https://github.com'
+local SSH_PATTERN = '.*:(.+).git'
 
 function M.current_file(branch, line)
   vim.validate({
@@ -20,8 +21,11 @@ function M.current_file(branch, line)
 
   if remote_pattern:match(REMOTE) then
     base_url = remote_pattern:match('(.+).git')
+  elseif remote_pattern:match(SSH_PATTERN) then
+    base_url = REMOTE .. '/' .. remote_pattern:match(SSH_PATTERN)
   else
-    base_url = REMOTE .. '/' .. remote_pattern:match('.*:(.+).git')
+    print('Not in git directory')
+    return
   end
 
   if line then
