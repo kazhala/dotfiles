@@ -5,6 +5,10 @@ local M = {}
 local REMOTE = 'https://github.com'
 local SSH_PATTERN = '.*:(.+).git'
 
+function M.relative_git_filename()
+  return cli.exec('git ls-files --full-name ' .. vim.api.nvim_buf_get_name(0)):gsub('%s+', '')
+end
+
 function M.current_file(branch, line)
   vim.validate({
     branch = { branch, 'string', true },
@@ -16,7 +20,7 @@ function M.current_file(branch, line)
   branch = branch or cli.exec('git branch --show-current'):gsub('%s+', '')
   line = line or false
 
-  filename = cli.exec('git ls-files --full-name ' .. vim.api.nvim_buf_get_name(0)):gsub('%s+', '')
+  filename = M.relative_git_filename()
   remote_pattern = cli.exec('git remote get-url origin')
 
   if remote_pattern:match(REMOTE) then

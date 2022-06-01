@@ -2,6 +2,7 @@ local kb = require('kaz.utils.kb')
 local window = require('kaz.utils.window')
 local qf = require('kaz.utils.qf')
 local github = require('kaz.utils.github')
+local filename = require('kaz.utils.filename')
 
 vim.g.mapleader = ' '
 
@@ -44,4 +45,7 @@ end)
 
 vim.keymap.set('n', '<leader>go', function()
   github.current_file()
+end)
+vim.keymap.set('n', '<leader>gc', function()
+  filename.copy()
 end)
