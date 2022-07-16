@@ -271,6 +271,10 @@ _run_ffd_d() {
   zle accept-line
 }
 
+pullhead () {
+  git pull origin "$(git rev-parse --abbrev-ref HEAD)"
+}
+
 # -- KEYBINDING ----------------------------------------------------------------
 
 bindkey -v
