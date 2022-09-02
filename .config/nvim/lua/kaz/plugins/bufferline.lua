@@ -3,15 +3,15 @@ local colors = require('nordic.palette')
 
 require('bufferline').setup({
   highlights = {
-    fill = { guibg = colors.bright_black },
-    buffer_selected = { gui = 'bold' },
-    diagnostic_selected = { gui = 'bold' },
-    info_selected = { gui = 'bold' },
-    info_diagnostic_selected = { gui = 'bold' },
-    warning_selected = { gui = 'bold' },
-    warning_diagnostic_selected = { gui = 'bold' },
-    error_selected = { gui = 'bold' },
-    error_diagnostic_selected = { gui = 'bold' },
+    fill = { bg = colors.bright_black },
+    buffer_selected = { bold = true },
+    diagnostic_selected = { bold = true },
+    info_selected = { bold = true },
+    info_diagnostic_selected = { bold = true },
+    warning_selected = { bold = true },
+    warning_diagnostic_selected = { bold = true },
+    error_selected = { bold = true },
+    error_diagnostic_selected = { bold = true },
   },
   options = {
     show_close_icon = false,
