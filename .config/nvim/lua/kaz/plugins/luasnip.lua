@@ -77,7 +77,5 @@ ls.add_snippets('python', {
   key = 'python',
 })
 
-vim.api.nvim_set_keymap('i', '<c-l>', '<Plug>luasnip-expand-or-jump', { silent = true })
-vim.api.nvim_set_keymap('s', '<c-l>', '<Plug>luasnip-expand-or-jump', { silent = true })
-vim.api.nvim_set_keymap('i', '<c-h>', '<Plug>luasnip-jump-prev', { silent = true })
-vim.api.nvim_set_keymap('s', '<c-h>', '<Plug>luasnip-jump-prev', { silent = true })
+vim.keymap.set({ 's', 'i' }, '<c-l>', '<Plug>luasnip-expand-or-jump')
+vim.keymap.set({ 's', 'i' }, '<c-h>', '<Plug>luasnip-jump-prev')

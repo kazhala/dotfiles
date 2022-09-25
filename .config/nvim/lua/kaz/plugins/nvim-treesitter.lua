@@ -81,4 +81,4 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<leader>ch', ':write | edit | TSBufEnable highlighting<CR>', kb.silent_noremap)
+vim.keymap.set('n', '<leader>ch', ':write | edit | TSBufEnable highlighting<CR>')

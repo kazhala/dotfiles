@@ -75,28 +75,23 @@ require('neoclip').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<C-p>', [[<CMD>Telescope find_files<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-s>', [[<CMD>Telescope buffers<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<C-g>', [[<CMD>Telescope live_grep<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fs', [[<CMD>Telescope lsp_code_actions<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('v', '<leader>fs', [[<CMD>Telescope lsp_range_code_actions<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<CMD>Telescope git_status<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fw', [[<CMD>Telescope grep_string<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fg', [[<CMD>Telescope git_files<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fm', [[<CMD>Telescope marks<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fy', [[<CMD>Telescope neoclip y<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fh', [[<CMD>Telescope help_tags<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fb', [[<CMD>Telescope diagnostics bufnr=0<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>fn', [[<CMD>Telescope diagnostics<CR>]], kb.silent_noremap)
+vim.keymap.set('n', '<C-p>', [[<CMD>Telescope find_files<CR>]])
+vim.keymap.set('n', '<C-s>', [[<CMD>Telescope buffers<CR>]])
+vim.keymap.set('n', '<C-g>', [[<CMD>Telescope live_grep<CR>]])
+vim.keymap.set('n', '<leader>fs', [[<CMD>Telescope lsp_code_actions<CR>]])
+vim.keymap.set('v', '<leader>fs', [[<CMD>Telescope lsp_range_code_actions<CR>]])
+vim.keymap.set('n', '<leader>ff', [[<CMD>Telescope git_status<CR>]])
+vim.keymap.set('n', '<leader>fw', [[<CMD>Telescope grep_string<CR>]])
+vim.keymap.set('n', '<leader>fg', [[<CMD>Telescope git_files<CR>]])
+vim.keymap.set('n', '<leader>fm', [[<CMD>Telescope marks<CR>]])
+vim.keymap.set('n', '<leader>fy', [[<CMD>Telescope neoclip y<CR>]])
+vim.keymap.set('n', '<leader>fh', [[<CMD>Telescope help_tags<CR>]])
+vim.keymap.set('n', '<leader>fb', [[<CMD>Telescope diagnostics bufnr=0<CR>]])
+vim.keymap.set('n', '<leader>fn', [[<CMD>Telescope diagnostics<CR>]])
 
-vim.api.nvim_set_keymap('n', 'gr', [[<CMD>Telescope lsp_references<CR>]], kb.silent_noremap)
-vim.api.nvim_set_keymap('n', 'gd', [[<CMD>Telescope lsp_definitions<CR>]], kb.silent_noremap)
+vim.keymap.set('n', 'gr', [[<CMD>Telescope lsp_references<CR>]])
+vim.keymap.set('n', 'gd', [[<CMD>Telescope lsp_definitions<CR>]])
 
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fa',
-  [[<CMD>lua require("kaz.plugins.telescope").dotbare_picker()<CR>]],
-  kb.silent_noremap
-)
+vim.keymap.set('n', '<leader>fa', [[<CMD>lua require("kaz.plugins.telescope").dotbare_picker()<CR>]])
 
 return M

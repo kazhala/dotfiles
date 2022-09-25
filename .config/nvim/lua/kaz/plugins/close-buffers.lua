@@ -1,6 +1,6 @@
-local kb = require('kaz.utils.kb')
+local close_buffers = require('close_buffers')
 
-require('close_buffers').setup({
+close_buffers.setup({
   preserve_window_layout = { 'this', 'other' },
   next_buffer_cmd = function(windows)
     require('bufferline').cycle(-1)
@@ -12,33 +12,18 @@ require('close_buffers').setup({
   end,
 })
 
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>th',
-  [[<CMD>lua require('close_buffers').delete({type = 'hidden'})<CR>]],
-  kb.silent_noremap
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>tu',
-  [[<CMD>lua require('close_buffers').delete({type = 'nameless'})<CR>]],
-  kb.silent_noremap
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>to',
-  [[<CMD>lua require('close_buffers').delete({type = 'other'})<CR>]],
-  kb.silent_noremap
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>ta',
-  [[<CMD>lua require('close_buffers').delete({type = 'all'})<CR>]],
-  kb.silent_noremap
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>tc',
-  [[<CMD>lua require('close_buffers').delete({type = 'this'})<CR>]],
-  kb.silent_noremap
-)
+vim.keymap.set('n', '<leader>th', function()
+  close_buffers.delete({ type = 'hidden' })
+end)
+vim.keymap.set('n', '<leader>tu', function()
+  close_buffers.delete({ type = 'nameless' })
+end)
+vim.keymap.set('n', '<leader>to', function()
+  close_buffers.delete({ type = 'other' })
+end)
+vim.keymap.set('n', '<leader>ta', function()
+  close_buffers.delete({ type = 'all' })
+end)
+vim.keymap.set('n', '<leader>tc', function()
+  close_buffers.delete({ type = 'this' })
+end)

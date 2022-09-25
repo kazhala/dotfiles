@@ -1,4 +1,3 @@
-local kb = require('kaz.utils.kb')
 local colors = require('nordic.palette')
 
 require('bufferline').setup({
@@ -31,10 +30,10 @@ require('bufferline').setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', 'gb', '<CMD>BufferLinePick<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', ']b', '<CMD>BufferLineMoveNext<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', '[b', '<CMD>BufferLineMovePrev<CR>', kb.silent_noremap)
-vim.api.nvim_set_keymap('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>', kb.silent_noremap)
+vim.keymap.set('n', 'gb', '<CMD>BufferLinePick<CR>')
+vim.keymap.set('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
+vim.keymap.set('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
+vim.keymap.set('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
+vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
+vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
+vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')

@@ -11,4 +11,4 @@ MUtils.completion_confirm = function()
   return npairs.autopairs_cr()
 end
 
-vim.api.nvim_set_keymap('i', '<cr>', 'v:lua.MUtils.completion_confirm()', kb.expr_noremap)
+vim.keymap.set('i', '<cr>', 'v:lua.MUtils.completion_confirm()', { expr = true })
