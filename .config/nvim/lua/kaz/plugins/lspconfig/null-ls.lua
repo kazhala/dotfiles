@@ -1,8 +1,9 @@
 local builtins = require('null-ls').builtins
+local augroup = vim.api.nvim_create_augroup('LspFormatOnSave', {})
 
 local M = {}
 
-function M.setup(on_attach)
+function M.setup()
   require('null-ls').setup({
     sources = {
       builtins.formatting.stylua,
@@ -25,7 +26,18 @@ function M.setup(on_attach)
       }),
       builtins.code_actions.gitsigns,
     },
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      if client.supports_method('textDocument/formatting') then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
+      end
+    end,
   })
 end
 

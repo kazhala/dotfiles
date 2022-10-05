@@ -275,6 +275,10 @@ pullhead () {
   git pull origin "$(git rev-parse --abbrev-ref HEAD)"
 }
 
+pushhead() {
+  git push origin "$(git rev-parse --abbrev-ref HEAD)" -u
+}
+
 # -- KEYBINDING ----------------------------------------------------------------
 
 bindkey -v

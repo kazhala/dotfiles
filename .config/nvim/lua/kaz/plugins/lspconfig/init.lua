@@ -82,21 +82,7 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  if client.name ~= 'null-ls' then
-    client.resolved_capabilities.document_formatting = false
-  end
-
-  if client.resolved_capabilities.document_formatting then
-    au.augroup('LspFormatOnSave', {
-      {
-        event = 'BufWritePost',
-        pattern = [[<buffer>]],
-        callback = function()
-          vim.lsp.buf.formatting()
-        end,
-      },
-    }, true)
-  end
+  client.server_capabilities.documentFormattingProvider = false
 
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -116,4 +102,4 @@ require('kaz.plugins.lspconfig.yamlls').setup(on_attach)
 require('kaz.plugins.lspconfig.terraformls').setup(on_attach)
 require('kaz.plugins.lspconfig.tflint').setup(on_attach)
 require('kaz.plugins.lspconfig.bashls').setup(on_attach)
-require('kaz.plugins.lspconfig.null-ls').setup(on_attach)
+require('kaz.plugins.lspconfig.null-ls').setup()

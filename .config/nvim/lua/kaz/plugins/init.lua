@@ -149,7 +149,6 @@ return require('packer').startup({
       'nvim-neorg/neorg',
       config = [[require('kaz.plugins.neorg')]],
       requires = 'nvim-lua/plenary.nvim',
-      tag = '0.0.12',
     })
   end,
 

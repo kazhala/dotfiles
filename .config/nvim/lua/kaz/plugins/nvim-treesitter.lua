@@ -1,5 +1,3 @@
-local kb = require('kaz.utils.kb')
-
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 parser_configs.norg_meta = {
