@@ -24,7 +24,7 @@ return require('packer').startup({
       'neovim/nvim-lspconfig',
       config = [[require('kaz.plugins.lspconfig')]],
       requires = {
-        'folke/lua-dev.nvim',
+        'folke/neodev.nvim',
         'ray-x/lsp_signature.nvim',
         'jose-elias-alvarez/null-ls.nvim',
       },

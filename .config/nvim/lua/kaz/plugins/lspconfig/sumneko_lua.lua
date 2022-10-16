@@ -3,7 +3,8 @@ local util = require('lspconfig').util
 local M = {}
 
 function M.setup(on_attach)
-  require('lspconfig').sumneko_lua.setup(require('lua-dev').setup({
+  require('neodev').setup({})
+  require('lspconfig').sumneko_lua.setup({
     lspconfig = {
       on_attach = on_attach,
       root_dir = util.root_pattern('.git', 'init.lua'),
@@ -15,7 +16,7 @@ function M.setup(on_attach)
         },
       },
     },
-  }))
+  })
 end
 
 return M
