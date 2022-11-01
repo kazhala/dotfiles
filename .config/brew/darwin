@@ -38,7 +38,7 @@ sqlite
 mysql-client
 minikube
 lua-language-server
-kubectl-argo-rollouts
+argoproj/tap/kubectl-argo-rollouts
 helm
 crane
 bazel
