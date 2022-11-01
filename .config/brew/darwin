@@ -16,7 +16,6 @@ lua
 luarocks
 neovim
 ninja
-node
 pipx
 python3
 ripgrep
@@ -35,3 +34,11 @@ tree-sitter
 vifm
 vivid
 wget
+sqlite
+mysql-client
+minikube
+lua-language-server
+kubectl-argo-rollouts
+helm
+crane
+bazel
