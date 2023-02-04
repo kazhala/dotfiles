@@ -15,6 +15,8 @@ highlight! link TelescopeMultiSelection SpecialComment
 
 highlight NormalFloat guibg=NONE
 highlight CmpItemMenu guibg=NONE
+
+highlight! link IlluminatedWordText CursorLine
 ]])
 
 vim.cmd([[highlight FloatBorder gui=bold guibg=NONE guifg=]] .. colors.gray)

@@ -3,6 +3,7 @@ command! -nargs=1 Unload lua require('kaz.utils.unload').run(<q-args>)
 command! -nargs=1 UnloadAuto lua require('kaz.utils.unload').on_save(<q-args>)
 command! PyUtest !python -m unittest %:p
 command! PyTest !pytest %:p
+command! LspClearLogs lua require('kaz.utils.lsp').clear_logs()
 ]])
 
 local function get_put_objects(...)

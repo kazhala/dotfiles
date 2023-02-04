@@ -27,6 +27,11 @@ require('bufferline').setup({
       end
       return ''
     end,
+    custom_filter = function(buf_number, buf_numbers)
+      if vim.bo[buf_number].filetype ~= 'oil' then
+        return true
+      end
+    end,
   },
 })
 

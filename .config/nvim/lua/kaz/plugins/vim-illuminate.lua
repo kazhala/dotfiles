@@ -1,2 +1,4 @@
-vim.g.Illuminate_delay = 300
-vim.g.Illuminate_highlightUnderCursor = 0
+require('illuminate').configure({
+  delay = 300,
+  under_cursor = false,
+})

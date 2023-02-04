@@ -10,7 +10,7 @@ yabai -m config mouse_action2 move
 
 # -- window -------------------------------------------------------------------
 
-yabai -m config window_border on
+yabai -m config window_border off
 yabai -m config window_border_width 1
 yabai -m config window_border_radius 0
 yabai -m config window_border_hidpi off

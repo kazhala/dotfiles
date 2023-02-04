@@ -25,4 +25,9 @@ function M.format_async(err, result, ctx)
   end
 end
 
+function M.clear_logs()
+  local log_file = vim.lsp.get_log_path()
+  os.remove(log_file)
+end
+
 return M

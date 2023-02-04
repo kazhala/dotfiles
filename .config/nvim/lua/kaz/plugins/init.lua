@@ -1,164 +1,187 @@
-return require('packer').startup({
-  function(use)
-    use({ 'wbthomason/packer.nvim' })
-    use({ 'lewis6991/impatient.nvim' })
-    use({
-      'andersevenrud/nordic.nvim',
-      config = [[require('kaz.colors')]],
-    })
-    if os.getenv('OS_DISTRO') == 'UBUNTU' then
-      use({
-        'ojroques/vim-oscyank',
-        config = [[require('kaz.plugins.vim-oscyank')]],
-      })
-    end
-    use({
+require('lazy').setup({
+  'folke/neodev.nvim',
+  {
+    'andersevenrud/nordic.nvim',
+    lazy = false,
+    priority = 999,
+    config = function()
+      require('kaz.colors')
+    end,
+  },
+  {
+    'numToStr/Navigator.nvim',
+    lazy = false,
+    config = function()
+      require('kaz.plugins.navigator')
+    end,
+  },
+  -- lazy loaded
+  {
+    'RRethy/vim-illuminate',
+    config = function()
+      require('kaz.plugins.vim-illuminate')
+    end,
+  },
+  {
+    'neovim/nvim-lspconfig',
+    event = 'BufReadPre',
+    config = function()
+      require('kaz.plugins.lspconfig')
+    end,
+    dependencies = {
+      'ray-x/lsp_signature.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
       'RRethy/vim-illuminate',
-      config = [[require('kaz.plugins.vim-illuminate')]],
-    })
-    use({
-      'machakann/vim-sandwich',
-      config = [[require('kaz.plugins.vim-sandwich')]],
-    })
-    use({
-      'neovim/nvim-lspconfig',
-      config = [[require('kaz.plugins.lspconfig')]],
-      requires = {
-        'folke/neodev.nvim',
-        'ray-x/lsp_signature.nvim',
-        'jose-elias-alvarez/null-ls.nvim',
-      },
-    })
-    use({
-      'j-hui/fidget.nvim',
-      after = 'nvim-lspconfig',
-      config = [[require('kaz.plugins.fidget')]],
-    })
-    use({
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      config = [[require('kaz.plugins.nvim-treesitter')]],
-    })
-    use({
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      after = 'nvim-treesitter',
-    })
-    use({
-      'kyazdani42/nvim-web-devicons',
-      config = [[require('kaz.plugins.nvim-web-devicons')]],
-    })
-    use({
-      'Vimjas/vim-python-pep8-indent',
-      ft = 'python',
-    })
-    use({
-      'lukas-reineke/indent-blankline.nvim',
-      event = { 'BufRead', 'BufNewFile' },
-      after = 'nvim-treesitter',
-      config = [[require('kaz.plugins.indent-blankline')]],
-    })
-    use({
-      'famiu/feline.nvim',
-      event = 'BufWinEnter',
-      config = [[require('kaz.plugins.feline')]],
-    })
-    use({
-      'akinsho/bufferline.nvim',
-      event = 'BufWinEnter',
-      config = [[require('kaz.plugins.bufferline')]],
-    })
-    use({
-      'kazhala/close-buffers.nvim',
-      cmd = { 'BDelete', 'BWipeout' },
-      keys = { { 'n', '<leader>t' } },
-      config = [[require('kaz.plugins.close-buffers')]],
-    })
-    use({
-      'lewis6991/gitsigns.nvim',
-      keys = { { 'n', '<leader>h' } },
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = [[require('kaz.plugins.gitsigns')]],
-    })
-    use({
-      'hrsh7th/nvim-cmp',
-      requires = {
-        { 'hrsh7th/cmp-path', after = { 'nvim-cmp' } },
-        { 'hrsh7th/cmp-buffer', after = { 'nvim-cmp' } },
-        { 'hrsh7th/cmp-nvim-lsp', after = { 'nvim-cmp' } },
-        { 'f3fora/cmp-spell', after = { 'nvim-cmp' } },
-      },
-      config = [[require('kaz.plugins.nvim-cmp')]],
-      after = { 'LuaSnip' },
-    })
-    use({
-      'L3MON4D3/LuaSnip',
-      event = { 'BufRead', 'BufNewFile' },
-      config = [[require('kaz.plugins.luasnip')]],
-    })
-    use({
-      'windwp/nvim-autopairs',
-      event = { 'BufRead', 'BufNewFile' },
-      config = [[require('kaz.plugins.nvim-autopairs')]],
-    })
-    use({
-      'numToStr/Comment.nvim',
-      keys = { { 'n', 'gc' }, { 'n', 'gb' }, { 'v', 'gc' }, { 'v', 'gb' } },
-      config = [[require('kaz.plugins.Comment')]],
-    })
-    use({
-      'ggandor/lightspeed.nvim',
-      keys = { { 'n', 'r' }, { 'n', 'R' }, { 'n', 'f' }, { 'n', 'F' }, { 'n', 't' }, { 'n', 'T' } },
-      config = [[require('kaz.plugins.lightspeed')]],
-    })
-    use({
-      'numToStr/Navigator.nvim',
-      commit = '6bfcf7d',
-      config = [[require('kaz.plugins.navigator')]],
-    })
-    use({
-      'kevinhwang91/rnvimr',
-      keys = { { 'n', '<C-b>' } },
-      config = [[require('kaz.plugins.rnvimr')]],
-    })
-    use({
-      'akinsho/toggleterm.nvim',
-      keys = { { 'n', '<C-f>' } },
-      config = [[require('kaz.plugins.toggleterm')]],
-    })
-    use({
-      'kevinhwang91/nvim-bqf',
-      after = 'telescope.nvim',
-    })
-    use({
-      'nvim-telescope/telescope.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'AcksLd/nvim-neoclip.lua',
-      },
-      config = [[require('kaz.plugins.telescope')]],
-      cmd = { 'Telescope' },
-      keys = { { 'n', '<leader>f' }, { 'n', '<C-p>' }, { 'n', '<C-g>' }, { 'n', 'gd' }, { 'n', 'gr' } },
-    })
-    use({
-      'pianocomposer321/yabs.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = [[require('kaz.plugins.yabs')]],
-      keys = { { 'n', '<leader>y' } },
-    })
-    use({
-      'nvim-neorg/neorg',
-      config = [[require('kaz.plugins.neorg')]],
-      requires = 'nvim-lua/plenary.nvim',
-    })
-  end,
-
-  config = {
-    display = {
-      open_fn = function()
-        return require('packer.util').float({
-          border = vim.g.floating_window_border,
-        })
-      end,
     },
+  },
+  {
+    'j-hui/fidget.nvim',
+    event = 'BufReadPre',
+    config = function()
+      require('kaz.plugins.fidget')
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    event = 'BufReadPost',
+    config = function()
+      require('kaz.plugins.nvim-treesitter')
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = 'BufReadPost',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+  },
+  'kyazdani42/nvim-web-devicons',
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'AcksLd/nvim-neoclip.lua',
+      'kevinhwang91/nvim-bqf',
+    },
+    config = function()
+      require('kaz.plugins.telescope')
+    end,
+    cmd = 'Telescope',
+    keys = { '<leader>f', '<C-p>', 'gd', 'gr' },
+  },
+  {
+    'kylechui/nvim-surround',
+    config = true,
+    keys = { 'ys', 'ds', 'cs', { 'S', mode = 'v' } },
+    event = 'InsertEnter',
+  },
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      require('kaz.plugins.leap')
+    end,
+    keys = { 's', 'S', { 'x', mode = 'v' }, { 'X', mode = 'v' } },
+  },
+  {
+    'Vimjas/vim-python-pep8-indent',
+    ft = 'python',
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'BufReadPost',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('kaz.plugins.indent-blankline')
+    end,
+  },
+  {
+    'famiu/feline.nvim',
+    event = 'BufWinEnter',
+    config = function()
+      require('kaz.plugins.feline')
+    end,
+  },
+  {
+    'akinsho/bufferline.nvim',
+    event = 'BufWinEnter',
+    config = function()
+      require('kaz.plugins.bufferline')
+    end,
+  },
+  {
+    'kazhala/close-buffers.nvim',
+    cmd = { 'BDelete', 'BWipeout' },
+    keys = { '<leader>t' },
+    config = function()
+      require('kaz.plugins.close-buffers')
+    end,
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    keys = { '<leader>h' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('kaz.plugins.gitsigns')
+    end,
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'f3fora/cmp-spell',
+      'L3MON4D3/LuaSnip',
+    },
+    config = function()
+      require('kaz.plugins.nvim-cmp')
+    end,
+    event = 'InsertEnter',
+  },
+  {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('kaz.plugins.luasnip')
+    end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      require('kaz.plugins.nvim-autopairs')
+    end,
+  },
+  {
+    'numToStr/Comment.nvim',
+    keys = { 'gc', 'gb', { 'gc', mode = 'v' }, { 'gc', mode = 'v' } },
+    config = true,
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    keys = { '<C-f>' },
+    config = function()
+      require('kaz.plugins.toggleterm')
+    end,
+  },
+  {
+    'stevearc/oil.nvim',
+    keys = { '<C-b>' },
+    config = function()
+      require('kaz.plugins.oil')
+    end,
+  },
+  {
+    'kwakzalver/duckytype.nvim',
+    config = true,
+    cmd = 'DuckyType',
+  },
+}, {
+  defaults = {
+    lazy = true,
   },
 })
