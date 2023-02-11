@@ -68,7 +68,7 @@ require('lazy').setup({
       require('kaz.plugins.telescope')
     end,
     cmd = 'Telescope',
-    keys = { '<leader>f', '<C-p>', 'gd', 'gr' },
+    keys = { '<leader>f', '<C-p>', 'gd', 'gr', '<C-g>' },
   },
   {
     'kylechui/nvim-surround',
@@ -174,6 +174,9 @@ require('lazy').setup({
     config = function()
       require('kaz.plugins.oil')
     end,
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
   },
   {
     'kwakzalver/duckytype.nvim',

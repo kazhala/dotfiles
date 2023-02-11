@@ -4,7 +4,6 @@ local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local conf = require('telescope.config').values
 local make_entry = require('telescope.make_entry')
-local kb = require('kaz.utils.kb')
 
 local M = {}
 
@@ -14,12 +13,14 @@ M.dotbare_picker = function(opts)
   opts.cwd = os.getenv('DOTBARE_TREE')
   opts.entry_maker = opts.entry_maker or make_entry.gen_from_file(opts)
 
-  pickers.new(opts, {
-    prompt_title = 'Git Files',
-    finder = finders.new_oneshot_job({ 'dotbare', 'ls-files', '--full-name' }, opts),
-    previewer = conf.file_previewer(opts),
-    sorter = conf.file_sorter(opts),
-  }):find()
+  pickers
+    .new(opts, {
+      prompt_title = 'Git Files',
+      finder = finders.new_oneshot_job({ 'dotbare', 'ls-files', '--full-name' }, opts),
+      previewer = conf.file_previewer(opts),
+      sorter = conf.file_sorter(opts),
+    })
+    :find()
 end
 
 local function smart_enter(prompt_bufnr)
