@@ -44,14 +44,14 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = 'BufReadPost',
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       require('kaz.plugins.nvim-treesitter')
     end,
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    event = 'BufReadPost',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
@@ -177,11 +177,6 @@ require('lazy').setup({
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
-  },
-  {
-    'kwakzalver/duckytype.nvim',
-    config = true,
-    cmd = 'DuckyType',
   },
 }, {
   defaults = {

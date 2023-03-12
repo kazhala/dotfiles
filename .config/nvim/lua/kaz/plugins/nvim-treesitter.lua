@@ -1,6 +1,11 @@
+vim.opt.runtimepath:append('~/.config/treesitter')
+
 require('nvim-treesitter.configs').setup({
+  parser_install_dir = '~/.config/treesitter',
   ensure_installed = {
     'lua',
+    'c',
+    'help',
     'python',
     'yaml',
     'hcl',
@@ -10,6 +15,8 @@ require('nvim-treesitter.configs').setup({
     'toml',
     'comment',
     'vim',
+    'go',
+    'gomod',
   },
   indent = { enable = false },
   highlight = { enable = true },
