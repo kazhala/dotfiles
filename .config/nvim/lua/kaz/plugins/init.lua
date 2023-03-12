@@ -178,6 +178,13 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim',
     },
   },
+  {
+    'vimwiki/vimwiki',
+    init = function()
+      require('kaz.plugins.vimwiki')
+    end,
+    keys = { '<leader>w' },
+  },
 }, {
   defaults = {
     lazy = true,

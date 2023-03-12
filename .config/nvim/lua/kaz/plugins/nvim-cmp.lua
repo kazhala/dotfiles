@@ -79,6 +79,5 @@ cmp.setup({
         end,
       },
     },
-    { name = 'spell' },
   },
 })
