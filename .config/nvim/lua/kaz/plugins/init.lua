@@ -48,12 +48,27 @@ require('lazy').setup({
     config = function()
       require('kaz.plugins.nvim-treesitter')
     end,
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
+      {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        init = function()
+          -- PERF: no need to load the plugin, if we only need its queries for mini.ai
+          local plugin = require('lazy.core.config').spec.plugins['nvim-treesitter']
+          local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
+          local enabled = false
+          if opts.textobjects then
+            for _, mod in ipairs({ 'move', 'select', 'swap', 'lsp_interop' }) do
+              if opts.textobjects[mod] and opts.textobjects[mod].enable then
+                enabled = true
+                break
+              end
+            end
+          end
+          if not enabled then
+            require('lazy.core.loader').disable_rtp_plugin('nvim-treesitter-textobjects')
+          end
+        end,
+      },
     },
   },
   'kyazdani42/nvim-web-devicons',
@@ -63,6 +78,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'AcksLd/nvim-neoclip.lua',
       'kevinhwang91/nvim-bqf',
+      'nvim-treesitter/nvim-treesitter',
     },
     config = function()
       require('kaz.plugins.telescope')
@@ -89,10 +105,11 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'BufReadPost',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
+    -- event = { 'BufReadPost', 'BufNewFile' },
+    -- dependencies = {
+    --   'nvim-treesitter/nvim-treesitter',
+    -- },
+    lazy = false,
     config = function()
       require('kaz.plugins.indent-blankline')
     end,

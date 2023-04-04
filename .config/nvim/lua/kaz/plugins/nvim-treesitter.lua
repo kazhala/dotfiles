@@ -4,6 +4,7 @@ require('nvim-treesitter.configs').setup({
   parser_install_dir = '~/.config/treesitter',
   ensure_installed = {
     'lua',
+    'vim',
     'c',
     'help',
     'python',
@@ -14,7 +15,6 @@ require('nvim-treesitter.configs').setup({
     'json',
     'toml',
     'comment',
-    'vim',
     'go',
     'gomod',
   },
