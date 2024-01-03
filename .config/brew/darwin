@@ -41,4 +41,3 @@ lua-language-server
 argoproj/tap/kubectl-argo-rollouts
 helm
 crane
-bazel
