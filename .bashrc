@@ -87,3 +87,6 @@ PS1+='\[\e[31m\]$(propmt_dirt)'             # git status red
 PS1+='\[\e[33m\]$(prompt_closingBracket)\n' # git closing bracket brown
 PS1+='\[\e[32m\]└─>'                        # next line indicator green
 PS1+='\[\e[m\] '                            # end of prompt clear the color
+
+[[ -f "$HOME/.fzf.bash" ]] && source "$HOME/.fzf.bash"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

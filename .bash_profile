@@ -1,4 +1,3 @@
-if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
-fi
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

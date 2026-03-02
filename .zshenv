@@ -1,2 +1,3 @@
 skip_global_compinit=1
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

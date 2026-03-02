@@ -106,6 +106,7 @@ setopt ignoreeof
 # -- PATH ----------------------------------------------------------------------
 
 export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/Programming/scripts/shell:$PATH"
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/bin:$PATH"
 
@@ -246,7 +247,7 @@ _fzf_compgen_dir() {
 }
 
 # activate fzf keybindings
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 export FZF_COMPLETION_TRIGGER=''
 export FZF_PREVIEW_COMMAND='cat {}'
 
@@ -325,3 +326,7 @@ bindkey "\ed" ffd-d-invoke
 # -- FINAL ---------------------------------------------------------------------
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+
+# License Vault URL for activation of Jetbrains products at Canva
+export JETBRAINS_LICENSE_SERVER=https://canva.fls.jetbrains.com/
