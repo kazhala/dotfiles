@@ -5,26 +5,12 @@
 # -- ENV -----------------------------------------------------------------------
 
 PLUGINS="$HOME/.config/sketchybar/plugins"
-COL_BLACK='2e3440'
-COL_LIGHT_BLACK='3b4252'
-COL_GREY='434c5e'
-COL_LIGHT_GREY='4c566a'
-COL_DARK_WHITE='d8dee9'
-COL_WHITE='e5e9f0'
-COL_SNOW_WHITE='eceff4'
-COL_TEAL_GREEN='8fbcbb'
-COL_TEAL='88c0d0'
-COL_SKY_BLUE='81a1c1'
-COL_BLUE='5e81ac'
-COL_RED='bf616a'
-COL_ORANGE='d08770'
-COL_YELLOW='ebcb8b'
-COL_GREEN='a3be8c'
-COL_PURPLE='b48ead'
+# shellcheck source=colors.sh
+. "$HOME/.config/sketchybar/colors.sh"
 
 # -- BAR -----------------------------------------------------------------------
 
-sketchybar -m --bar height=26 \
+sketchybar -m --bar height=24 \
 	blur_radius=0 \
 	position=top \
 	padding_left=8 \
@@ -51,60 +37,30 @@ sketchybar -m --default updates=when_shown \
 sketchybar -m --default label.padding_left=0 \
 	label.padding_right=0 \
 	icon.padding_left=8 \
-	icon.padding_right=8
+	icon.padding_right=8 \
+	background.corner_radius=4
 
 # -- LEFT ----------------------------------------------------------------------
 
 sketchybar -m --add item logo left \
-	--set logo icon= \
-	background.corner_radius=4 \
-	background.color="0xff${COL_GREEN}"
+	--set logo \
+	background.color="0xff${COL_GREEN}" \
+	script="$PLUGINS/aerospace_icon.sh"
 
-sketchybar -m --add space home left \
-	--set home associated_display=1 \
-	icon.padding_left=16 \
-	associated_space=1 \
-	icon= \
-	\
-	--add space video left \
-	--set video associated_display=1 \
-	associated_space=2 \
-	icon= \
-	\
-	--add space code left \
-	--set code associated_display=1 \
-	associated_space=3 \
-	icon= \
-	\
-	--add space web left \
-	--set web associated_display=1 \
-	associated_space=4 \
-	icon= \
-	\
-	--add space reserve left \
-	--set reserve associated_display=1 \
-	associated_space=5 \
-	icon= \
-	\
-	--add space chat left \
-	--set chat associated_display=1 \
-	associated_space=6 \
-	icon=
+sketchybar --add event aerospace_workspace_change
 
-sketchybar -m --add item sep left \
-	--set sep icon=""
-
-sketchybar -m --add item yabai_icon left \
-	--set yabai_icon \
-	icon= \
-	background.color="0xff${COL_LIGHT_GREY}" \
-	background.corner_radius=4
-
-sketchybar -m --add item yabai_label left \
-	--set yabai_label \
-	update_freq=3 \
-	script="$PLUGINS/yabai.sh" \
-	--subscribe yabai_label space_change
+for sid in $(aerospace list-workspaces --all); do
+	sketchybar --add item space.$sid left \
+		--subscribe space.$sid aerospace_workspace_change \
+		--set space.$sid \
+		icon="$sid" \
+		icon.font="MesloLGS Nerd Font Mono:Bold:12.0" \
+		label.drawing=off \
+		background.drawing=on \
+		background.color=0x00000000 \
+		click_script="aerospace workspace $sid" \
+		script="$PLUGINS/aerospace.sh $sid"
+done
 
 # -- MIDDLE --------------------------------------------------------------------
 
@@ -120,15 +76,17 @@ sketchybar -m --add item time_label right \
 	label.padding_right=8 \
 	icon.padding_left=0 \
 	icon.padding_right=4 \
+	background.color="0xff${COL_LIGHT_GREY}" \
+	background.drawing=off \
 	script="$PLUGINS/time.sh"
 
 sketchybar -m --add item time_icon right \
-	--set time_icon icon= \
+	--set time_icon \
 	background.color="0xff${COL_BLUE}" \
-	background.corner_radius=4
+	script="$PLUGINS/time_icon.sh"
 
 sketchybar -m --add item sep1 right \
-	--set sep1 icon="" \
+	--set sep1 icon="|" \
 	icon.padding_right=0
 
 sketchybar -m --add item date_label right \
@@ -137,15 +95,17 @@ sketchybar -m --add item date_label right \
 	label.padding_right=8 \
 	icon.padding_left=0 \
 	icon.padding_right=4 \
+	background.color="0xff${COL_LIGHT_GREY}" \
+	background.drawing=off \
 	script="$PLUGINS/date.sh"
 
 sketchybar -m --add item date_icon right \
-	--set date_icon icon= \
+	--set date_icon \
 	background.color="0xff${COL_YELLOW}" \
-	background.corner_radius=4
+	script="$PLUGINS/date_icon.sh"
 
 sketchybar -m --add item sep2 right \
-	--set sep2 icon="" \
+	--set sep2 icon="|" \
 	icon.padding_right=0
 
 sketchybar -m --add item battery_label right \
@@ -154,17 +114,18 @@ sketchybar -m --add item battery_label right \
 	label.padding_right=8 \
 	icon.padding_left=0 \
 	icon.padding_right=4 \
+	background.color="0xff${COL_LIGHT_GREY}" \
+	background.drawing=off \
 	script="$PLUGINS/battery.sh"
 
 sketchybar -m --add item battery_icon right \
 	--set battery_icon \
 	background.color="0xff${COL_PURPLE}" \
-	background.corner_radius=4 \
 	update_freq=10 \
 	script="$PLUGINS/battery_icon.sh"
 
 sketchybar -m --add item sep3 right \
-	--set sep3 icon="" \
+	--set sep3 icon="|" \
 	icon.padding_right=0
 
 sketchybar -m --add item volume_label right \
@@ -173,17 +134,18 @@ sketchybar -m --add item volume_label right \
 	label.padding_right=8 \
 	icon.padding_left=0 \
 	icon.padding_right=4 \
+	background.color="0xff${COL_LIGHT_GREY}" \
+	background.drawing=off \
 	script="$PLUGINS/volume.sh"
 
 sketchybar -m --add item volume_icon right \
 	--set volume_icon \
 	update_freq=3 \
 	background.color="0xff${COL_TEAL_GREEN}" \
-	background.corner_radius=4 \
 	script="$PLUGINS/volume_icon.sh"
 
 sketchybar -m --add item sep4 right \
-	--set sep4 icon="" \
+	--set sep4 icon="|" \
 	icon.padding_right=0
 
 sketchybar -m --add item network_label right \
@@ -192,82 +154,82 @@ sketchybar -m --add item network_label right \
 	label.padding_right=8 \
 	icon.padding_left=0 \
 	icon.padding_right=4 \
+	background.color="0xff${COL_LIGHT_GREY}" \
+	background.drawing=off \
 	script="$PLUGINS/network.sh"
 
 sketchybar -m --add item network_icon right \
 	--set network_icon \
-	icon= background.color="0xff${COL_RED}" \
-	background.corner_radius=4
+	background.color="0xff${COL_RED}" \
+	script="$PLUGINS/network_icon.sh"
 
 # -- BRACKETS ------------------------------------------------------------------
 
 sketchybar --add bracket primary_spaces \
 	logo \
-	home \
-	video \
-	code \
-	web \
-	reserve \
-	chat \
+	space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 \
 	--set primary_spaces \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_GREEN}" \
 	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 sketchybar --add bracket _time \
 	time_label \
 	time_icon \
 	--set _time \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_BLUE}" \
 	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 sketchybar --add bracket _date \
 	date_label \
 	date_icon \
 	--set _date \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_YELLOW}" \
 	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 sketchybar --add bracket _battery \
 	battery_label \
 	battery_icon \
 	--set _battery \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_PURPLE}" \
 	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 sketchybar --add bracket _volume \
 	volume_label \
 	volume_icon \
 	--set _volume \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_TEAL_GREEN}" \
 	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 sketchybar --add bracket _network \
 	network_label \
 	network_icon \
 	--set _network \
-	background.color="0xff${COL_BLACK}" \
+	background.drawing=on \
+	background.color="0xff${COL_LIGHT_BLACK}" \
 	background.border_color="0xff${COL_RED}" \
 	background.border_width=2 \
-	background.corner_radius=4
-
-sketchybar --add bracket _yabai \
-	yabai_icon \
-	yabai_label \
-	--set _yabai \
-	background.color="0xff${COL_BLACK}" \
-	background.border_color="0xff${COL_LIGHT_GREY}" \
-	background.border_width=2 \
-	background.corner_radius=4
+	background.corner_radius=4 \
+	background.height=24
 
 # -- END -----------------------------------------------------------------------
 

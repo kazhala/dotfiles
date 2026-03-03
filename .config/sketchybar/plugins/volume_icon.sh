@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-MUTED=$(osascript -e "get volume settings" | grep "muted:true")
+SETTINGS=$(osascript -e "get volume settings")
+VOLUME=$(echo "$SETTINGS" | cut -d ":" -f2 | cut -d "," -f1 | tr -d ' ')
+MUTED=$(echo "$SETTINGS" | grep "muted:true")
 
 if [[ $MUTED != "" ]]; then
-	ICON="ﱝ"
+	ICON="󰝟"
+elif [[ $VOLUME -lt 25 ]]; then
+	ICON="󰕿"
+elif [[ $VOLUME -lt 75 ]]; then
+	ICON="󰖀"
 else
-	ICON=""
+	ICON="󰕾"
 fi
 
 sketchybar -m --set "$NAME" icon="$ICON"
