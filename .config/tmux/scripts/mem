@@ -1,0 +1,10 @@
+#!/bin/bash
+total=$(sysctl -n hw.memsize)
+vm_stat | awk -v total="$total" '
+/Pages active/                  { active = $3 + 0 }
+/Pages wired down/              { wired  = $4 + 0 }
+/Pages occupied by compressor/  { comp   = $5 + 0 }
+END {
+    used = (active + wired + comp) * 4096
+    printf "%.0f%%", used / total * 100
+}'
