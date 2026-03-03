@@ -44,6 +44,7 @@ sketchybar -m --default label.padding_left=0 \
 
 sketchybar -m --add item logo left \
 	--set logo \
+	icon.color="0xff${COL_GREY}" \
 	background.color="0xff${COL_GREEN}" \
 	script="$PLUGINS/aerospace_icon.sh"
 
@@ -82,6 +83,7 @@ sketchybar -m --add item time_label right \
 
 sketchybar -m --add item time_icon right \
 	--set time_icon \
+	icon.color="0xff${COL_GREY}" \
 	background.color="0xff${COL_BLUE}" \
 	script="$PLUGINS/time_icon.sh"
 
@@ -101,6 +103,7 @@ sketchybar -m --add item date_label right \
 
 sketchybar -m --add item date_icon right \
 	--set date_icon \
+	icon.color="0xff${COL_GREY}" \
 	background.color="0xff${COL_YELLOW}" \
 	script="$PLUGINS/date_icon.sh"
 
@@ -120,6 +123,7 @@ sketchybar -m --add item battery_label right \
 
 sketchybar -m --add item battery_icon right \
 	--set battery_icon \
+	icon.color="0xff${COL_GREY}" \
 	background.color="0xff${COL_PURPLE}" \
 	update_freq=10 \
 	script="$PLUGINS/battery_icon.sh"
@@ -140,6 +144,7 @@ sketchybar -m --add item volume_label right \
 
 sketchybar -m --add item volume_icon right \
 	--set volume_icon \
+	icon.color="0xff${COL_GREY}" \
 	update_freq=3 \
 	background.color="0xff${COL_TEAL_GREEN}" \
 	script="$PLUGINS/volume_icon.sh"
@@ -160,6 +165,7 @@ sketchybar -m --add item network_label right \
 
 sketchybar -m --add item network_icon right \
 	--set network_icon \
+	icon.color="0xff${COL_GREY}" \
 	background.color="0xff${COL_RED}" \
 	script="$PLUGINS/network_icon.sh"
 
@@ -170,7 +176,7 @@ sketchybar --add bracket primary_spaces \
 	space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 \
 	--set primary_spaces \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_GREEN}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
@@ -181,7 +187,7 @@ sketchybar --add bracket _time \
 	time_icon \
 	--set _time \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_BLUE}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
@@ -192,7 +198,7 @@ sketchybar --add bracket _date \
 	date_icon \
 	--set _date \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_YELLOW}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
@@ -203,7 +209,7 @@ sketchybar --add bracket _battery \
 	battery_icon \
 	--set _battery \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_PURPLE}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
@@ -214,7 +220,7 @@ sketchybar --add bracket _volume \
 	volume_icon \
 	--set _volume \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_TEAL_GREEN}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
@@ -225,7 +231,7 @@ sketchybar --add bracket _network \
 	network_icon \
 	--set _network \
 	background.drawing=on \
-	background.color="0xff${COL_LIGHT_BLACK}" \
+	background.color="0xff${COL_GREY}" \
 	background.border_color="0xff${COL_RED}" \
 	background.border_width=2 \
 	background.corner_radius=4 \
