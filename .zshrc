@@ -43,16 +43,15 @@ zinit wait lucid light-mode for \
   zicompinit;
   zicdreplay;
   _dotbare_completion_cmd;
-  complete -o nospace -C "$(which terraform)" terraform;
-  eval "$(register-python-argcomplete pipx)"' \
+  complete -o nospace -C "$(which terraform)" terraform' \
   atload"FAST_HIGHLIGHT[chroma-man]=" \
     zdharma-continuum/fast-syntax-highlighting
 
 # -- SETTINGS -----------------------------------------------------------------
 
 # history
-HISTSIZE=50000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.cache/zsh/history
 setopt extended_history
 setopt hist_expire_dups_first
