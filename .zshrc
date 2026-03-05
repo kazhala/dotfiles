@@ -162,10 +162,10 @@ export LS_COLORS="$(vivid generate nord)"
 # -- BMUX ----------------------------------------------------------------------
 
 export BMUX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/bmux"
-export BMUX_ACTIVE_SYMBOL=""
-export BMUX_INACTIVE_SYMBOL=""
+export BMUX_ACTIVE_SYMBOL="󰱒"
+export BMUX_INACTIVE_SYMBOL="󰄱"
 export BMUX_ACTIVE_COLOR="32"
-export BMUX_TREE_SYMBOL="﬌"
+export BMUX_TREE_SYMBOL="└─"
 
 export BMUX_3_WEB='05c6,210x63,0,0{150x63,0,0,56,59x63,151,0[59x31,151,0,57,59x31,151,32,58]}'
 export BMUX_3_VS='3807,210x63,0,0[210x45,0,0,1,210x17,0,46{105x17,0,46,3,104x17,106,46,4}]'
@@ -204,22 +204,22 @@ export DOTBARE_KEY="
 # -- FZF ----------------------------------------------------------------------
 
 _gen_fzf_default_opts() {
-local color00='#2E3440'
-local color01='#3B4252'
-local color02='#434C5E'
-local color03='#4C566A'
-local color04='#D8DEE9'
-local color05='#E5E9F0'
-local color06='#ECEFF4'
-local color07='#8FBCBB'
-local color08='#BF616A'
-local color09='#D08770'
-local color0A='#EBCB8B'
-local color0B='#A3BE8C'
-local color0C='#88C0D0'
-local color0D='#81A1C1'
-local color0E='#B48EAD'
-local color0F='#5E81AC'
+local color00='#303446'
+local color01='#292c3c'
+local color02='#51576d'
+local color03='#626880'
+local color04='#a5adce'
+local color05='#b5bfe2'
+local color06='#c6d0f5'
+local color07='#81c8be'
+local color08='#e78284'
+local color09='#ef9f76'
+local color0A='#e5c890'
+local color0B='#a6d189'
+local color0C='#99d1db'
+local color0D='#8caaee'
+local color0E='#ca9ee6'
+local color0F='#85c1dc'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
   --color=bg+:$color00,bg:$color00,spinner:$color0C,hl:$color0D
