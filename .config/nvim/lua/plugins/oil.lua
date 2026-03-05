@@ -9,7 +9,8 @@ local function open()
   -- than reusing it (unlike fzf which does :edit in-place). wipe it so it
   -- doesn't linger. guard with the single-buffer check to avoid touching any
   -- unnamed buffers the user intentionally created later.
-  if #vim.fn.getbufinfo({ buflisted = 1 }) == 1
+  if
+    #vim.fn.getbufinfo({ buflisted = 1 }) == 1
     and vim.api.nvim_buf_get_name(prev_buf) == ''
     and not vim.bo[prev_buf].modified
     and vim.bo[prev_buf].buftype == ''

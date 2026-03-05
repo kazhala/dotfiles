@@ -43,10 +43,14 @@ function M.open(opts)
 
   if platform == 'github' then
     url = 'https://github.com/' .. repo .. '/blob/' .. branch .. '/' .. file
-    if line then url = url .. '#L' .. line end
+    if line then
+      url = url .. '#L' .. line
+    end
   elseif platform == 'sourcegraph' then
     url = M.config.sourcegraph_url .. M.config.sourcegraph_prefix .. '/github.com/' .. repo .. '/-/blob/' .. file
-    if line then url = url .. '?L' .. line end
+    if line then
+      url = url .. '?L' .. line
+    end
   end
 
   vim.ui.open(url)
