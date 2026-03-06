@@ -226,6 +226,13 @@ return {
       hl = { fg = colors.inactive },
     }
 
+    local FileType = {
+      provider = function()
+        return vim.bo.filetype ~= '' and (vim.bo.filetype .. ' ')
+      end,
+      hl = { fg = colors.inactive },
+    }
+
     local StatusLine = {
       -- left
       ViMode,
@@ -240,6 +247,7 @@ return {
       -- right
       Git,
       Ruler,
+      FileType,
       ViMode,
     }
 

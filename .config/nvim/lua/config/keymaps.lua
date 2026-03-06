@@ -4,6 +4,7 @@ vim.g.maplocalleader = '\\'
 local window = require('lib.window')
 local visual_star = require('lib.visual_star')
 local codelink = require('lib.codelink')
+local qf = require('lib.qf')
 
 vim.keymap.set('n', 'Q', 'q', { noremap = true })
 
@@ -74,4 +75,7 @@ vim.keymap.set('n', '[g', function()
   vim.diagnostic.jump({ count = -1 })
 end, { silent = true, desc = 'Prev diagnostic' })
 
--- TODO: <leader>dd → trouble.nvim TroubleToggle
+-- quickfix
+vim.keymap.set('n', '<leader>dd', function()
+  qf.toggle_qf()
+end, { silent = true, desc = 'Toggle quickfix' })

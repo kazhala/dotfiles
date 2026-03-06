@@ -4,6 +4,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require('barbar').setup({
+      exclude_ft = { 'qf' },
       icons = {
         button = false,
         diagnostics = {
@@ -18,7 +19,7 @@ return {
     local function close_nameless_buffers()
       for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == '' then
-          vim.cmd('BufferClose ' .. buf)
+          vim.api.nvim_buf_delete(buf, {})
         end
       end
     end
@@ -29,8 +30,8 @@ return {
         visible[vim.api.nvim_win_get_buf(win)] = true
       end
       for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and not visible[buf] then
-          vim.cmd('BufferClose ' .. buf)
+        if vim.api.nvim_buf_is_loaded(buf) and not visible[buf] and vim.bo[buf].buftype == '' then
+          vim.api.nvim_buf_delete(buf, {})
         end
       end
     end

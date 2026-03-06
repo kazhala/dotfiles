@@ -6,6 +6,7 @@ local g = {
   clear_cmd = vim.api.nvim_create_augroup('ClearCommandMessages', { clear = true }),
   oil_aug = vim.api.nvim_create_augroup('OilBarbarFix', { clear = true }),
   lsp = vim.api.nvim_create_augroup('LspDiagnosticFloat', { clear = true }),
+  qf = vim.api.nvim_create_augroup('QuickfixSelect', { clear = true }),
 }
 
 vim.filetype.add({
@@ -100,6 +101,35 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'help', 'man', 'qf' },
   callback = function()
     vim.keymap.set('n', 'q', '<CMD>q<CR>', { silent = true, buffer = true })
+  end,
+})
+
+-- when selecting a qf entry, clean up any unnamed empty buffer that becomes hidden
+vim.api.nvim_create_autocmd('FileType', {
+  group = g.qf,
+  pattern = 'qf',
+  callback = function()
+    vim.keymap.set('n', '<CR>', function()
+      local unnamed = {}
+      local has_named = false
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == '' then
+          if vim.api.nvim_buf_get_name(buf) == '' and not vim.bo[buf].modified then
+            unnamed[#unnamed + 1] = buf
+          else
+            has_named = true
+          end
+        end
+      end
+      vim.cmd(vim.fn.line('.') .. 'cc')
+      if not has_named then
+        for _, buf in ipairs(unnamed) do
+          if vim.api.nvim_buf_is_valid(buf) and #vim.fn.win_findbuf(buf) == 0 then
+            vim.api.nvim_buf_delete(buf, {})
+          end
+        end
+      end
+    end, { buffer = true, silent = true })
   end,
 })
 
