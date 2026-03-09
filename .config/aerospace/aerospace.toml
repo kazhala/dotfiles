@@ -68,7 +68,7 @@ on-mode-changed = []
     inner.vertical =   8
     outer.left =       8
     outer.bottom =     8
-    outer.top =        40
+    outer.top =        [{ monitor."Studio Display" = 40 }, 8]
     outer.right =      8
 
 # 'main' binding mode declaration
