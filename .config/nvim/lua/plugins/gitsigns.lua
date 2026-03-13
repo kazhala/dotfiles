@@ -12,6 +12,9 @@ return {
         topdelete = { text = '┃' },
         changedelete = { text = '┃' },
       },
+      preview_config = {
+        border = vim.g.floating_window_border,
+      },
     })
 
     vim.keymap.set('n', ']h', function()
