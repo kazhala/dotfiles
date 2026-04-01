@@ -6,7 +6,7 @@ return {
   },
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
-    vim.lsp.set_log_level('error')
+    vim.lsp.log.set_level('error')
 
     -- Auto-install servers
     require('mason-lspconfig').setup({
