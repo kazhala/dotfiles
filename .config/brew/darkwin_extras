@@ -1,0 +1,13 @@
+argo
+argoproj/tap/kubectl-argo-rollouts
+awscli
+cilium-cli
+crane
+direnv
+gh
+helm
+kubernetes-cli
+kustomize
+minikube
+redis
+terraform
