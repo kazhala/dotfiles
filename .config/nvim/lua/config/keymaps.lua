@@ -21,11 +21,11 @@ vim.keymap.set('n', '<C-y>', '3<C-y>')
 -- visual star search
 vim.keymap.set('x', '*', function()
   visual_star.star()
-  vim.fn.feedkeys('/' .. vim.fn.getreg('/') .. '\r', 'n')
+  vim.fn.feedkeys('\27/' .. vim.fn.getreg('/') .. '\r', 'n')
 end)
 vim.keymap.set('x', '<leader>rs', function()
   visual_star.star()
-  vim.fn.feedkeys('/' .. vim.fn.getreg('/') .. '\rNcgn', 'n')
+  vim.fn.feedkeys('\27/' .. vim.fn.getreg('/') .. '\rNcgn', 'n')
 end)
 vim.keymap.set('n', '<leader>rs', '*Ncgn')
 

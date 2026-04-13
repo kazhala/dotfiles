@@ -65,6 +65,14 @@ return {
           disableOrganizeImports = true,
         },
       },
+      handlers = {
+        ['window/showMessage'] = function(err, result, ctx, config)
+          if result and result.message and result.message:match('Enumeration of workspace source files') then
+            return
+          end
+          vim.lsp.handlers['window/showMessage'](err, result, ctx, config)
+        end,
+      },
     })
 
     vim.lsp.config('ruff', {
