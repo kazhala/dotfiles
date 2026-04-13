@@ -7,13 +7,14 @@ lsd
 lua
 neovim
 pipx
-python3
+python@3.14
 ripgrep
 rust
 sqlite
 tmux
 tree
 tree-sitter
+tree-sitter-cli
 vivid
 wget
 FelixKratz/formulae/sketchybar
