@@ -313,8 +313,10 @@ bindkey "^n" down-line-or-history
 bindkey -M vicmd v edit-command-line
 bindkey "^?" backward-delete-char
 
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
+if (( $+widgets[fzf-completion] )); then
+  bindkey '^T' fzf-completion
+  bindkey '^I' $fzf_default_completion
+fi
 
 zle -N fm-invoke _run_fm
 bindkey "^g" fm-invoke
